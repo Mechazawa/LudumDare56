@@ -8,36 +8,33 @@ on:
   workflow_dispatch:
 
 jobs:
-  godot:
+  setup:
     runs-on: ubuntu-latest
     steps:
       - name: Cache Godot
-        id: cache
+        id: cache-godot
         uses: actions/cache@v4
         with:
           path: ~/godot
           key: godot-4.3-stable
 
       - name: Install Godot
-        if: steps.cache.outputs.cache-hit != 'true'
+        if: steps.cache-godot.outputs.cache-hit != 'true'
         run: |
           wget https://github.com/godotengine/godot/releases/download/4.3-stable/Godot_v4.3-stable_linux.x86_64.zip
           unzip Godot_v4.3-stable_linux.x86_64.zip -d ~/godot
           rm Godot_v4.3-stable_linux.x86_64.zip
           chmod +x ~/godot/Godot_v4.3-stable_linux.x86_64
           
-  templates:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Cache Godot Export Templates
-        id: cache
+      - name: Cache Godot export templates
+        id: cache-templates
         uses: actions/cache@v4
         with:
-          path: ~/.local/share/godot/templates/4.3.stable/
-          key: godot-templates-4.3
+          path: ~/.local/share/godot/export_templates
+          key: godot-templates
 
-      - name: Install HTML5 export templates
-        if: steps.cache.outputs.cache-hit != 'true'
+      - name: Install Godot export templates
+        if: steps.cache-templates.outputs.cache-hit != 'true'
         run: |
           wget https://github.com/godotengine/godot/releases/download/4.3-stable/Godot_v4.3-stable_export_templates.tpz
           mkdir -p ~/.local/share/godot/export_templates/4.3.stable/
@@ -46,9 +43,7 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
-    needs:
-      - templates
-      - godot
+    needs: setup
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
@@ -67,19 +62,15 @@ jobs:
           name: godot-build
           path: build/
 
-  publish:
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
       - name: Cache MinIO Client
-        id: cache
+        id: cache-minio
         uses: actions/cache@v4
         with:
           path: /usr/local/bin/mc
           key: minio-client
 
       - name: Install MinIO Client
-        if: steps.cache.outputs.cache-hit != 'true'
+        if: steps.cache-minio.outputs.cache-hit != 'true'
         run: |
           wget https://dl.min.io/client/mc/release/linux-amd64/mc
           chmod +x mc
