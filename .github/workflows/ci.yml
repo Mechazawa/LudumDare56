@@ -4,6 +4,9 @@ on:
   push:
   workflow_dispatch:
 
+env:
+  output_name: game.html
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -48,7 +51,7 @@ jobs:
       - name: Export project to HTML5
         run: |
           mkdir build 
-          ~/godot/Godot_v4.3-stable_linux.x86_64 --headless --export-${{ matrix.type }} "Web" ./build/game.html
+          ~/godot/Godot_v4.3-stable_linux.x86_64 --headless --export-${{ matrix.type }} "Web" ./build/${{ env.output_name }}
 
       - name: Upload artifact
         uses: actions/upload-artifact@v3
@@ -77,3 +80,4 @@ jobs:
       - name: Upload to MinIO
         run: |
           /usr/local/bin/mc cp --recursive build/ ioexception/ludumdare56/$GITHUB_REF_NAME/${{ matrix.type }}/
+          echo "Uploaded ${{ matrix.type }} build to [MinIO](https://bucket.ioexception.at/ludumdare56/$GITHUB_REF_NAME/${{ matrix.type }}/${{ env.output_name }})" >> $GITHUB_STEP_SUMMARY
