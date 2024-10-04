@@ -10,6 +10,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        type: [release, debug]
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
@@ -46,12 +49,12 @@ jobs:
           
       - name: Export project to HTML5
         run: |
-          ~/godot/Godot_v4.3-stable_linux.x86_64 --export-release "Web" build/web/
+          ~/godot/Godot_v4.3-stable_linux.x86_64 --headless --export-${{ matrix.type }} "Web" build/
 
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
-          name: godot-build
+          name: ${{ matrix.type }}
           path: build/
 
       - name: Cache MinIO Client
@@ -74,4 +77,4 @@ jobs:
 
       - name: Upload to MinIO
         run: |
-          /usr/local/bin/mc cp --recursive build/web/ myminio/ludumdare56/
+          /usr/local/bin/mc cp --recursive build/web/ myminio/ludumdare56/${{ matrix.type }}/
