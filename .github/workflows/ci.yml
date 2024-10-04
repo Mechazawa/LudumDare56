@@ -1,0 +1,80 @@
+name: CI
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        type: [release, debug]
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        
+      - name: Cache Godot
+        id: cache-godot
+        uses: actions/cache@v4
+        with:
+          path: ~/godot
+          key: godot-4.3-stable
+
+      - name: Install Godot
+        if: steps.cache-godot.outputs.cache-hit != 'true'
+        run: |
+          wget https://github.com/godotengine/godot/releases/download/4.3-stable/Godot_v4.3-stable_linux.x86_64.zip
+          unzip Godot_v4.3-stable_linux.x86_64.zip -d ~/godot
+          rm Godot_v4.3-stable_linux.x86_64.zip
+          chmod +x ~/godot/Godot_v4.3-stable_linux.x86_64
+          
+      - name: Cache Godot export templates
+        id: cache-templates
+        uses: actions/cache@v4
+        with:
+          path: ~/.local/share/godot/export_templates
+          key: godot-templates
+
+      - name: Install Godot export templates
+        if: steps.cache-templates.outputs.cache-hit != 'true'
+        run: |
+          wget https://github.com/godotengine/godot/releases/download/4.3-stable/Godot_v4.3-stable_export_templates.tpz
+          mkdir -p ~/.local/share/godot/export_templates/4.3.stable/
+          unzip Godot_v4.3-stable_export_templates.tpz -d ~/.local/share/godot/export_templates/4.3.stable/
+          rm Godot_v4.3-stable_export_templates.tpz
+          
+      - name: Export project to HTML5
+        run: |
+          ~/godot/Godot_v4.3-stable_linux.x86_64 --headless --export-${{ matrix.type }} "Web" build/
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ matrix.type }}
+          path: build/
+
+      - name: Cache MinIO Client
+        id: cache-minio
+        uses: actions/cache@v4
+        with:
+          path: /usr/local/bin/mc
+          key: minio-client
+
+      - name: Install MinIO Client
+        if: steps.cache-minio.outputs.cache-hit != 'true'
+        run: |
+          wget https://dl.min.io/client/mc/release/linux-amd64/mc
+          chmod +x mc
+          sudo mv mc /usr/local/bin/
+
+      - name: Configure MinIO Client
+        run: |
+          /usr/local/bin/mc alias set ioexception $MINIO_HOST ${{ secrets.MINIO_ACCESS_KEY }} ${{ secrets.MINIO_SECRET_KEY }}
+
+      - name: Upload to MinIO
+        run: |
+          /usr/local/bin/mc cp --recursive build/ ioexception/ludumdare56/${{ matrix.type }}/
