@@ -2,10 +2,10 @@ name: CI
 
 on:
   push:
-    branches: [ "master" ]
-  pull_request:
-    branches: [ "master" ]
   workflow_dispatch:
+
+env:
+  output_name: game.html
 
 jobs:
   build:
@@ -27,7 +27,7 @@ jobs:
       - name: Install Godot
         if: steps.cache-godot.outputs.cache-hit != 'true'
         run: |
-          wget https://github.com/godotengine/godot/releases/download/4.3-stable/Godot_v4.3-stable_linux.x86_64.zip
+          wget --no-verbose https://github.com/godotengine/godot/releases/download/4.3-stable/Godot_v4.3-stable_linux.x86_64.zip
           unzip Godot_v4.3-stable_linux.x86_64.zip -d ~/godot
           rm Godot_v4.3-stable_linux.x86_64.zip
           chmod +x ~/godot/Godot_v4.3-stable_linux.x86_64
@@ -36,20 +36,22 @@ jobs:
         id: cache-templates
         uses: actions/cache@v4
         with:
-          path: ~/.local/share/godot/export_templates
+          path: ~/.local/share/godot/export_templates/4.3.stable
           key: godot-templates
 
       - name: Install Godot export templates
         if: steps.cache-templates.outputs.cache-hit != 'true'
         run: |
-          wget https://github.com/godotengine/godot/releases/download/4.3-stable/Godot_v4.3-stable_export_templates.tpz
+          wget --no-verbose https://github.com/godotengine/godot/releases/download/4.3-stable/Godot_v4.3-stable_export_templates.tpz
+          unzip Godot_v4.3-stable_export_templates.tpz -d /tmp/
           mkdir -p ~/.local/share/godot/export_templates/4.3.stable/
-          unzip Godot_v4.3-stable_export_templates.tpz -d ~/.local/share/godot/export_templates/4.3.stable/
+          mv -v /tmp/templates/* ~/.local/share/godot/export_templates/4.3.stable/
           rm Godot_v4.3-stable_export_templates.tpz
           
       - name: Export project to HTML5
         run: |
-          ~/godot/Godot_v4.3-stable_linux.x86_64 --headless --export-${{ matrix.type }} "Web" build/
+          mkdir build 
+          ~/godot/Godot_v4.3-stable_linux.x86_64 --headless --export-${{ matrix.type }} "Web" ./build/${{ env.output_name }}
 
       - name: Upload artifact
         uses: actions/upload-artifact@v3
@@ -67,14 +69,15 @@ jobs:
       - name: Install MinIO Client
         if: steps.cache-minio.outputs.cache-hit != 'true'
         run: |
-          wget https://dl.min.io/client/mc/release/linux-amd64/mc
+          wget --no-verbose https://dl.min.io/client/mc/release/linux-amd64/mc
           chmod +x mc
           sudo mv mc /usr/local/bin/
 
       - name: Configure MinIO Client
         run: |
-          /usr/local/bin/mc alias set ioexception $MINIO_HOST ${{ secrets.MINIO_ACCESS_KEY }} ${{ secrets.MINIO_SECRET_KEY }}
+          /usr/local/bin/mc alias set ioexception ${{ vars.MINIO_HOST }} ${{ secrets.MINIO_ACCESS_KEY }} ${{ secrets.MINIO_SECRET_KEY }}
 
       - name: Upload to MinIO
         run: |
-          /usr/local/bin/mc cp --recursive build/ ioexception/ludumdare56/${{ matrix.type }}/
+          /usr/local/bin/mc cp --recursive build/ ioexception/ludumdare56/$GITHUB_REF_NAME/${{ matrix.type }}/
+          echo "Uploaded ${{ matrix.type }} build to [MinIO](https://bucket.ioexception.at/ludumdare56/$GITHUB_REF_NAME/${{ matrix.type }}/${{ env.output_name }})" >> $GITHUB_STEP_SUMMARY
