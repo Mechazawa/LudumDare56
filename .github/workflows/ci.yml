@@ -33,7 +33,7 @@ jobs:
         id: cache-templates
         uses: actions/cache@v4
         with:
-          path: ~/.local/share/godot/export_templates
+          path: ~/.local/share/godot/export_templates/4.3.stable
           key: godot-templates
 
       - name: Install Godot export templates
