@@ -2,9 +2,6 @@ name: CI
 
 on:
   push:
-    branches: [ "master" ]
-  pull_request:
-    branches: [ "master" ]
   workflow_dispatch:
 
 jobs:
@@ -78,4 +75,4 @@ jobs:
 
       - name: Upload to MinIO
         run: |
-          /usr/local/bin/mc cp --recursive build/ ioexception/ludumdare56/${{ matrix.type }}/
+          /usr/local/bin/mc cp --recursive build/ ioexception/ludumdare56/$GITHUB_REF_NAME/${{ matrix.type }}/
