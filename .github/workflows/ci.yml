@@ -24,7 +24,7 @@ jobs:
       - name: Install Godot
         if: steps.cache-godot.outputs.cache-hit != 'true'
         run: |
-          wget https://github.com/godotengine/godot/releases/download/4.3-stable/Godot_v4.3-stable_linux.x86_64.zip
+          wget --no-verbose https://github.com/godotengine/godot/releases/download/4.3-stable/Godot_v4.3-stable_linux.x86_64.zip
           unzip Godot_v4.3-stable_linux.x86_64.zip -d ~/godot
           rm Godot_v4.3-stable_linux.x86_64.zip
           chmod +x ~/godot/Godot_v4.3-stable_linux.x86_64
@@ -66,7 +66,7 @@ jobs:
       - name: Install MinIO Client
         if: steps.cache-minio.outputs.cache-hit != 'true'
         run: |
-          wget https://dl.min.io/client/mc/release/linux-amd64/mc
+          wget --no-verbose https://dl.min.io/client/mc/release/linux-amd64/mc
           chmod +x mc
           sudo mv mc /usr/local/bin/
 
