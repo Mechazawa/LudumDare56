@@ -73,8 +73,8 @@ jobs:
 
       - name: Configure MinIO Client
         run: |
-          /usr/local/bin/mc alias set myminio $MINIO_HOST ${{ secrets.MINIO_ACCESS_KEY }} ${{ secrets.MINIO_SECRET_KEY }}
+          /usr/local/bin/mc alias set ioexception $MINIO_HOST ${{ secrets.MINIO_ACCESS_KEY }} ${{ secrets.MINIO_SECRET_KEY }}
 
       - name: Upload to MinIO
         run: |
-          /usr/local/bin/mc cp --recursive build/web/ myminio/ludumdare56/${{ matrix.type }}/
+          /usr/local/bin/mc cp --recursive build/ ioexception/ludumdare56/${{ matrix.type }}/
