@@ -48,7 +48,7 @@ jobs:
       - name: Export project to HTML5
         run: |
           mkdir build 
-          ~/godot/Godot_v4.3-stable_linux.x86_64 --headless --export-${{ matrix.type }} "Web" ./build/index.html
+          ~/godot/Godot_v4.3-stable_linux.x86_64 --headless --export-${{ matrix.type }} "Web" ./build/game.html
 
       - name: Upload artifact
         uses: actions/upload-artifact@v3
