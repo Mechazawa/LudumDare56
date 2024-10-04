@@ -8,9 +8,12 @@ on:
   workflow_dispatch:
 
 jobs:
-  setup:
+  build:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        
       - name: Cache Godot
         id: cache-godot
         uses: actions/cache@v4
@@ -40,22 +43,11 @@ jobs:
           mkdir -p ~/.local/share/godot/export_templates/4.3.stable/
           unzip Godot_v4.3-stable_export_templates.tpz -d ~/.local/share/godot/export_templates/4.3.stable/
           rm Godot_v4.3-stable_export_templates.tpz
-
-  build:
-    runs-on: ubuntu-latest
-    needs: setup
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
-        
+          
       - name: Export project to HTML5
         run: |
           ~/godot/Godot_v4.3-stable_linux.x86_64 --export "Web" build/web/
 
-  archive:
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
