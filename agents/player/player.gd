@@ -10,30 +10,41 @@ extends CharacterBody2D
 @export var lateral_friction: float = -30
 @export_range(-1, 0) var lateral_drag: float = -0.06
 @export_subgroup("Rotational")
-@export var rotational_speed: float = 1.0
+@export var rotational_speed: float = 5.0
 @export var rotational_speed_min: float = 0.1
 @export var rotational_friction: float = -200
 @export_range(-1, 0) var rotational_drag: float = -0.2
+@export_subgroup("Physics")
+@export var bounce_factor = 20
 
 var lateral_acceleration: Vector2
 var rotational_acceleration: float
 var rotational_velocity: float = 0
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	thruster.play(&"default")
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	lateral_acceleration = Vector2.ZERO
 	rotational_acceleration = 0
-	get_input()
+	handle_movement_input()
 	prevent_creep()
 	apply_friction(delta)
 	apply_movement(delta)
+	handle_collisions()
 	move_and_slide()
 
-func get_input() -> void:
+func handle_collisions() -> void:
+	for i in get_slide_collision_count():
+		var collision = get_slide_collision(i)
+		var collider = collision.get_collider()
+		self.velocity = collision.get_normal() * bounce_factor
+		if $CollisionCooldown.is_stopped():
+			$CollisionCooldown.start()
+			collider.call_deferred('collide')
+			
+
+func handle_movement_input() -> void:
 	var rotation_move: float = Input.get_axis(&"move_left", &"move_right")
 	var lateral_move: float = (
 		Input.get_action_strength(&"move_up") * lateral_speed_forward

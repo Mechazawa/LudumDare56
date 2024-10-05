@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://624k2gso6a2c"]
+
+[ext_resource type="Script" path="res://agents/heart/heart.gd" id="1_5kei0"]
+[ext_resource type="Texture2D" uid="uid://cb3cjrwrkbb4s" path="res://assets/heart-1.png" id="1_iy5b5"]
+[ext_resource type="Texture2D" uid="uid://du7mglw8ki7ya" path="res://assets/heart-2.png" id="2_wrl2u"]
+[ext_resource type="Script" path="res://scripts/health.gd" id="4_885f8"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1e1pt"]
+animations = [{
+"frames": [{
+"duration": 3.0,
+"texture": ExtResource("1_iy5b5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_wrl2u")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[node name="Heart" type="StaticBody2D"]
+script = ExtResource("1_5kei0")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_1e1pt")
+frame_progress = 0.392517
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-19, 12, -14, 18, -6, 25, 2, 28, 4, 28, 8, 23, 14, 11, 14, 6, 13, 5, 13, 1, 17, 2, 18, 0, 13, -5, 23, -15, 21, -19, 11, -11, 8, -12, 6, -15, 6, -18, 11, -21, 9, -24, 3, -27, -15, -28, -15, -25, -11, -19, -15, -14, -15, -12, -18, -12, -22, -7, -22, -3, -19, 0, -20, 5, -20, 9)
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("4_885f8")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]

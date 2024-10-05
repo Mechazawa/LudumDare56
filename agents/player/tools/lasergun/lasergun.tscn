@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://ccad6vg5nvgnd"]
+
+[ext_resource type="Texture2D" uid="uid://564k8bicceq3" path="res://assets/capsule-lasergun.png" id="1_414ev"]
+[ext_resource type="Script" path="res://agents/player/tools/lasergun/lasergun.gd" id="2_mogsp"]
+[ext_resource type="PackedScene" uid="uid://dum1k7fyt5sw8" path="res://agents/player/tools/lasergun/bullet.tscn" id="3_hsbc3"]
+
+[node name="Lasergun" type="Sprite2D"]
+texture = ExtResource("1_414ev")
+offset = Vector2(21.5, 0)
+script = ExtResource("2_mogsp")
+Bullet = ExtResource("3_hsbc3")
+
+[node name="Interval" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="Muzzle" type="Marker2D" parent="."]
+position = Vector2(23, 0)

@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://n2a8hh1clj27"]
+
+[ext_resource type="PackedScene" uid="uid://b5vgmyclbwdx2" path="res://scripts/window_reference.tscn" id="1_euhgr"]
+[ext_resource type="PackedScene" uid="uid://624k2gso6a2c" path="res://agents/heart/heart.tscn" id="2_6hi4y"]
+[ext_resource type="PackedScene" uid="uid://61y8ylbbieqc" path="res://agents/player/player.tscn" id="3_bun8k"]
+
+[node name="Level" type="Node2D"]
+
+[node name="Heart" parent="." instance=ExtResource("2_6hi4y")]
+position = Vector2(160, 107)
+scale = Vector2(4, 4)
+
+[node name="Player" parent="." instance=ExtResource("3_bun8k")]
+position = Vector2(239, 209)
+rotation = -2.89775
+
+[node name="WindowReference" parent="." instance=ExtResource("1_euhgr")]
+offset_right = 1300.0
+offset_bottom = 1300.0

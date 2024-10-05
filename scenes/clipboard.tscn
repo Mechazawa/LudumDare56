@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://djnq5qqrro3pi"]
+
+[ext_resource type="Texture2D" uid="uid://bscy07xr10oim" path="res://assets/clipboard.png" id="1_ue1aa"]
+
+[node name="Clipboard" type="Container"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Base" type="Sprite2D" parent="."]
+position = Vector2(41, 56)
+texture = ExtResource("1_ue1aa")
+
+[node name="Greebles" type="Node2D" parent="."]

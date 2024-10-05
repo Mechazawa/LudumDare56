@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://d0ova6vfmkafh"]
+
+[ext_resource type="Script" path="res://scenes/menus/main.gd" id="1_emm1p"]
+[ext_resource type="PackedScene" uid="uid://b5vgmyclbwdx2" path="res://scripts/window_reference.tscn" id="2_p41aw"]
+
+[node name="Main" type="Container"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_emm1p")
+
+[node name="WindowReference" parent="." instance=ExtResource("2_p41aw")]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 2
+text = "Start"

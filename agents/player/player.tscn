@@ -9,8 +9,8 @@
 load_path = "res://.godot/imported/capsule.png-3b817a685ecb818de1eb5defe40346cd.ctex"
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lutm0"]
-radius = 38.0
-height = 186.0
+radius = 6.99999
+height = 38.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_e8s7i"]
 animations = [{
@@ -30,10 +30,10 @@ animations = [{
 }]
 
 [node name="Player" type="CharacterBody2D"]
+motion_mode = 1
 script = ExtResource("1_oas3n")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(5, 5)
 texture = SubResource("CompressedTexture2D_xjesq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -41,9 +41,11 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_lutm0")
 
 [node name="Thruster" type="AnimatedSprite2D" parent="."]
-visible = false
-position = Vector2(-122, 2.84217e-14)
-scale = Vector2(5, 5)
+position = Vector2(-24.5, 0)
 sprite_frames = SubResource("SpriteFrames_e8s7i")
 frame = 1
 frame_progress = 0.733244
+
+[node name="CollisionCooldown" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
