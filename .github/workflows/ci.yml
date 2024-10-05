@@ -6,6 +6,13 @@ on:
 
 env:
   output_name: game.html
+  godot_url: https://github.com/limbonaut/limboai/releases/download/v1.2.2/limboai+v1.2.2.godot-4.3.editor.linux.x86_64.zip
+  godot_version: 4.3.limboai+v1.2.2
+  godot_bin: /usr/local/bin/godot.bin
+  export_template_url: https://github.com/limbonaut/limboai/releases/download/v1.2.2/limboai+v1.2.2.godot-4.3.export-templates.zip
+  aarch: x86_64
+  minio_url: https://dl.min.io/client/mc/release/linux-amd64/mc
+  minio_path: /usr/local/bin/mc
 
 jobs:
   build:
@@ -21,37 +28,39 @@ jobs:
         id: cache-godot
         uses: actions/cache@v4
         with:
-          path: ~/godot
-          key: godot-4.3-stable
+          path: ${{ env.godot_bin }}
+          key: godot-${{ env.godot_url }}
 
       - name: Install Godot
-        if: steps.cache-godot.outputs.cache-hit != 'true'
+        if: steps.cache-godot-limboai.outputs.cache-hit != 'true'
         run: |
-          wget --no-verbose https://github.com/godotengine/godot/releases/download/4.3-stable/Godot_v4.3-stable_linux.x86_64.zip
-          unzip Godot_v4.3-stable_linux.x86_64.zip -d ~/godot
-          rm Godot_v4.3-stable_linux.x86_64.zip
-          chmod +x ~/godot/Godot_v4.3-stable_linux.x86_64
+          wget --no-verbose ${{ env.godot_url }} -O godot.zip
+          unzip godot.zip -d /tmp/godot
+          unzip /tmp/godot/*.zip -d /tmp/godot # Needed for LimboAI
+          mv /tmp/godot/*.${{ env.aarch }} ${{ env.godot_bin }}
+          rm -r /tmp/godot
+          chmod +x ${{ env.godot_bin }}
           
       - name: Cache Godot export templates
         id: cache-templates
         uses: actions/cache@v4
         with:
-          path: ~/.local/share/godot/export_templates/4.3.stable
-          key: godot-templates
+          path: ~/.local/share/godot/export_templates/${{ env.godot_version }}
+          key: godot-${{ env.godot_version }}-${{ env.export_template_url }}
 
       - name: Install Godot export templates
         if: steps.cache-templates.outputs.cache-hit != 'true'
         run: |
-          wget --no-verbose https://github.com/godotengine/godot/releases/download/4.3-stable/Godot_v4.3-stable_export_templates.tpz
-          unzip Godot_v4.3-stable_export_templates.tpz -d /tmp/
-          mkdir -p ~/.local/share/godot/export_templates/4.3.stable/
-          mv -v /tmp/templates/* ~/.local/share/godot/export_templates/4.3.stable/
-          rm Godot_v4.3-stable_export_templates.tpz
+          wget --no-verbose ${{ env.export_template_url }} -O godot_export_templates.zip
+          unzip godot_export_templates.zip -d /tmp/
+          mkdir -p ~/.local/share/godot/export_templates/${{ env.godot_version }}/
+          mv -v /tmp/templates/* ~/.local/share/godot/export_templates/${{ env.godot_version }}/
+          rm -r godot_export_templates.zip /tmp/templates
           
       - name: Export project to HTML5
         run: |
           mkdir build 
-          ~/godot/Godot_v4.3-stable_linux.x86_64 --headless --export-${{ matrix.type }} "Web" ./build/${{ env.output_name }}
+          ${{ env.godot_bin }} --headless --export-${{ matrix.type }} "Web" ./build/${{ env.output_name }}
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
@@ -63,21 +72,20 @@ jobs:
         id: cache-minio
         uses: actions/cache@v4
         with:
-          path: /usr/local/bin/mc
-          key: minio-client
+          path: ${{ env.minio_path }}
+          key: minio-client-${{ env.minio_url }}
 
       - name: Install MinIO Client
         if: steps.cache-minio.outputs.cache-hit != 'true'
         run: |
-          wget --no-verbose https://dl.min.io/client/mc/release/linux-amd64/mc
-          chmod +x mc
-          sudo mv mc /usr/local/bin/
+          wget --no-verbose ${{ env.minio_url }} -O ${{ env.minio_path }}
+          sudo mv mc ${{ env.minio_path }}
 
       - name: Configure MinIO Client
         run: |
-          /usr/local/bin/mc alias set ioexception ${{ vars.MINIO_HOST }} ${{ secrets.MINIO_ACCESS_KEY }} ${{ secrets.MINIO_SECRET_KEY }}
+          ${{ env.minio_path }} alias set ioexception ${{ vars.MINIO_HOST }} ${{ secrets.MINIO_ACCESS_KEY }} ${{ secrets.MINIO_SECRET_KEY }}
 
       - name: Upload to MinIO
         run: |
-          /usr/local/bin/mc cp --recursive build/ ioexception/ludumdare56/$GITHUB_REF_NAME/${{ matrix.type }}/
+          ${{ env.minio_path }} cp --recursive build/ ioexception/ludumdare56/$GITHUB_REF_NAME/${{ matrix.type }}/
           echo "Uploaded ${{ matrix.type }} build to [MinIO](https://bucket.ioexception.at/ludumdare56/$GITHUB_REF_NAME/${{ matrix.type }}/${{ env.output_name }})" >> $GITHUB_STEP_SUMMARY
