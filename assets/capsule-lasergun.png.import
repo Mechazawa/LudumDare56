@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b1savfw0uvrcj"
-path="res://.godot/imported/thruster-1.png-093c7b5c7d67bdd62def598bb49a356c.ctex"
+uid="uid://564k8bicceq3"
+path="res://.godot/imported/capsule-lasergun.png-0be1af3a3be2d0c589245a6cc06a3190.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/thruster-1.png"
-dest_files=["res://.godot/imported/thruster-1.png-093c7b5c7d67bdd62def598bb49a356c.ctex"]
+source_file="res://assets/capsule-lasergun.png"
+dest_files=["res://.godot/imported/capsule-lasergun.png-0be1af3a3be2d0c589245a6cc06a3190.ctex"]
 
 [params]
 

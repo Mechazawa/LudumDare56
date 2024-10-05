@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://0vtowa1h3dlh"
-path="res://.godot/imported/thruster-3.png-23fb39af6686711ee680700298ae55b1.ctex"
+uid="uid://cwexmw8sd7yu1"
+path="res://.godot/imported/capsule-thruster-2.png-84b6d8caaf3e5cae49bb31e3621d0b0f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/thruster-3.png"
-dest_files=["res://.godot/imported/thruster-3.png-23fb39af6686711ee680700298ae55b1.ctex"]
+source_file="res://assets/capsule-thruster-2.png"
+dest_files=["res://.godot/imported/capsule-thruster-2.png-84b6d8caaf3e5cae49bb31e3621d0b0f.ctex"]
 
 [params]
 
