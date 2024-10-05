@@ -79,7 +79,7 @@ jobs:
         if: steps.cache-minio.outputs.cache-hit != 'true'
         run: |
           wget --no-verbose ${{ env.minio_url }} -O ${{ env.minio_path }}
-          sudo mv mc ${{ env.minio_path }}
+          chmod +x ${{ env.minio_path }}
 
       - name: Configure MinIO Client
         run: |
