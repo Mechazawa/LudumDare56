@@ -1,18 +1,126 @@
-[gd_scene load_steps=2 format=3 uid="uid://djnq5qqrro3pi"]
+[gd_scene load_steps=11 format=3 uid="uid://djnq5qqrro3pi"]
 
+[ext_resource type="Script" path="res://scenes/clipboard.gd" id="1_71mmr"]
 [ext_resource type="Texture2D" uid="uid://bscy07xr10oim" path="res://assets/clipboard.png" id="1_ue1aa"]
+[ext_resource type="Texture2D" uid="uid://4l1ubhwsvs6r" path="res://assets/clipboard-portrait-1.png" id="2_bi5xd"]
+[ext_resource type="Texture2D" uid="uid://dkdb2yfv6t85h" path="res://assets/clipboard-coffeestain-1.png" id="4_ap6na"]
+[ext_resource type="FontFile" uid="uid://ddagshn84eue3" path="res://fonts/Minecraft.ttf" id="4_p04ee"]
+[ext_resource type="FontFile" uid="uid://dcereydta4556" path="res://fonts/Paskowy.ttf" id="5_832ch"]
+[ext_resource type="Texture2D" uid="uid://eejr3qbi6h08" path="res://assets/clipboard-coffeestain-2.png" id="5_jfuuu"]
+[ext_resource type="Texture2D" uid="uid://df060k2dkpak1" path="res://assets/clipboard-coffeestain-3.png" id="6_wop8s"]
+[ext_resource type="Texture2D" uid="uid://drtvrvrchxq6f" path="res://assets/clipboard-tape-1.png" id="7_cujn5"]
+[ext_resource type="Texture2D" uid="uid://bwlvwv0vgb6l7" path="res://assets/clipboard-tape-2.png" id="8_ngqh7"]
 
-[node name="Clipboard" type="Container"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
+[node name="Clipboard" type="Node2D"]
+script = ExtResource("1_71mmr")
+photo = ExtResource("2_bi5xd")
+patient_name = "Docm77"
+dossier_text = "he goat
+he fluffy
+fluffy bad
+pls fix him"
 
 [node name="Base" type="Sprite2D" parent="."]
-position = Vector2(41, 56)
 texture = ExtResource("1_ue1aa")
+centered = false
 
-[node name="Greebles" type="Node2D" parent="."]
+[node name="Photo" type="Sprite2D" parent="."]
+centered = false
+
+[node name="PatientName" type="Label" parent="."]
+offset_left = 27.0
+offset_top = 38.0
+offset_right = 66.0
+offset_bottom = 46.0
+theme_override_colors/font_color = Color(0.233925, 0.233925, 0.233925, 1)
+theme_override_constants/line_spacing = 4
+theme_override_fonts/font = ExtResource("4_p04ee")
+theme_override_font_sizes/font_size = 6
+text = "Joe Doe"
+
+[node name="DossierText" type="Label" parent="."]
+offset_left = 7.0
+offset_top = 49.0
+offset_right = 204.0
+offset_bottom = 102.0
+theme_override_colors/font_color = Color(0.233925, 0.233925, 0.233925, 1)
+theme_override_constants/line_spacing = 4
+theme_override_fonts/font = ExtResource("4_p04ee")
+theme_override_font_sizes/font_size = 6
+text = "Lorum ipsum dolor
+Lorum ipsum dolor
+Lorum ipsum dolor
+Lorum ipsum dolor
+"
+
+[node name="Barcode" type="Label" parent="."]
+offset_left = 26.0
+offset_top = 21.0
+offset_right = 65.0
+offset_bottom = 37.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_832ch")
+theme_override_font_sizes/font_size = 7
+text = "blalbalba"
+
+[node name="Stains" type="Node" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Stains"]
+visible = false
+modulate = Color(1, 1, 1, 0.521569)
+texture = ExtResource("4_ap6na")
+centered = false
+
+[node name="Sprite2D2" type="Sprite2D" parent="Stains"]
+visible = false
+modulate = Color(1, 1, 1, 0.521569)
+texture = ExtResource("5_jfuuu")
+centered = false
+
+[node name="Sprite2D3" type="Sprite2D" parent="Stains"]
+visible = false
+modulate = Color(1, 1, 1, 0.521569)
+texture = ExtResource("6_wop8s")
+centered = false
+
+[node name="Sprite2D4" type="Sprite2D" parent="Stains"]
+visible = false
+modulate = Color(1, 1, 1, 0.521569)
+centered = false
+
+[node name="Tape" type="Node" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Tape"]
+visible = false
+texture = ExtResource("7_cujn5")
+centered = false
+
+[node name="Sprite2D2" type="Sprite2D" parent="Tape"]
+visible = false
+texture = ExtResource("8_ngqh7")
+centered = false
+
+[node name="Sprite2D3" type="Sprite2D" parent="Tape"]
+visible = false
+centered = false
+
+[node name="ContinueHint" type="Label" parent="."]
+visible = false
+offset_left = 3.0
+offset_top = 94.0
+offset_right = 66.0
+offset_bottom = 101.0
+theme_override_colors/font_color = Color(0.233925, 0.233925, 0.233925, 1)
+theme_override_colors/font_outline_color = Color(0.82606, 0.82606, 0.82606, 0.709804)
+theme_override_constants/line_spacing = 4
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("4_p04ee")
+theme_override_font_sizes/font_size = 6
+text = "Press attack to begin"
+
+[node name="ContinueHintTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="ContinueHintTimer" to="." method="_on_continue_hint_timer_timeout"]

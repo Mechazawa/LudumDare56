@@ -1,19 +1,39 @@
-[gd_scene load_steps=4 format=3 uid="uid://n2a8hh1clj27"]
+[gd_scene load_steps=7 format=3 uid="uid://n2a8hh1clj27"]
 
 [ext_resource type="PackedScene" uid="uid://b5vgmyclbwdx2" path="res://scripts/window_reference.tscn" id="1_euhgr"]
+[ext_resource type="Script" path="res://scenes/levels/1/level.gd" id="1_f100b"]
 [ext_resource type="PackedScene" uid="uid://624k2gso6a2c" path="res://agents/heart/heart.tscn" id="2_6hi4y"]
 [ext_resource type="PackedScene" uid="uid://61y8ylbbieqc" path="res://agents/player/player.tscn" id="3_bun8k"]
+[ext_resource type="PackedScene" uid="uid://cdem2eb4ljqgl" path="res://agents/heart/goob.tscn" id="4_7ae6r"]
+[ext_resource type="Texture2D" uid="uid://delgrq1ol4xbg" path="res://assets/background.png" id="4_ktoim"]
 
-[node name="Level" type="Node2D"]
+[node name="Level" type="Node"]
+script = ExtResource("1_f100b")
 
-[node name="Heart" parent="." instance=ExtResource("2_6hi4y")]
-position = Vector2(160, 107)
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(0.427493, 0.427493, 0.427493, 0.737255)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 scale = Vector2(4, 4)
+texture = ExtResource("4_ktoim")
+stretch_mode = 1
 
 [node name="Player" parent="." instance=ExtResource("3_bun8k")]
 position = Vector2(239, 209)
 rotation = -2.89775
 
 [node name="WindowReference" parent="." instance=ExtResource("1_euhgr")]
-offset_right = 1300.0
-offset_bottom = 1300.0
+metadata/_edit_lock_ = true
+
+[node name="Node" type="Node" parent="."]
+
+[node name="Heart" parent="Node" instance=ExtResource("2_6hi4y")]
+position = Vector2(237, 73)
+scale = Vector2(4, 4)
+
+[node name="Goob" parent="Node" instance=ExtResource("4_7ae6r")]
+position = Vector2(237, 73)
+scale = Vector2(4, 4)

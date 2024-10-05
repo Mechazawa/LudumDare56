@@ -1,7 +1,9 @@
 extends CharacterBody2D
 
-@onready var thruster: AnimatedSprite2D = $Thruster
+@onready var health: Health = $Health
 
+@export_group("Ship")
+@export var ship_tool: PackedScene = null
 @export_group("Movement")
 @export_subgroup("Lateral")
 @export var lateral_speed_forward: float = 70.0
@@ -22,7 +24,9 @@ var rotational_acceleration: float
 var rotational_velocity: float = 0
 
 func _ready() -> void:
-	thruster.play(&"default")
+	$Thruster.play(&"default")
+	if ship_tool != null:
+		add_child(ship_tool.instantiate())
 
 func _physics_process(delta: float) -> void:
 	lateral_acceleration = Vector2.ZERO
@@ -40,9 +44,10 @@ func handle_collisions() -> void:
 		var collider = collision.get_collider()
 		self.velocity = collision.get_normal() * bounce_factor
 		if $CollisionCooldown.is_stopped():
-			$CollisionCooldown.start()
 			collider.call_deferred('collide')
-			
+	
+	if get_slide_collision_count() > 0:
+		$CollisionCooldown.start()
 
 func handle_movement_input() -> void:
 	var rotation_move: float = Input.get_axis(&"move_left", &"move_right")
@@ -52,7 +57,7 @@ func handle_movement_input() -> void:
 		Input.get_action_strength(&"move_down") * lateral_speed_backward
 	)
 	
-	thruster.visible = lateral_move > 0 
+	$Thruster.visible = lateral_move > 0 
 	
 	rotational_acceleration = rotation_move * rotational_speed
 	lateral_acceleration = Vector2(lateral_move, lateral_move).rotated(deg_to_rad(self.rotation_degrees - 45))
@@ -81,3 +86,9 @@ func apply_movement(delta: float) -> void:
 	self.velocity += lateral_acceleration * delta
 	rotational_velocity += rotational_acceleration * delta
 	self.rotation_degrees += rotational_velocity
+
+func _on_health_damaged(amount: float) -> void:
+	$Sprite2D/DamageIndicator.flash()
+
+func _on_health_death() -> void:
+	pass # Replace with function body.

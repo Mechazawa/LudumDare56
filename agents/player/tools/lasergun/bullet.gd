@@ -1,12 +1,13 @@
 extends Area2D
 
 @export var speed = 75
+@export var damage = 2
 
 func _physics_process(delta):
 	position += transform.x * speed * delta
 
 func _on_body_entered(body: Node2D) -> void:
-	# todo signal body
+	body.find_child("Health").call_deferred("take_damage", damage)
 	queue_free()
 
 func _on_timeout() -> void:

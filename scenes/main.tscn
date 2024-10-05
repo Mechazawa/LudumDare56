@@ -1,9 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://brd2ew5v4em5k"]
+[gd_scene load_steps=4 format=3 uid="uid://brd2ew5v4em5k"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_6x7jg"]
-[ext_resource type="PackedScene" uid="uid://d0ova6vfmkafh" path="res://scenes/menus/main.tscn" id="2_ehq03"]
+[ext_resource type="PackedScene" uid="uid://b5vgmyclbwdx2" path="res://scripts/window_reference.tscn" id="2_4mw3f"]
+[ext_resource type="PackedScene" uid="uid://cwr11cjj6iydx" path="res://scenes/levels/1/intro.tscn" id="3_avg5n"]
 
-[node name="Main" type="Node2D"]
+[node name="Main" type="Node"]
 script = ExtResource("1_6x7jg")
 
-[node name="Main" parent="." instance=ExtResource("2_ehq03")]
+[node name="WindowReference" parent="." instance=ExtResource("2_4mw3f")]
+
+[node name="Intro" parent="." instance=ExtResource("3_avg5n")]

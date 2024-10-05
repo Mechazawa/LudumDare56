@@ -14,5 +14,5 @@ func _process(delta: float) -> void:
 func shoot() -> void:
 	var bullet = Bullet.instantiate()
 	#get_node(^"/").owner.add_child(bullet)
-	owner.add_child(bullet) # todo improve, owner is player
+	get_tree().get_root().add_child(bullet) 
 	bullet.transform = $Muzzle.global_transform

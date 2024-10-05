@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 Global="*res://global.gd"
 ANIMA="*res://addons/anima/core/constants.gd"
+SceneManager="*res://addons/scene_manager/SceneManager.tscn"
 
 [display]
 
@@ -34,11 +35,7 @@ version_control/autoload_on_startup=true
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/anima/plugin.cfg")
-
-[game]
-
-display/level_scale=3.0
+enabled=PackedStringArray("res://addons/anima/plugin.cfg", "res://addons/scene_manager/plugin.cfg")
 
 [input]
 
