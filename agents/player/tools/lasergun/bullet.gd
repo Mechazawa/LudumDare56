@@ -3,6 +3,9 @@ extends Area2D
 @export var speed = 75
 @export var damage = 2
 
+func _ready() -> void:
+	$SpawnSound.play()
+
 func _physics_process(delta):
 	position += transform.x * speed * delta
 

@@ -32,7 +32,6 @@ metadata/_edit_lock_ = true
 
 [node name="Heart" parent="Node" instance=ExtResource("2_6hi4y")]
 position = Vector2(237, 73)
-scale = Vector2(4, 4)
 
 [node name="Goob" parent="Node" instance=ExtResource("4_7ae6r")]
 position = Vector2(237, 73)

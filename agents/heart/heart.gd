@@ -1,6 +1,8 @@
 extends StaticBody2D
 
 @onready var health: Health = $Health
+@onready var random_effect: RandomEffect = $RandomEffect
+
 @export_category("Damage")
 var collide_damage: float = 1
 
@@ -17,6 +19,7 @@ func _on_health_death() -> void:
 
 func _on_health_damaged(amount: float) -> void:
 	$AnimatedSprite2D/DamageIndicator.hit()
+	random_effect.play_random()
 
 func collide() -> void:
 	health.take_damage(collide_damage)

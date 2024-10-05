@@ -1,0 +1,13 @@
+[gd_scene load_steps=8 format=3 uid="uid://bur88vlidbeqh"]
+
+[ext_resource type="Script" path="res://scripts/random_effect.gd" id="1_174eh"]
+[ext_resource type="AudioStream" uid="uid://pvs1kemjd57q" path="res://sound/oof-01.wav" id="2_5cia5"]
+[ext_resource type="AudioStream" uid="uid://dyftgcmhyoeb" path="res://sound/oof-02.wav" id="3_7uvp7"]
+[ext_resource type="AudioStream" uid="uid://wp5peohmki4u" path="res://sound/oof-03.wav" id="4_dpbw3"]
+[ext_resource type="AudioStream" uid="uid://divhivx62576n" path="res://sound/oof-04.wav" id="5_fsni0"]
+[ext_resource type="AudioStream" uid="uid://bbn7mekxrd7k7" path="res://sound/oof-05.wav" id="6_q3wo3"]
+[ext_resource type="AudioStream" uid="uid://chy8c281smvai" path="res://sound/oof-06.wav" id="7_edmqs"]
+
+[node name="RandomEffect" type="AudioStreamPlayer"]
+script = ExtResource("1_174eh")
+effect_list = Array[AudioStream]([ExtResource("2_5cia5"), ExtResource("3_7uvp7"), ExtResource("4_dpbw3"), ExtResource("5_fsni0"), ExtResource("6_q3wo3"), ExtResource("7_edmqs")])

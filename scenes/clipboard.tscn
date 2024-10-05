@@ -15,10 +15,6 @@
 script = ExtResource("1_71mmr")
 photo = ExtResource("2_bi5xd")
 patient_name = "Docm77"
-dossier_text = "he goat
-he fluffy
-fluffy bad
-pls fix him"
 
 [node name="Base" type="Sprite2D" parent="."]
 texture = ExtResource("1_ue1aa")
@@ -38,19 +34,90 @@ theme_override_fonts/font = ExtResource("4_p04ee")
 theme_override_font_sizes/font_size = 6
 text = "Joe Doe"
 
-[node name="DossierText" type="Label" parent="."]
+[node name="DossierText" type="Node" parent="."]
+
+[node name="Label1" type="Label" parent="DossierText"]
 offset_left = 7.0
-offset_top = 49.0
-offset_right = 204.0
-offset_bottom = 102.0
+offset_top = 46.0
+offset_right = 52.0
+offset_bottom = 52.0
 theme_override_colors/font_color = Color(0.233925, 0.233925, 0.233925, 1)
-theme_override_constants/line_spacing = 4
+theme_override_constants/line_spacing = 0
 theme_override_fonts/font = ExtResource("4_p04ee")
-theme_override_font_sizes/font_size = 6
+theme_override_font_sizes/font_size = 5
 text = "Lorum ipsum dolor
-Lorum ipsum dolor
-Lorum ipsum dolor
-Lorum ipsum dolor
+"
+
+[node name="Label2" type="Label" parent="DossierText"]
+offset_left = 7.0
+offset_top = 52.0
+offset_right = 52.0
+offset_bottom = 58.0
+theme_override_colors/font_color = Color(0.233925, 0.233925, 0.233925, 1)
+theme_override_constants/line_spacing = 0
+theme_override_fonts/font = ExtResource("4_p04ee")
+theme_override_font_sizes/font_size = 5
+text = "Lorum ipsum dolor
+"
+
+[node name="Label3" type="Label" parent="DossierText"]
+offset_left = 7.0
+offset_top = 58.0
+offset_right = 52.0
+offset_bottom = 64.0
+theme_override_colors/font_color = Color(0.233925, 0.233925, 0.233925, 1)
+theme_override_constants/line_spacing = 0
+theme_override_fonts/font = ExtResource("4_p04ee")
+theme_override_font_sizes/font_size = 5
+text = "Lorum ipsum dolor
+"
+
+[node name="Label4" type="Label" parent="DossierText"]
+offset_left = 7.0
+offset_top = 64.0
+offset_right = 52.0
+offset_bottom = 70.0
+theme_override_colors/font_color = Color(0.233925, 0.233925, 0.233925, 1)
+theme_override_constants/line_spacing = 0
+theme_override_fonts/font = ExtResource("4_p04ee")
+theme_override_font_sizes/font_size = 5
+text = "Lorum ipsum dolor
+"
+
+[node name="Label5" type="Label" parent="DossierText"]
+offset_left = 7.0
+offset_top = 70.0
+offset_right = 52.0
+offset_bottom = 76.0
+theme_override_colors/font_color = Color(0.233925, 0.233925, 0.233925, 1)
+theme_override_constants/line_spacing = 0
+theme_override_fonts/font = ExtResource("4_p04ee")
+theme_override_font_sizes/font_size = 5
+text = "Lorum ipsum dolor
+"
+
+[node name="Label6" type="Label" parent="DossierText"]
+offset_left = 7.0
+offset_top = 76.0
+offset_right = 52.0
+offset_bottom = 82.0
+theme_override_colors/font_color = Color(0.233925, 0.233925, 0.233925, 1)
+theme_override_constants/line_spacing = 0
+theme_override_fonts/font = ExtResource("4_p04ee")
+theme_override_font_sizes/font_size = 5
+text = "Lorum ipsum dolor
+"
+
+[node name="Label7" type="Label" parent="DossierText"]
+offset_left = 7.0
+offset_top = 82.0
+offset_right = 52.0
+offset_bottom = 88.0
+theme_override_colors/font_color = Color(0.233925, 0.233925, 0.233925, 1)
+theme_override_constants/line_spacing = 0
+theme_override_fonts/font = ExtResource("4_p04ee")
+theme_override_font_sizes/font_size = 5
+text = "Lorum ipsum dolor
 "
 
 [node name="Barcode" type="Label" parent="."]
