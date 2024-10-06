@@ -101,7 +101,7 @@ script = ExtResource("7_i86gl")
 stream = ExtResource("9_blegg")
 volume_db = -9.267
 
-[node name="ScrapParticles" type="CPUParticles2D" parent="."]
+[node name="GibParticles" type="CPUParticles2D" parent="."]
 physics_interpolation_mode = 2
 material = SubResource("CanvasItemMaterial_cadp4")
 emitting = false

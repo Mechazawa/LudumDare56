@@ -1,8 +1,11 @@
 extends Node2D
 
+enum Stamp {NONE, DEAD, SAVED}
+
 @export var photo: Texture2D
 @export var patient_name: String
 @export_multiline var dossier_text: String
+@export var stamp: Stamp = Stamp.NONE
 
 signal player_ready
 
@@ -12,10 +15,21 @@ func _ready() -> void:
 	$Barcode.text = str(photo.resource_path.hash())
 	$PatientName.text = patient_name
 	
+	match stamp:
+		Stamp.NONE:
+			$ContinueHint.text = "Press attack to begin"
+		Stamp.DEAD:
+			$ContinueHint.text = "Press attack to retry"
+			$StampDead.visible = true
+		Stamp.SAVED:
+			$ContinueHint.text = "Press attack to continue"
+			$StampSaved.visible = true
+	
 	var lines = dossier_text.split("\n")
 	for i in $DossierText.get_child_count():
 		var child = $DossierText.get_child(i)
 		
+		# todo this is because their parent is node instead of node2d
 		if i < len(lines):
 			child.text = lines[i]
 			child.scale = self.scale

@@ -1,5 +1,7 @@
 extends Node2D
 
+signal death
+
 @onready var health: Health = $Health
 
 var target: Node2D = null
@@ -23,7 +25,13 @@ func fire_wave(size: int, speed: float = 0.3) -> void:
 
 func _on_health_death() -> void:
 	$DeathSound.play()
+	$GibParticlesSmall.emitting = true
+	$GibParticlesBig.emitting = true
+	$BTPlayer.active = false
+	$GoobSprite.visible = false
 	await $DeathSound.finished
+	death.emit()
+	await $GibParticlesSmall.finished
 	queue_free()
 
 func _on_health_damaged(target: Node, amount: float) -> void:

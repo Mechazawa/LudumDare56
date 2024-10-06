@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://n2a8hh1clj27"]
+[gd_scene load_steps=10 format=3 uid="uid://n2a8hh1clj27"]
 
 [ext_resource type="PackedScene" uid="uid://b5vgmyclbwdx2" path="res://scripts/window_reference.tscn" id="1_euhgr"]
 [ext_resource type="Script" path="res://scenes/levels/1/level.gd" id="1_f100b"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://delgrq1ol4xbg" path="res://assets/background.png" id="4_ktoim"]
 [ext_resource type="PackedScene" uid="uid://djk1y81lii0kr" path="res://agents/level_border/level_border.tscn" id="7_likjv"]
 [ext_resource type="Script" path="res://scripts/health.gd" id="8_gys7b"]
+[ext_resource type="Texture2D" uid="uid://ceul6i2ukwj47" path="res://assets/gravestone.png" id="9_3k8vi"]
 
 [node name="Level" type="Node"]
 script = ExtResource("1_f100b")
@@ -42,3 +43,15 @@ position = Vector2(364, 117)
 
 [node name="PatientHealth" type="Node" parent="." groups=["patient_health"]]
 script = ExtResource("8_gys7b")
+
+[node name="Gravestone" type="Node2D" parent="."]
+visible = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Gravestone"]
+position = Vector2(216, 160)
+scale = Vector2(2, 2)
+texture = ExtResource("9_3k8vi")
+
+[connection signal="death" from="Player" to="." method="_on_player_death"]
+[connection signal="death" from="Node/Goob" to="." method="_on_goob_death"]
+[connection signal="death" from="PatientHealth" to="." method="_on_patient_death"]

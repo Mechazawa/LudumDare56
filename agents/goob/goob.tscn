@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cdem2eb4ljqgl"]
+[gd_scene load_steps=24 format=3 uid="uid://cdem2eb4ljqgl"]
 
 [ext_resource type="Script" path="res://agents/goob/goob.gd" id="1_mr3g4"]
 [ext_resource type="AudioStream" uid="uid://cwjsp3af4s6da" path="res://sound/goob-hit.wav" id="2_hpt0e"]
@@ -13,6 +13,8 @@
 [ext_resource type="BehaviorTree" uid="uid://c67jiwk4spbn6" path="res://agents/goob/goob.tres" id="11_q8vs6"]
 [ext_resource type="AudioStream" uid="uid://b66ql7w0uf28b" path="res://sound/goob-death.wav" id="12_7f31x"]
 [ext_resource type="Texture2D" uid="uid://d3gex3xairtwi" path="res://assets/heart-goob-snooze.png" id="13_snk42"]
+[ext_resource type="Texture2D" uid="uid://bbbbgkwmjlyc2" path="res://assets/heart-goob-scraps-big.png" id="14_epx2s"]
+[ext_resource type="Texture2D" uid="uid://bmnkbfvto4y0w" path="res://assets/heart-goob-scraps-small.png" id="15_aixic"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_onycp"]
 shader = ExtResource("2_yx6g7")
@@ -20,46 +22,6 @@ shader_parameter/flash_color = Color(1, 1, 1, 1)
 shader_parameter/flash_modifier = 0.0
 
 [sub_resource type="BlackboardPlan" id="BlackboardPlan_mv3ne"]
-
-[sub_resource type="Animation" id="Animation_32kmx"]
-resource_name = "sleep"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("GoobSprite:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("6_5j2qs")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("SnoozeParticles:emitting")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("SnoozeParticles:lifetime")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [8.0]
-}
 
 [sub_resource type="Animation" id="Animation_piiao"]
 length = 1.5
@@ -137,6 +99,46 @@ tracks/1/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="Animation_32kmx"]
+resource_name = "sleep"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GoobSprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("6_5j2qs")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SnoozeParticles:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SnoozeParticles:lifetime")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [8.0]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_046do"]
 _data = {
 "RESET": SubResource("Animation_piiao"),
@@ -147,6 +149,12 @@ _data = {
 [sub_resource type="Gradient" id="Gradient_6apeo"]
 offsets = PackedFloat32Array(0, 0.153614, 0.990964, 0.996988, 1)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 0.999137, 0.999137, 0.999137, 0, 0.964706, 0.964706, 0.964706, 0, 1, 1, 1, 0)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_vwi4u"]
+particles_animation = true
+particles_anim_h_frames = 8
+particles_anim_v_frames = 2
+particles_anim_loop = false
 
 [node name="Goob" type="StaticBody2D"]
 script = ExtResource("1_mr3g4")
@@ -203,3 +211,57 @@ initial_velocity_max = 5.0
 scale_amount_min = 0.5
 scale_amount_max = 0.5
 color_ramp = SubResource("Gradient_6apeo")
+
+[node name="GibParticlesBig" type="CPUParticles2D" parent="."]
+physics_interpolation_mode = 2
+material = SubResource("CanvasItemMaterial_vwi4u")
+position = Vector2(-63, 79)
+emitting = false
+amount = 20
+lifetime = 4.0
+one_shot = true
+explosiveness = 0.9
+lifetime_randomness = 0.4
+texture = ExtResource("14_epx2s")
+emission_shape = 1
+emission_sphere_radius = 35.0
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 2)
+initial_velocity_min = 15.0
+initial_velocity_max = 30.0
+angular_velocity_min = 20.0
+angular_velocity_max = 100.0
+damping_min = 5.0
+damping_max = 15.0
+angle_max = 360.0
+hue_variation_min = -0.75
+hue_variation_max = 0.7
+anim_offset_max = 1.0
+
+[node name="GibParticlesSmall" type="CPUParticles2D" parent="."]
+physics_interpolation_mode = 2
+material = SubResource("CanvasItemMaterial_vwi4u")
+position = Vector2(-63, 79)
+emitting = false
+amount = 60
+lifetime = 4.0
+one_shot = true
+explosiveness = 0.9
+lifetime_randomness = 0.4
+texture = ExtResource("15_aixic")
+emission_shape = 1
+emission_sphere_radius = 45.0
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 2)
+initial_velocity_min = 15.0
+initial_velocity_max = 30.0
+angular_velocity_min = 20.0
+angular_velocity_max = 100.0
+damping_min = 5.0
+damping_max = 15.0
+angle_max = 360.0
+hue_variation_min = -0.75
+hue_variation_max = 0.7
+anim_offset_max = 1.0

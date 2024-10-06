@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://624k2gso6a2c"]
+[gd_scene load_steps=11 format=3 uid="uid://624k2gso6a2c"]
 
 [ext_resource type="Script" path="res://agents/heart/heart.gd" id="1_5kei0"]
 [ext_resource type="Texture2D" uid="uid://cb3cjrwrkbb4s" path="res://assets/heart-1.png" id="1_iy5b5"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bur88vlidbeqh" path="res://scripts/random_effect.tscn" id="2_qflyg"]
 [ext_resource type="Texture2D" uid="uid://du7mglw8ki7ya" path="res://assets/heart-2.png" id="2_wrl2u"]
 [ext_resource type="PackedScene" uid="uid://ch5konsgo838k" path="res://scripts/damage_indicator.tscn" id="5_hotuu"]
+[ext_resource type="Texture2D" uid="uid://b3xkrv78d1nkk" path="res://assets/heart-scraps.png" id="7_qg1a3"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hnpbb"]
 shader = ExtResource("2_o4fg6")
@@ -26,6 +27,12 @@ animations = [{
 "speed": 3.0
 }]
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_x4cm6"]
+particles_animation = true
+particles_anim_h_frames = 3
+particles_anim_v_frames = 5
+particles_anim_loop = false
+
 [node name="Heart" type="StaticBody2D"]
 script = ExtResource("1_5kei0")
 
@@ -41,6 +48,33 @@ frame_progress = 0.392517
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 position = Vector2(-4, 1)
 polygon = PackedVector2Array(22, 126, 45, 107, 70, 43, 70, 19, 65, 8, 66, -5, 86, 4, 95, -3, 82, -15, 67, -19, 83, -39, 82, -49, 115, -73, 111, -91, 92, -86, 78, -70, 55, -65, 52, -59, 42, -59, 42, -69, 33, -80, 36, -88, 63, -100, 52, -111, 42, -105, 34, -106, 26, -126, 19, -124, 12, -123, 3, -130, -7, -129, -10, -125, -9, -101, -21, -104, -35, -103, -39, -109, -27, -119, -22, -125, -30, -128, -44, -115, -55, -132, -62, -126, -46, -95, -64, -71, -64, -63, -82, -55, -91, -33, -89, -21, -78, -6, -86, 11, -87, 40, -69, 67, -35, 98, -6, 115)
+
+[node name="GibParticles" type="CPUParticles2D" parent="."]
+physics_interpolation_mode = 2
+material = SubResource("CanvasItemMaterial_x4cm6")
+position = Vector2(1, -1)
+emitting = false
+amount = 100
+lifetime = 4.0
+one_shot = true
+explosiveness = 0.9
+lifetime_randomness = 0.4
+texture = ExtResource("7_qg1a3")
+emission_shape = 3
+emission_rect_extents = Vector2(80, 100)
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 2)
+initial_velocity_min = 15.0
+initial_velocity_max = 30.0
+angular_velocity_min = 20.0
+angular_velocity_max = 100.0
+damping_min = 5.0
+damping_max = 15.0
+angle_max = 360.0
+hue_variation_min = -0.75
+hue_variation_max = 0.7
+anim_offset_max = 1.0
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="property_list_changed" from="CollisionPolygon2D" to="." method="_on_collision_polygon_2d_property_list_changed"]

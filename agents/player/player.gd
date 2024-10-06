@@ -118,7 +118,9 @@ func _on_health_death() -> void:
 	
 	$ExplosionAnimation.visible = true
 	$ExplosionAnimation.play(&"default")
-	$ScrapParticles.emitting = true
-	$ExplosionAnimation.animation_looped.connect(func(): $ExplosionAnimation.visible = false)
-	$ScrapParticles.finished.connect(func(): queue_free())
-	
+	$GibParticles.emitting = true
+	await $ExplosionAnimation.animation_looped
+	death.emit()
+	$ExplosionAnimation.visible = false
+	await $GibParticles.finished
+	queue_free()

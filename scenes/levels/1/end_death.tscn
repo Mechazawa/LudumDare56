@@ -1,0 +1,57 @@
+[gd_scene load_steps=9 format=3 uid="uid://c10cottfilrbt"]
+
+[ext_resource type="Script" path="res://scenes/levels/1/intro.gd" id="1_3f2rq"]
+[ext_resource type="Texture2D" uid="uid://d3kd861f0h0x7" path="res://assets/intro-background.png" id="2_7x376"]
+[ext_resource type="Texture2D" uid="uid://c28fwld3ktxfu" path="res://assets/intro-background-steam-1.png" id="3_r0d27"]
+[ext_resource type="Texture2D" uid="uid://dtrf8ruvv4k5i" path="res://assets/intro-background-steam-2.png" id="4_cmln5"]
+[ext_resource type="PackedScene" uid="uid://b5vgmyclbwdx2" path="res://scripts/window_reference.tscn" id="5_25oek"]
+[ext_resource type="PackedScene" uid="uid://djnq5qqrro3pi" path="res://scenes/clipboard.tscn" id="6_gc435"]
+[ext_resource type="Texture2D" uid="uid://b10knaybutguv" path="res://assets/clipboard-portrait-3.png" id="7_qefbf"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_teah4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_r0d27")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_cmln5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="EndDeath" type="Node"]
+script = ExtResource("1_3f2rq")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(0.427493, 0.427493, 0.427493, 0.737255)
+offset_right = 200.0
+offset_bottom = 200.0
+scale = Vector2(2.2, 2.2)
+texture = ExtResource("2_7x376")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="TextureRect"]
+sprite_frames = SubResource("SpriteFrames_teah4")
+autoplay = "default"
+frame_progress = 0.462417
+centered = false
+
+[node name="WindowReference" parent="." instance=ExtResource("5_25oek")]
+metadata/_edit_lock_ = true
+
+[node name="Clipboard" parent="." instance=ExtResource("6_gc435")]
+position = Vector2(134, 50)
+scale = Vector2(2, 2)
+photo = ExtResource("7_qefbf")
+patient_name = "Jurgen"
+dossier_text = "The patient has been
+pronounced dead. His 
+family was told he died
+due to an unrelated 
+skydiving accident to 
+avoid a lawsuit."
+stamp = 1
+
+[connection signal="player_ready" from="Clipboard" to="." method="_on_clipboard_player_ready"]

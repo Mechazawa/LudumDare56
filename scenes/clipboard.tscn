@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://djnq5qqrro3pi"]
+[gd_scene load_steps=13 format=3 uid="uid://djnq5qqrro3pi"]
 
 [ext_resource type="Script" path="res://scenes/clipboard.gd" id="1_71mmr"]
 [ext_resource type="Texture2D" uid="uid://bscy07xr10oim" path="res://assets/clipboard.png" id="1_ue1aa"]
@@ -10,11 +10,12 @@
 [ext_resource type="Texture2D" uid="uid://df060k2dkpak1" path="res://assets/clipboard-coffeestain-3.png" id="6_wop8s"]
 [ext_resource type="Texture2D" uid="uid://drtvrvrchxq6f" path="res://assets/clipboard-tape-1.png" id="7_cujn5"]
 [ext_resource type="Texture2D" uid="uid://bwlvwv0vgb6l7" path="res://assets/clipboard-tape-2.png" id="8_ngqh7"]
+[ext_resource type="Texture2D" uid="uid://cs1ds3y6exn3m" path="res://assets/clipboard-died.png" id="11_gej7x"]
+[ext_resource type="Texture2D" uid="uid://71njoeyuyn7r" path="res://assets/clipboard-saved.png" id="12_y5nbd"]
 
 [node name="Clipboard" type="Node2D"]
 script = ExtResource("1_71mmr")
 photo = ExtResource("2_bi5xd")
-patient_name = "Docm77"
 
 [node name="Base" type="Sprite2D" parent="."]
 texture = ExtResource("1_ue1aa")
@@ -159,16 +160,19 @@ centered = false
 
 [node name="Sprite2D" type="Sprite2D" parent="Tape"]
 visible = false
+modulate = Color(1, 1, 1, 0.776471)
 texture = ExtResource("7_cujn5")
 centered = false
 
 [node name="Sprite2D2" type="Sprite2D" parent="Tape"]
 visible = false
+modulate = Color(1, 1, 1, 0.776471)
 texture = ExtResource("8_ngqh7")
 centered = false
 
 [node name="Sprite2D3" type="Sprite2D" parent="Tape"]
 visible = false
+modulate = Color(1, 1, 1, 0.776471)
 centered = false
 
 [node name="ContinueHint" type="Label" parent="."]
@@ -183,12 +187,23 @@ theme_override_constants/line_spacing = 4
 theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("4_p04ee")
 theme_override_font_sizes/font_size = 6
-text = "Press attack to begin"
 
 [node name="ContinueHintTimer" type="Timer" parent="."]
 wait_time = 5.0
 one_shot = true
 autostart = true
+
+[node name="StampDead" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0.784314)
+texture = ExtResource("11_gej7x")
+centered = false
+
+[node name="StampSaved" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0.784314)
+texture = ExtResource("12_y5nbd")
+centered = false
 
 [connection signal="property_list_changed" from="." to="." method="_ready"]
 [connection signal="timeout" from="ContinueHintTimer" to="." method="_on_continue_hint_timer_timeout"]

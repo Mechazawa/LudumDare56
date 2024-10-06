@@ -27,15 +27,14 @@ script = ExtResource("1_h5xce")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 modulate = Color(0.427493, 0.427493, 0.427493, 0.737255)
-offset_left = -1.0
-offset_right = 199.0
+offset_right = 200.0
 offset_bottom = 200.0
 scale = Vector2(2.2, 2.2)
 texture = ExtResource("2_vbo8g")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="TextureRect"]
-position = Vector2(0, -0.5)
 sprite_frames = SubResource("SpriteFrames_teah4")
+autoplay = "default"
 frame_progress = 0.462417
 centered = false
 

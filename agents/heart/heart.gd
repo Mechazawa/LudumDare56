@@ -16,7 +16,10 @@ func _process(delta: float) -> void:
 	pass
 
 func _on_health_death() -> void:
-	queue_free() # todo :shrug:
+	$AnimatedSprite2D.visible = false
+	$GibParticles.emitting = true
+	await $GibParticles.finished
+	queue_free() 
 
 func _on_health_damaged(target: Node, amount: float) -> void:
 	if target.is_ancestor_of(self) or target == self:
