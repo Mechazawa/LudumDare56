@@ -46,8 +46,12 @@ metadata/_edit_lock_ = true
 position = Vector2(134, 50)
 scale = Vector2(2, 2)
 photo = ExtResource("7_lul6p")
-patient_name = "Jurgen Jurson"
-dossier_text = "fubar hello world!
-certified fluffy goat"
+patient_name = "Jurgen"
+dossier_text = "Tried to pet a goat and 
+got goat flu. Needs
+heart surgery to fix it.
+
+Remember: avoid the 
+goat flu sneeze!"
 
 [connection signal="player_ready" from="Clipboard" to="." method="_on_clipboard_player_ready"]
