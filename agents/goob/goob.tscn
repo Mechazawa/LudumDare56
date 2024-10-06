@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cdem2eb4ljqgl"]
+[gd_scene load_steps=21 format=3 uid="uid://cdem2eb4ljqgl"]
 
 [ext_resource type="Script" path="res://agents/goob/goob.gd" id="1_mr3g4"]
 [ext_resource type="AudioStream" uid="uid://cwjsp3af4s6da" path="res://sound/goob-hit.wav" id="2_hpt0e"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://c00bcmhjur63u" path="res://assets/heart-goob-blink-2.png" id="6_5j2qs"]
 [ext_resource type="BehaviorTree" uid="uid://c67jiwk4spbn6" path="res://agents/goob/goob.tres" id="11_q8vs6"]
 [ext_resource type="AudioStream" uid="uid://b66ql7w0uf28b" path="res://sound/goob-death.wav" id="12_7f31x"]
+[ext_resource type="Texture2D" uid="uid://d3gex3xairtwi" path="res://assets/heart-goob-snooze.png" id="13_snk42"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_onycp"]
 shader = ExtResource("2_yx6g7")
@@ -35,6 +36,30 @@ tracks/0/keys = {
 "update": 1,
 "values": [ExtResource("6_5j2qs")]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SnoozeParticles:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SnoozeParticles:lifetime")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [8.0]
+}
 
 [sub_resource type="Animation" id="Animation_piiao"]
 length = 1.5
@@ -50,6 +75,30 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [ExtResource("3_tvob4"), ExtResource("4_glamq")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SnoozeParticles:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SnoozeParticles:lifetime")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0.01]
 }
 
 [sub_resource type="Animation" id="Animation_d1bve"]
@@ -95,12 +144,16 @@ _data = {
 "sleep": SubResource("Animation_32kmx")
 }
 
+[sub_resource type="Gradient" id="Gradient_6apeo"]
+offsets = PackedFloat32Array(0, 0.153614, 0.990964, 0.996988, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 0.999137, 0.999137, 0.999137, 0, 0.964706, 0.964706, 0.964706, 0, 1, 1, 1, 0)
+
 [node name="Goob" type="StaticBody2D"]
 script = ExtResource("1_mr3g4")
 
 [node name="GoobSprite" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_onycp")
-texture = ExtResource("3_5w3ap")
+texture = ExtResource("3_tvob4")
 metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
 
@@ -137,3 +190,16 @@ libraries = {
 "goob": SubResource("AnimationLibrary_046do")
 }
 autoplay = "goob/RESET"
+
+[node name="SnoozeParticles" type="CPUParticles2D" parent="."]
+position = Vector2(-101, 50)
+emitting = false
+amount = 5
+texture = ExtResource("13_snk42")
+direction = Vector2(0, -1)
+gravity = Vector2(0, 0)
+initial_velocity_min = 5.0
+initial_velocity_max = 5.0
+scale_amount_min = 0.5
+scale_amount_max = 0.5
+color_ramp = SubResource("Gradient_6apeo")

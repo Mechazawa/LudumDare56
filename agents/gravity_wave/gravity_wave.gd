@@ -30,7 +30,7 @@ func on_body_entered(body: Node2D) -> void:
 		return
 	body.find_child("Health").call_deferred("take_damage", body, damage)
 	body.call_deferred("update_rotational_velocity", randf_range(rotational_force_min, rotational_force_max) * [-1, 1].pick_random())
-	body.call_deferred("update_linear_velocity", (body.position - self.position).normalized() * 60)
+	body.call_deferred("update_linear_velocity", (self.position - body.position).normalized() * linear_force)
 	active_wave.visible = false
 	active_wave.body_entered.disconnect(on_body_entered)
 	$HitEffect.play()
