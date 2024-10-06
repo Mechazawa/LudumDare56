@@ -1,0 +1,60 @@
+[gd_scene load_steps=10 format=3 uid="uid://dxc7n2vhevfyn"]
+
+[ext_resource type="Script" path="res://scenes/levels/2/level.gd" id="1_o4ktt"]
+[ext_resource type="Texture2D" uid="uid://delgrq1ol4xbg" path="res://assets/background.png" id="2_qoid0"]
+[ext_resource type="PackedScene" uid="uid://61y8ylbbieqc" path="res://agents/player/player.tscn" id="3_0mlqw"]
+[ext_resource type="PackedScene" uid="uid://b5vgmyclbwdx2" path="res://scripts/window_reference.tscn" id="4_061wx"]
+[ext_resource type="PackedScene" uid="uid://624k2gso6a2c" path="res://agents/heart/heart.tscn" id="5_4cy4t"]
+[ext_resource type="PackedScene" uid="uid://djk1y81lii0kr" path="res://agents/level_border/level_border.tscn" id="7_5ta0u"]
+[ext_resource type="Script" path="res://scripts/health.gd" id="8_wtjn8"]
+[ext_resource type="Texture2D" uid="uid://ceul6i2ukwj47" path="res://assets/gravestone.png" id="9_eukoa"]
+[ext_resource type="PackedScene" uid="uid://bdm1aa8smx8d" path="res://agents/healthbar/healthbar.tscn" id="10_8xe3k"]
+
+[node name="Level2" type="Node"]
+script = ExtResource("1_o4ktt")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(0.427493, 0.427493, 0.427493, 0.737255)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(4, 4)
+texture = ExtResource("2_qoid0")
+stretch_mode = 1
+
+[node name="Player" parent="." instance=ExtResource("3_0mlqw")]
+position = Vector2(74, 144)
+rotation = -6.39238
+
+[node name="WindowReference" parent="." instance=ExtResource("4_061wx")]
+metadata/_edit_lock_ = true
+
+[node name="Node" type="Node" parent="."]
+
+[node name="Heart" parent="Node" instance=ExtResource("5_4cy4t")]
+position = Vector2(233, 100)
+
+[node name="LevelBorder" parent="." instance=ExtResource("7_5ta0u")]
+
+[node name="PatientHealth" type="Node" parent="." groups=["patient_health"]]
+script = ExtResource("8_wtjn8")
+max_health = 30.0
+
+[node name="Gravestone" type="Node2D" parent="."]
+visible = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Gravestone"]
+position = Vector2(216, 160)
+scale = Vector2(2, 2)
+texture = ExtResource("9_eukoa")
+
+[node name="HealthbarPatient" parent="." instance=ExtResource("10_8xe3k")]
+position = Vector2(304, 2)
+
+[node name="HealthbarPlayer" parent="." instance=ExtResource("10_8xe3k")]
+position = Vector2(36, 3)
+
+[connection signal="death" from="Player" to="." method="_on_player_death"]
+[connection signal="death" from="PatientHealth" to="." method="_on_patient_death"]

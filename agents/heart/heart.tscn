@@ -11,7 +11,7 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hnpbb"]
 shader = ExtResource("2_o4fg6")
 shader_parameter/flash_color = Color(1, 1, 1, 1)
-shader_parameter/flash_modifier = 1.0
+shader_parameter/flash_modifier = 0.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1e1pt"]
 animations = [{
@@ -46,6 +46,7 @@ frame_progress = 0.392517
 [node name="DamageIndicator" parent="AnimatedSprite2D" instance=ExtResource("5_hotuu")]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+visible = false
 position = Vector2(-4, 1)
 polygon = PackedVector2Array(22, 126, 45, 107, 70, 43, 70, 19, 65, 8, 66, -5, 86, 4, 95, -3, 82, -15, 67, -19, 83, -39, 82, -49, 115, -73, 111, -91, 92, -86, 78, -70, 55, -65, 52, -59, 42, -59, 42, -69, 33, -80, 36, -88, 63, -100, 52, -111, 42, -105, 34, -106, 26, -126, 19, -124, 12, -123, 3, -130, -7, -129, -10, -125, -9, -101, -21, -104, -35, -103, -39, -109, -27, -119, -22, -125, -30, -128, -44, -115, -55, -132, -62, -126, -46, -95, -64, -71, -64, -63, -82, -55, -91, -33, -89, -21, -78, -6, -86, 11, -87, 40, -69, 67, -35, 98, -6, 115)
 

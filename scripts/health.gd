@@ -15,8 +15,7 @@ func take_damage(target: Node, amount: float) -> void:
 	if _current <= 0.0:
 		return
 
-	_current -= amount
-	_current = max(_current, 0.0)
+	_current = max(_current - amount, 0.0)
 
 	if _current <= 0.0:
 		death.emit()

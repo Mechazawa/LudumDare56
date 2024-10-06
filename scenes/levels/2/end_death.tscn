@@ -1,0 +1,58 @@
+[gd_scene load_steps=9 format=3 uid="uid://bainbtxxc1ykw"]
+
+[ext_resource type="Script" path="res://scenes/levels/1/intro.gd" id="1_dq4j2"]
+[ext_resource type="Texture2D" uid="uid://d3kd861f0h0x7" path="res://assets/intro-background.png" id="2_dv10d"]
+[ext_resource type="Texture2D" uid="uid://c28fwld3ktxfu" path="res://assets/intro-background-steam-1.png" id="3_e0ku1"]
+[ext_resource type="Texture2D" uid="uid://dtrf8ruvv4k5i" path="res://assets/intro-background-steam-2.png" id="4_7cosv"]
+[ext_resource type="PackedScene" uid="uid://b5vgmyclbwdx2" path="res://scripts/window_reference.tscn" id="5_6nikk"]
+[ext_resource type="PackedScene" uid="uid://djnq5qqrro3pi" path="res://scenes/clipboard.tscn" id="6_iukot"]
+[ext_resource type="Texture2D" uid="uid://drga5gp4spi3" path="res://assets/clipboard-portrait-11.png" id="7_mkh4c"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_teah4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_e0ku1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_7cosv")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="EndDeath" type="Node"]
+script = ExtResource("1_dq4j2")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(0.427493, 0.427493, 0.427493, 0.737255)
+offset_right = 200.0
+offset_bottom = 200.0
+scale = Vector2(2.2, 2.2)
+texture = ExtResource("2_dv10d")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="TextureRect"]
+sprite_frames = SubResource("SpriteFrames_teah4")
+autoplay = "default"
+frame_progress = 0.462417
+centered = false
+
+[node name="WindowReference" parent="." instance=ExtResource("5_6nikk")]
+metadata/_edit_lock_ = true
+
+[node name="Clipboard" parent="." instance=ExtResource("6_iukot")]
+position = Vector2(134, 50)
+scale = Vector2(2, 2)
+photo = ExtResource("7_mkh4c")
+patient_name = "Brian"
+dossier_text = "The east wing of the 
+facility is closed due to 
+the explosion. A lawsuit
+is pending against the 
+next of kin for 
+damages and medical
+bills. 9 dead, 4 missing."
+stamp = 1
+
+[connection signal="player_ready" from="Clipboard" to="." method="_on_clipboard_player_ready"]

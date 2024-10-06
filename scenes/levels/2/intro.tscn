@@ -1,0 +1,55 @@
+[gd_scene load_steps=9 format=3 uid="uid://bknkgc35juxj2"]
+
+[ext_resource type="Script" path="res://scenes/levels/2/intro.gd" id="1_noar0"]
+[ext_resource type="Texture2D" uid="uid://d3kd861f0h0x7" path="res://assets/intro-background.png" id="2_gtkon"]
+[ext_resource type="Texture2D" uid="uid://c28fwld3ktxfu" path="res://assets/intro-background-steam-1.png" id="3_gc1vm"]
+[ext_resource type="Texture2D" uid="uid://dtrf8ruvv4k5i" path="res://assets/intro-background-steam-2.png" id="4_yjvgy"]
+[ext_resource type="PackedScene" uid="uid://b5vgmyclbwdx2" path="res://scripts/window_reference.tscn" id="5_xsddx"]
+[ext_resource type="PackedScene" uid="uid://djnq5qqrro3pi" path="res://scenes/clipboard.tscn" id="6_no33w"]
+[ext_resource type="Texture2D" uid="uid://drga5gp4spi3" path="res://assets/clipboard-portrait-11.png" id="7_aswqg"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_teah4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_gc1vm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_yjvgy")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Intro" type="Node"]
+script = ExtResource("1_noar0")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(0.427493, 0.427493, 0.427493, 0.737255)
+offset_right = 200.0
+offset_bottom = 200.0
+scale = Vector2(2.2, 2.2)
+texture = ExtResource("2_gtkon")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="TextureRect"]
+sprite_frames = SubResource("SpriteFrames_teah4")
+autoplay = "default"
+frame_progress = 0.462417
+centered = false
+
+[node name="WindowReference" parent="." instance=ExtResource("5_xsddx")]
+metadata/_edit_lock_ = true
+
+[node name="Clipboard" parent="." instance=ExtResource("6_no33w")]
+position = Vector2(134, 50)
+scale = Vector2(2, 2)
+photo = ExtResource("7_aswqg")
+patient_name = "Brian"
+dossier_text = "Patient received a
+pacemaker because 
+\"it sounded cool at 
+the time\". Device is
+somehow a bomb. "
+
+[connection signal="player_ready" from="Clipboard" to="." method="_on_clipboard_player_ready"]
