@@ -24,8 +24,8 @@ texture = ExtResource("4_ktoim")
 stretch_mode = 1
 
 [node name="Player" parent="." instance=ExtResource("3_bun8k")]
-position = Vector2(239, 209)
-rotation = -2.89775
+position = Vector2(96, 89)
+rotation = -5.02492
 
 [node name="WindowReference" parent="." instance=ExtResource("1_euhgr")]
 metadata/_edit_lock_ = true

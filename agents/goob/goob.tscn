@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cdem2eb4ljqgl"]
+[gd_scene load_steps=19 format=3 uid="uid://cdem2eb4ljqgl"]
 
 [ext_resource type="Script" path="res://agents/goob/goob.gd" id="1_mr3g4"]
 [ext_resource type="AudioStream" uid="uid://cwjsp3af4s6da" path="res://sound/goob-hit.wav" id="2_hpt0e"]
@@ -9,7 +9,6 @@
 [ext_resource type="Texture2D" uid="uid://dvt1qv0hr6rll" path="res://assets/heart-goob-default-2.png" id="4_glamq"]
 [ext_resource type="PackedScene" uid="uid://ch5konsgo838k" path="res://scripts/damage_indicator.tscn" id="4_xgecd"]
 [ext_resource type="Script" path="res://scripts/health.gd" id="5_14xvk"]
-[ext_resource type="Texture2D" uid="uid://38kn2asi1if3" path="res://assets/heart-goob-blink-1.png" id="5_nhv5p"]
 [ext_resource type="Texture2D" uid="uid://c00bcmhjur63u" path="res://assets/heart-goob-blink-2.png" id="6_5j2qs"]
 [ext_resource type="BehaviorTree" uid="uid://c67jiwk4spbn6" path="res://agents/goob/goob.tres" id="11_q8vs6"]
 [ext_resource type="AudioStream" uid="uid://b66ql7w0uf28b" path="res://sound/goob-death.wav" id="12_7f31x"]
@@ -19,74 +18,109 @@ shader = ExtResource("2_yx6g7")
 shader_parameter/flash_color = Color(1, 1, 1, 1)
 shader_parameter/flash_modifier = 0.0
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_bey57"]
-animations = [{
-"frames": [{
-"duration": 2.0,
-"texture": ExtResource("3_5w3ap")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_7240t")
-}],
-"loop": true,
-"name": &"attack_prepare",
-"speed": 3.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("4_7240t")
-}],
-"loop": true,
-"name": &"attack_wave",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("6_5j2qs")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_nhv5p")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_nhv5p")
-}],
-"loop": true,
-"name": &"blink",
-"speed": 2.0
-}, {
-"frames": [{
-"duration": 2.0,
-"texture": ExtResource("3_tvob4")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_glamq")
-}],
-"loop": true,
-"name": &"default",
-"speed": 2.0
-}]
-
 [sub_resource type="BlackboardPlan" id="BlackboardPlan_mv3ne"]
+
+[sub_resource type="Animation" id="Animation_32kmx"]
+resource_name = "sleep"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GoobSprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("6_5j2qs")]
+}
+
+[sub_resource type="Animation" id="Animation_piiao"]
+length = 1.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GoobSprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.75),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("3_tvob4"), ExtResource("4_glamq")]
+}
+
+[sub_resource type="Animation" id="Animation_d1bve"]
+resource_name = "attack_wave"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GoobSprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.8, 1, 1.3, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("3_5w3ap"), ExtResource("4_7240t"), ExtResource("3_5w3ap"), ExtResource("4_7240t"), ExtResource("3_5w3ap"), ExtResource("4_7240t")]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5, 1, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"values": [{
+"args": [2, 0.3],
+"method": &"fire_wave"
+}, {
+"args": [1, 0.3],
+"method": &"fire_wave"
+}, {
+"args": [0, 0.3],
+"method": &"fire_wave"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_046do"]
+_data = {
+"RESET": SubResource("Animation_piiao"),
+"attack_wave": SubResource("Animation_d1bve"),
+"sleep": SubResource("Animation_32kmx")
+}
 
 [node name="Goob" type="StaticBody2D"]
 script = ExtResource("1_mr3g4")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="GoobSprite" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_onycp")
-sprite_frames = SubResource("SpriteFrames_bey57")
+texture = ExtResource("3_5w3ap")
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
 
-[node name="DamageIndicator" parent="AnimatedSprite2D" instance=ExtResource("4_xgecd")]
+[node name="DamageIndicator" parent="GoobSprite" instance=ExtResource("4_xgecd")]
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource("5_14xvk")
 max_health = 50.0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+visible = false
 position = Vector2(-69, 55)
 polygon = PackedVector2Array(-15, 68, 12, 77, 36, 71, 62, 58, -12, -19, -24, -20, -35, -15, -43, -5, -42, 10, -31, 20, -27, 55)
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
 
 [node name="MouthMarker" type="Marker2D" parent="."]
 position = Vector2(-100, 67)
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
 
 [node name="BTPlayer" type="BTPlayer" parent="."]
 behavior_tree = ExtResource("11_q8vs6")
@@ -97,3 +131,9 @@ stream = ExtResource("12_7f31x")
 
 [node name="HurtSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_hpt0e")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"goob": SubResource("AnimationLibrary_046do")
+}
+autoplay = "goob/RESET"

@@ -1,55 +1,88 @@
-[gd_resource type="BehaviorTree" load_steps=15 format=3 uid="uid://c67jiwk4spbn6"]
+[gd_resource type="BehaviorTree" load_steps=21 format=3 uid="uid://c67jiwk4spbn6"]
 
 [ext_resource type="Script" path="res://ai/tasks/get_first_in_group.gd" id="1_761jd"]
 
 [sub_resource type="BlackboardPlan" id="BlackboardPlan_mrlsr"]
+var/awake/name = &"awake"
+var/awake/type = 1
+var/awake/value = false
+var/awake/hint = 0
+var/awake/hint_string = "Goob awakes after being damaged"
+var/target/name = &"target"
+var/target/type = 24
+var/target/hint = 0
+var/target/hint_string = "Attack target"
+
+[sub_resource type="BBNode" id="BBNode_5smc3"]
+resource_name = "."
+saved_value = NodePath(".")
+
+[sub_resource type="BTCallMethod" id="BTCallMethod_d7f6c"]
+node = SubResource("BBNode_5smc3")
+method = &"is_awake"
+result_var = &"awake"
+
+[sub_resource type="BTCheckTrigger" id="BTCheckTrigger_fe6k5"]
+variable = &"awake"
+
+[sub_resource type="BTInvert" id="BTInvert_0v15t"]
+children = [SubResource("BTCheckTrigger_fe6k5")]
+
+[sub_resource type="BBNode" id="BBNode_k6xeq"]
+resource_name = "AnimationPlayer"
+saved_value = NodePath("AnimationPlayer")
+
+[sub_resource type="BTPlayAnimation" id="BTPlayAnimation_eupfe"]
+await_completion = 1.0
+animation_player = SubResource("BBNode_k6xeq")
+animation_name = &"goob/sleep"
+
+[sub_resource type="BTSequence" id="BTSequence_mxug8"]
+children = [SubResource("BTCallMethod_d7f6c"), SubResource("BTInvert_0v15t"), SubResource("BTPlayAnimation_eupfe")]
+
+[sub_resource type="BBNode" id="BBNode_oepyh"]
+resource_name = "AnimationPlayer"
+saved_value = NodePath("AnimationPlayer")
+
+[sub_resource type="BTPlayAnimation" id="BTPlayAnimation_e0mdy"]
+animation_player = SubResource("BBNode_oepyh")
+animation_name = &"goob/RESET"
 
 [sub_resource type="BTAction" id="BTAction_eco3o"]
 script = ExtResource("1_761jd")
 group = &"player"
 output_var = &"target"
 
-[sub_resource type="BTRunLimit" id="BTRunLimit_i4e1r"]
-children = [SubResource("BTAction_eco3o")]
-
-[sub_resource type="BBNode" id="BBNode_08vrb"]
-resource_name = "Health"
-saved_value = NodePath("Health")
-
-[sub_resource type="BTCallMethod" id="BTCallMethod_r0r0p"]
-node = SubResource("BBNode_08vrb")
-method = &"get_current"
-result_var = &"health"
-
-[sub_resource type="BBVariant" id="BBVariant_cwdjl"]
+[sub_resource type="BBVariant" id="BBVariant_1a35y"]
 resource_name = "$target"
 value_source = 1
 variable = &"target"
 
-[sub_resource type="BBNode" id="BBNode_eo3f1"]
-resource_name = "."
-saved_value = NodePath(".")
+[sub_resource type="BTSetAgentProperty" id="BTSetAgentProperty_xfxl0"]
+property = &"target"
+value = SubResource("BBVariant_1a35y")
 
-[sub_resource type="BTCallMethod" id="BTCallMethod_x7e8w"]
-node = SubResource("BBNode_eo3f1")
-method = &"fire_waves"
-args = Array[BBVariant]([SubResource("BBVariant_cwdjl")])
+[sub_resource type="BBNode" id="BBNode_or0im"]
+resource_name = "AnimationPlayer"
+saved_value = NodePath("AnimationPlayer")
 
-[sub_resource type="BTSequence" id="BTSequence_dstwm"]
-children = [SubResource("BTCallMethod_x7e8w")]
+[sub_resource type="BTPlayAnimation" id="BTPlayAnimation_wj56r"]
+await_completion = 10.0
+animation_player = SubResource("BBNode_or0im")
+animation_name = &"goob/attack_wave"
 
 [sub_resource type="BTCooldown" id="BTCooldown_n32na"]
-children = [SubResource("BTSequence_dstwm")]
+children = [SubResource("BTPlayAnimation_wj56r")]
 duration = 4.0
 
 [sub_resource type="BTSelector" id="BTSelector_uo3bw"]
 children = [SubResource("BTCooldown_n32na")]
 
 [sub_resource type="BTSequence" id="BTSequence_ua1gy"]
-children = [SubResource("BTCallMethod_r0r0p"), SubResource("BTSelector_uo3bw")]
+children = [SubResource("BTPlayAnimation_e0mdy"), SubResource("BTAction_eco3o"), SubResource("BTSetAgentProperty_xfxl0"), SubResource("BTSelector_uo3bw")]
 
 [sub_resource type="BTSelector" id="BTSelector_nqnf8"]
-children = [SubResource("BTRunLimit_i4e1r"), SubResource("BTSequence_ua1gy")]
+children = [SubResource("BTSequence_mxug8"), SubResource("BTSequence_ua1gy")]
 
 [resource]
 blackboard_plan = SubResource("BlackboardPlan_mrlsr")
