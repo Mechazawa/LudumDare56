@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ct5pqm165hcrt"
-path="res://.godot/imported/intro-comic-border.png-886d5a35b101b6022c118597c6913e78.ctex"
+path="res://.godot/imported/intro-comic-border.png-0a9993f319fc733cf7569034937818ff.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/intro comic/intro-comic-border.png"
-dest_files=["res://.godot/imported/intro-comic-border.png-886d5a35b101b6022c118597c6913e78.ctex"]
+source_file="res://assets/intro-comic/intro-comic-border.png"
+dest_files=["res://.godot/imported/intro-comic-border.png-0a9993f319fc733cf7569034937818ff.ctex"]
 
 [params]
 

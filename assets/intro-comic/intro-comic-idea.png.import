@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c4rnpfsd732hd"
-path="res://.godot/imported/intro-comic-idea.png-b38ff3b6b59ee46bb66fe9732ec2309d.ctex"
+path="res://.godot/imported/intro-comic-idea.png-e1e7f464758289dd05be2d545931c0ed.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/intro comic/intro-comic-idea.png"
-dest_files=["res://.godot/imported/intro-comic-idea.png-b38ff3b6b59ee46bb66fe9732ec2309d.ctex"]
+source_file="res://assets/intro-comic/intro-comic-idea.png"
+dest_files=["res://.godot/imported/intro-comic-idea.png-e1e7f464758289dd05be2d545931c0ed.ctex"]
 
 [params]
 

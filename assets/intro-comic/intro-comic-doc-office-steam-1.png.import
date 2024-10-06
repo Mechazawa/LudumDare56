@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c5g76i08247uu"
-path="res://.godot/imported/intro-comic-doc-office-steam-1.png-df743ee77cfd445f3ad9b1383e44048a.ctex"
+path="res://.godot/imported/intro-comic-doc-office-steam-1.png-3295286ac2fea1e8b4c0f41b44c14e65.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/intro comic/intro-comic-doc-office-steam-1.png"
-dest_files=["res://.godot/imported/intro-comic-doc-office-steam-1.png-df743ee77cfd445f3ad9b1383e44048a.ctex"]
+source_file="res://assets/intro-comic/intro-comic-doc-office-steam-1.png"
+dest_files=["res://.godot/imported/intro-comic-doc-office-steam-1.png-3295286ac2fea1e8b4c0f41b44c14e65.ctex"]
 
 [params]
 
