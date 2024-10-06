@@ -47,6 +47,8 @@ func _build_segments() -> void:
 		return
 	if segment_end == null:
 		return
+	if not is_inside_tree():
+		return
 	_last_segment = _append_segment(segment_start, anchor)
 	for i in (size - 2):
 		_last_segment = _append_segment(segment_middle, _last_segment)
