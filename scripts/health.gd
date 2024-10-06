@@ -26,5 +26,8 @@ func take_damage(target: Node, amount: float) -> void:
 func get_current() -> float:
 	return _current
 
+func get_percentage() -> float:
+	return _current / max_health
+
 func is_alive() -> bool:
 	return _current > 0.0
