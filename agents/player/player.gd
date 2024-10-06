@@ -118,6 +118,7 @@ func _on_health_death() -> void:
 	
 	$ExplosionAnimation.visible = true
 	$ExplosionAnimation.play(&"default")
+	$ExplosionSound.play()
 	$GibParticles.emitting = true
 	await $ExplosionAnimation.animation_looped
 	death.emit()

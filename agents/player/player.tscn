@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://61y8ylbbieqc"]
+[gd_scene load_steps=21 format=3 uid="uid://61y8ylbbieqc"]
 
 [ext_resource type="Texture2D" uid="uid://bjko7m57pvf43" path="res://assets/capsule-thruster-1.png" id="1_agao6"]
 [ext_resource type="Script" path="res://agents/player/player.gd" id="1_oas3n"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://bcau2hfksryf7" path="res://assets/capsule-explosion-1.png" id="11_c6ph4"]
 [ext_resource type="Texture2D" uid="uid://buua5tglsoa77" path="res://assets/capsule-explosion-2.png" id="12_3nr0c"]
 [ext_resource type="Texture2D" uid="uid://bgx04586mfkr4" path="res://assets/capsule-explosion-3.png" id="13_fnk7h"]
+[ext_resource type="AudioStream" uid="uid://birt3yhv1n4g1" path="res://sound/capsule-explosion.wav" id="14_oepxl"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fi7cw"]
 shader = ExtResource("3_y5kn7")
@@ -131,6 +132,10 @@ anim_offset_max = 1.0
 visible = false
 sprite_frames = SubResource("SpriteFrames_jmwpe")
 frame_progress = 0.923353
+
+[node name="ExplosionSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("14_oepxl")
+volume_db = -9.267
 
 [connection signal="damaged" from="Health" to="." method="_on_health_damaged"]
 [connection signal="death" from="Health" to="." method="_on_health_death"]

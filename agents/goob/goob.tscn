@@ -216,6 +216,7 @@ color_ramp = SubResource("Gradient_6apeo")
 physics_interpolation_mode = 2
 material = SubResource("CanvasItemMaterial_vwi4u")
 position = Vector2(-63, 79)
+emitting = false
 amount = 10
 lifetime = 4.0
 one_shot = true
