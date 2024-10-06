@@ -38,7 +38,7 @@ animations = [{
 "speed": 7.0
 }]
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["player"]]
 motion_mode = 1
 script = ExtResource("1_oas3n")
 ship_tool = ExtResource("2_iyk3k")

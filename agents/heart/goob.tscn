@@ -1,11 +1,15 @@
-[gd_scene load_steps=9 format=3 uid="uid://cdem2eb4ljqgl"]
+[gd_scene load_steps=13 format=3 uid="uid://cdem2eb4ljqgl"]
 
 [ext_resource type="Script" path="res://agents/heart/goob.gd" id="1_mr3g4"]
 [ext_resource type="Shader" path="res://shaders/flash.gdshader" id="2_yx6g7"]
-[ext_resource type="Texture2D" uid="uid://cp81nliem751r" path="res://assets/heart-goob-1.png" id="3_n6emy"]
-[ext_resource type="Texture2D" uid="uid://dcpdo6d534g00" path="res://assets/heart-goob-2.png" id="4_7kyng"]
+[ext_resource type="Texture2D" uid="uid://c41mycsxx2gxa" path="res://assets/heart-goob-attack-1.png" id="3_5w3ap"]
+[ext_resource type="Texture2D" uid="uid://138vb6dr8m4a" path="res://assets/heart-goob-default-1.png" id="3_tvob4"]
+[ext_resource type="Texture2D" uid="uid://d22jkyqcdml3j" path="res://assets/heart-goob-attack-2.png" id="4_7240t"]
+[ext_resource type="Texture2D" uid="uid://dvt1qv0hr6rll" path="res://assets/heart-goob-default-2.png" id="4_glamq"]
 [ext_resource type="PackedScene" uid="uid://ch5konsgo838k" path="res://scripts/damage_indicator.tscn" id="4_xgecd"]
 [ext_resource type="Script" path="res://scripts/health.gd" id="5_14xvk"]
+[ext_resource type="Texture2D" uid="uid://38kn2asi1if3" path="res://assets/heart-goob-blink-1.png" id="5_nhv5p"]
+[ext_resource type="Texture2D" uid="uid://c00bcmhjur63u" path="res://assets/heart-goob-blink-2.png" id="6_5j2qs"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_onycp"]
 shader = ExtResource("2_yx6g7")
@@ -16,10 +20,43 @@ shader_parameter/flash_modifier = 0.0
 animations = [{
 "frames": [{
 "duration": 2.0,
-"texture": ExtResource("3_n6emy")
+"texture": ExtResource("3_5w3ap")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_7kyng")
+"texture": ExtResource("4_7240t")
+}],
+"loop": true,
+"name": &"attack_prepare",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_7240t")
+}],
+"loop": true,
+"name": &"attack_wave",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_nhv5p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_5j2qs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_nhv5p")
+}],
+"loop": true,
+"name": &"blink",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 2.0,
+"texture": ExtResource("3_tvob4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_glamq")
 }],
 "loop": true,
 "name": &"default",
@@ -32,12 +69,18 @@ script = ExtResource("1_mr3g4")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_onycp")
 sprite_frames = SubResource("SpriteFrames_bey57")
-frame_progress = 0.851649
+animation = &"attack_prepare"
+frame_progress = 0.991482
 
 [node name="DamageIndicator" parent="AnimatedSprite2D" instance=ExtResource("4_xgecd")]
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource("5_14xvk")
+max_health = 50.0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(-15, 24, -10, 27, -7, 27, -5, 25, -20, 6, -22, 6, -24, 8, -23, 12, -19, 22)
+position = Vector2(-69, 55)
+polygon = PackedVector2Array(-15, 68, 12, 77, 36, 71, 62, 58, -12, -19, -24, -20, -35, -15, -43, -5, -42, 10, -31, 20, -27, 55)
+
+[node name="MouthMarker" type="Marker2D" parent="."]
+position = Vector2(-100, 67)
