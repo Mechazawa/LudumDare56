@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_6x7jg"]
 [ext_resource type="PackedScene" uid="uid://b5vgmyclbwdx2" path="res://scripts/window_reference.tscn" id="2_4mw3f"]
-[ext_resource type="PackedScene" uid="uid://cwr11cjj6iydx" path="res://scenes/levels/1/intro.tscn" id="3_avg5n"]
+[ext_resource type="PackedScene" uid="uid://buh1ecsshfg8d" path="res://scenes/levels/0/cutscene.tscn" id="3_tpwj1"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_6x7jg")
 
 [node name="WindowReference" parent="." instance=ExtResource("2_4mw3f")]
 
-[node name="Intro" parent="." instance=ExtResource("3_avg5n")]
+[node name="Cutscene" parent="." instance=ExtResource("3_tpwj1")]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cwgiarrqwl6mi"
-path="res://.godot/imported/intro-comic-doc-office.png-90a1f817e9ab29316f9194eef57aad79.ctex"
+uid="uid://7rqhpi58kgrf"
+path="res://.godot/imported/doc-2.png-1e2a791e3c9a81e55ac2f9603a8acaff.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/intro-comic/intro-comic-doc-office.png"
-dest_files=["res://.godot/imported/intro-comic-doc-office.png-90a1f817e9ab29316f9194eef57aad79.ctex"]
+source_file="res://assets/intro-comic/doc-2.png"
+dest_files=["res://.godot/imported/doc-2.png-1e2a791e3c9a81e55ac2f9603a8acaff.ctex"]
 
 [params]
 

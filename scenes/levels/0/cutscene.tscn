@@ -1,0 +1,153 @@
+[gd_scene load_steps=17 format=3 uid="uid://buh1ecsshfg8d"]
+
+[ext_resource type="PackedScene" uid="uid://b5vgmyclbwdx2" path="res://scripts/window_reference.tscn" id="1_jpi7x"]
+[ext_resource type="Script" path="res://scenes/levels/0/cutscene.gd" id="1_r8s17"]
+[ext_resource type="Texture2D" uid="uid://swol8y7hyuib" path="res://assets/intro-comic/doc-office.png" id="2_d3wlg"]
+[ext_resource type="PackedScene" uid="uid://cwr11cjj6iydx" path="res://scenes/levels/1/intro.tscn" id="2_kthvp"]
+[ext_resource type="Texture2D" uid="uid://bw4lga538tia7" path="res://assets/intro-comic/doc-office-steam-1.png" id="3_h4fr8"]
+[ext_resource type="Texture2D" uid="uid://bgml6213xsclg" path="res://assets/intro-comic/idea-on.png" id="3_tvdj5"]
+[ext_resource type="Texture2D" uid="uid://ivfsxsmcnjry" path="res://assets/intro-comic/doc-office-steam-2.png" id="4_jksgw"]
+[ext_resource type="Texture2D" uid="uid://b80ey2umpewo8" path="res://assets/intro-comic/doc-1.png" id="5_l4mlh"]
+[ext_resource type="Texture2D" uid="uid://7rqhpi58kgrf" path="res://assets/intro-comic/doc-2.png" id="5_lqafe"]
+[ext_resource type="Texture2D" uid="uid://b37033s76y3jj" path="res://assets/intro-comic/chair.png" id="6_uo62j"]
+[ext_resource type="Texture2D" uid="uid://dk28t4tb5ensj" path="res://assets/intro-comic/idea.png" id="8_awif0"]
+[ext_resource type="Texture2D" uid="uid://cntcbag1kbeem" path="res://assets/intro-comic/border.png" id="12_lm2fu"]
+
+[sub_resource type="Animation" id="Animation_djiia"]
+resource_name = "cutscene"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Idea:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Idea:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2.33333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("8_awif0"), ExtResource("3_tvdj5")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Doc:texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.33333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("5_l4mlh"), ExtResource("5_lqafe")]
+}
+
+[sub_resource type="Animation" id="Animation_yb2s6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Doc:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("5_l4mlh")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Idea:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("8_awif0")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Idea:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_eb806"]
+_data = {
+"RESET": SubResource("Animation_yb2s6"),
+"cutscene": SubResource("Animation_djiia")
+}
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_18hf4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_h4fr8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_jksgw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[node name="Cutscene" type="Node"]
+script = ExtResource("1_r8s17")
+next_scene = ExtResource("2_kthvp")
+
+[node name="WindowReference" parent="." instance=ExtResource("1_jpi7x")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_eb806")
+}
+autoplay = "cutscene"
+
+[node name="Office" type="Sprite2D" parent="."]
+texture = ExtResource("2_d3wlg")
+centered = false
+
+[node name="Steam" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_18hf4")
+frame_progress = 0.318756
+centered = false
+
+[node name="Doc" type="Sprite2D" parent="."]
+texture = ExtResource("5_l4mlh")
+centered = false
+
+[node name="Chair" type="Sprite2D" parent="."]
+texture = ExtResource("6_uo62j")
+centered = false
+
+[node name="Idea" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("8_awif0")
+centered = false
+
+[node name="Border" type="Sprite2D" parent="."]
+texture = ExtResource("12_lm2fu")
+centered = false
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
