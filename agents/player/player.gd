@@ -63,7 +63,12 @@ func handle_movement_input() -> void:
 		Input.get_action_strength(&"move_down") * linear_speed_backward
 	)
 	
-	$Thruster.visible = linear_move > 0 
+	if linear_move > 0:
+		$Thruster.visible = true
+		$ThrusterSound.play()
+	else:
+		$Thruster.visible = false
+		$ThrusterSound.stop()
 	
 	rotational_acceleration = rotation_move * rotational_speed
 	linear_acceleration = Vector2(linear_move, linear_move).rotated(deg_to_rad(self.rotation_degrees - 45))

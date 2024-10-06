@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://61y8ylbbieqc"]
+[gd_scene load_steps=14 format=3 uid="uid://61y8ylbbieqc"]
 
 [ext_resource type="Texture2D" uid="uid://bjko7m57pvf43" path="res://assets/capsule-thruster-1.png" id="1_agao6"]
 [ext_resource type="Script" path="res://agents/player/player.gd" id="1_oas3n"]
@@ -8,6 +8,7 @@
 [ext_resource type="Shader" path="res://shaders/flash.gdshader" id="3_y5kn7"]
 [ext_resource type="Texture2D" uid="uid://dbujooq32ssp5" path="res://assets/capsule-thruster-3.png" id="4_rdkeb"]
 [ext_resource type="Script" path="res://scripts/health.gd" id="7_i86gl"]
+[ext_resource type="AudioStream" uid="uid://q1w76me0fjbt" path="res://sound/thrusters.wav" id="9_blegg"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fi7cw"]
 shader = ExtResource("3_y5kn7")
@@ -68,6 +69,10 @@ one_shot = true
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource("7_i86gl")
+
+[node name="ThrusterSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_blegg")
+volume_db = -9.267
 
 [connection signal="damaged" from="Health" to="." method="_on_health_damaged"]
 [connection signal="death" from="Health" to="." method="_on_health_death"]

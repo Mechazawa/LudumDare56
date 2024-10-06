@@ -24,7 +24,9 @@ func fire_waves(speed: float = 0.3) -> void:
 		await get_tree().create_timer(speed).timeout
 
 func _on_health_death() -> void:
-	queue_free() # todo :shrug:
+	$DeathSound.play()
+	$DeathSound.finished.connect(func(): queue_free())
 
 func _on_health_damaged(amount: float) -> void:
 	$AnimatedSprite2D/DamageIndicator.hit()
+	$HurtSound.play()

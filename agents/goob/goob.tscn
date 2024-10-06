@@ -1,6 +1,7 @@
-[gd_scene load_steps=15 format=3 uid="uid://cdem2eb4ljqgl"]
+[gd_scene load_steps=17 format=3 uid="uid://cdem2eb4ljqgl"]
 
 [ext_resource type="Script" path="res://agents/goob/goob.gd" id="1_mr3g4"]
+[ext_resource type="AudioStream" uid="uid://cwjsp3af4s6da" path="res://sound/goob-hit.wav" id="2_hpt0e"]
 [ext_resource type="Shader" path="res://shaders/flash.gdshader" id="2_yx6g7"]
 [ext_resource type="Texture2D" uid="uid://c41mycsxx2gxa" path="res://assets/heart-goob-attack-1.png" id="3_5w3ap"]
 [ext_resource type="Texture2D" uid="uid://138vb6dr8m4a" path="res://assets/heart-goob-default-1.png" id="3_tvob4"]
@@ -11,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://38kn2asi1if3" path="res://assets/heart-goob-blink-1.png" id="5_nhv5p"]
 [ext_resource type="Texture2D" uid="uid://c00bcmhjur63u" path="res://assets/heart-goob-blink-2.png" id="6_5j2qs"]
 [ext_resource type="BehaviorTree" uid="uid://c67jiwk4spbn6" path="res://agents/goob/goob.tres" id="11_q8vs6"]
+[ext_resource type="AudioStream" uid="uid://b66ql7w0uf28b" path="res://sound/goob-death.wav" id="12_7f31x"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_onycp"]
 shader = ExtResource("2_yx6g7")
@@ -91,3 +93,9 @@ position = Vector2(-100, 67)
 [node name="BTPlayer" type="BTPlayer" parent="."]
 behavior_tree = ExtResource("11_q8vs6")
 blackboard_plan = SubResource("BlackboardPlan_mv3ne")
+
+[node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("12_7f31x")
+
+[node name="HurtSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_hpt0e")
