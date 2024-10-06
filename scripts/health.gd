@@ -6,12 +6,12 @@ class_name Health
 extends Node
 
 signal death
-signal damaged(amount: float)
+signal damaged(target: Node, amount: float)
 
 @export var max_health: float = 10.0
 @onready var _current: float = max_health
 
-func take_damage(amount: float) -> void:
+func take_damage(target: Node, amount: float) -> void:
 	if _current <= 0.0:
 		return
 
@@ -21,7 +21,10 @@ func take_damage(amount: float) -> void:
 	if _current <= 0.0:
 		death.emit()
 	else:
-		damaged.emit(amount)
+		damaged.emit(target, amount)
 
 func get_current() -> float:
 	return _current
+
+func is_alive() -> bool:
+	return _current > 0.0

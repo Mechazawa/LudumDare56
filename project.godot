@@ -39,6 +39,7 @@ enabled=PackedStringArray("res://addons/anima/plugin.cfg", "res://addons/scene_m
 [global_group]
 
 player=""
+patient_health=""
 
 [input]
 

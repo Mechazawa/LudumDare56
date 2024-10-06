@@ -42,10 +42,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("5_nhv5p")
+"texture": ExtResource("6_5j2qs")
 }, {
 "duration": 1.0,
-"texture": ExtResource("6_5j2qs")
+"texture": ExtResource("5_nhv5p")
 }, {
 "duration": 1.0,
 "texture": ExtResource("5_nhv5p")
@@ -74,8 +74,6 @@ script = ExtResource("1_mr3g4")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_onycp")
 sprite_frames = SubResource("SpriteFrames_bey57")
-animation = &"attack_prepare"
-frame_progress = 0.327845
 
 [node name="DamageIndicator" parent="AnimatedSprite2D" instance=ExtResource("4_xgecd")]
 

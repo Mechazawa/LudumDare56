@@ -1,0 +1,45 @@
+[gd_scene load_steps=9 format=3 uid="uid://djk1y81lii0kr"]
+
+[ext_resource type="PackedScene" uid="uid://b5vgmyclbwdx2" path="res://scripts/window_reference.tscn" id="1_axax1"]
+[ext_resource type="Texture2D" uid="uid://dq71y3xvht5td" path="res://assets/border-flesh.png" id="2_bulfl"]
+[ext_resource type="Shader" path="res://shaders/flash.gdshader" id="3_us8jd"]
+[ext_resource type="Script" path="res://agents/level_border/border_flesh.gd" id="3_xxm11"]
+[ext_resource type="PackedScene" uid="uid://ch5konsgo838k" path="res://scripts/damage_indicator.tscn" id="4_5xva4"]
+[ext_resource type="Texture2D" uid="uid://w1t8e5evl5fq" path="res://assets/border-screen.png" id="5_fbqlk"]
+[ext_resource type="PackedScene" uid="uid://bur88vlidbeqh" path="res://scripts/random_effect.tscn" id="6_0d7u4"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7ea76"]
+shader = ExtResource("3_us8jd")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_modifier = 0.0
+
+[node name="LevelBorder" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="WindowReference" parent="." instance=ExtResource("1_axax1")]
+layout_mode = 0
+anchors_preset = 0
+
+[node name="BorderFlesh" type="StaticBody2D" parent="."]
+script = ExtResource("3_xxm11")
+
+[node name="BorderFlesh" type="Sprite2D" parent="BorderFlesh"]
+material = SubResource("ShaderMaterial_7ea76")
+texture = ExtResource("2_bulfl")
+centered = false
+
+[node name="DamageIndicator" parent="BorderFlesh/BorderFlesh" instance=ExtResource("4_5xva4")]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BorderFlesh"]
+polygon = PackedVector2Array(24, 24, 24, 309, 409, 309, 410, 24, 24, 24, 11, 10, 422, 10, 422, 316, 11, 317, 11, 10)
+
+[node name="RandomEffect" parent="BorderFlesh" instance=ExtResource("6_0d7u4")]
+
+[node name="BorderScreen" type="Sprite2D" parent="."]
+texture = ExtResource("5_fbqlk")
+centered = false

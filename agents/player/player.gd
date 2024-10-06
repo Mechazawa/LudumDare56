@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 @onready var health: Health = $Health
 
+signal death
+
 @export_group("Ship")
 @export var ship_tool: PackedScene = null
 @export_group("Movement")
@@ -22,13 +24,17 @@ extends CharacterBody2D
 var linear_acceleration: Vector2
 var rotational_acceleration: float
 var rotational_velocity: float = 0
+var ship_tool_instance: Node2D = null
 
 func _ready() -> void:
 	$Thruster.play(&"default")
 	if ship_tool != null:
-		add_child(ship_tool.instantiate())
-
+		ship_tool_instance = ship_tool.instantiate()
+		add_child(ship_tool_instance)
+		
 func _physics_process(delta: float) -> void:
+	if not health.is_alive():
+		return
 	linear_acceleration = Vector2.ZERO
 	rotational_acceleration = 0
 	handle_movement_input()
@@ -98,8 +104,21 @@ func apply_movement(delta: float) -> void:
 	rotational_velocity += rotational_acceleration * delta
 	self.rotation_degrees += rotational_velocity
 
-func _on_health_damaged(amount: float) -> void:
+func _on_health_damaged(target: Node, amount: float) -> void:
 	$Sprite2D/DamageIndicator.flash()
 
 func _on_health_death() -> void:
-	pass # Replace with function body.
+	self.velocity = Vector2.ZERO
+	$Sprite2D.visible = false
+	$Thruster.visible = false
+	$ThrusterSound.stop()
+	if ship_tool_instance != null:
+		remove_child(ship_tool_instance)
+		ship_tool_instance = null
+	
+	$ExplosionAnimation.visible = true
+	$ExplosionAnimation.play(&"default")
+	$ScrapParticles.emitting = true
+	$ExplosionAnimation.animation_looped.connect(func(): $ExplosionAnimation.visible = false)
+	$ScrapParticles.finished.connect(func(): queue_free())
+	

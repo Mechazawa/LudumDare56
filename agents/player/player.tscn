@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://61y8ylbbieqc"]
+[gd_scene load_steps=20 format=3 uid="uid://61y8ylbbieqc"]
 
 [ext_resource type="Texture2D" uid="uid://bjko7m57pvf43" path="res://assets/capsule-thruster-1.png" id="1_agao6"]
 [ext_resource type="Script" path="res://agents/player/player.gd" id="1_oas3n"]
@@ -9,6 +9,10 @@
 [ext_resource type="Texture2D" uid="uid://dbujooq32ssp5" path="res://assets/capsule-thruster-3.png" id="4_rdkeb"]
 [ext_resource type="Script" path="res://scripts/health.gd" id="7_i86gl"]
 [ext_resource type="AudioStream" uid="uid://q1w76me0fjbt" path="res://sound/thrusters.wav" id="9_blegg"]
+[ext_resource type="Texture2D" uid="uid://i6c2gg5xtuq7" path="res://assets/capsule-scraps.png" id="10_phj1p"]
+[ext_resource type="Texture2D" uid="uid://bcau2hfksryf7" path="res://assets/capsule-explosion-1.png" id="11_c6ph4"]
+[ext_resource type="Texture2D" uid="uid://buua5tglsoa77" path="res://assets/capsule-explosion-2.png" id="12_3nr0c"]
+[ext_resource type="Texture2D" uid="uid://bgx04586mfkr4" path="res://assets/capsule-explosion-3.png" id="13_fnk7h"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fi7cw"]
 shader = ExtResource("3_y5kn7")
@@ -37,6 +41,29 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 7.0
+}]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_cadp4"]
+particles_animation = true
+particles_anim_h_frames = 4
+particles_anim_v_frames = 2
+particles_anim_loop = false
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jmwpe"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_c6ph4")
+}, {
+"duration": 2.0,
+"texture": ExtResource("12_3nr0c")
+}, {
+"duration": 3.0,
+"texture": ExtResource("13_fnk7h")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
 }]
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
@@ -73,6 +100,37 @@ script = ExtResource("7_i86gl")
 [node name="ThrusterSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("9_blegg")
 volume_db = -9.267
+
+[node name="ScrapParticles" type="CPUParticles2D" parent="."]
+physics_interpolation_mode = 2
+material = SubResource("CanvasItemMaterial_cadp4")
+emitting = false
+amount = 32
+lifetime = 4.0
+one_shot = true
+explosiveness = 0.9
+lifetime_randomness = 0.4
+texture = ExtResource("10_phj1p")
+emission_shape = 1
+emission_sphere_radius = 5.0
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 2)
+initial_velocity_min = 15.0
+initial_velocity_max = 30.0
+angular_velocity_min = 20.0
+angular_velocity_max = 100.0
+damping_min = 5.0
+damping_max = 15.0
+angle_max = 360.0
+hue_variation_min = -0.75
+hue_variation_max = 0.7
+anim_offset_max = 1.0
+
+[node name="ExplosionAnimation" type="AnimatedSprite2D" parent="."]
+visible = false
+sprite_frames = SubResource("SpriteFrames_jmwpe")
+frame_progress = 0.923353
 
 [connection signal="damaged" from="Health" to="." method="_on_health_damaged"]
 [connection signal="death" from="Health" to="." method="_on_health_death"]

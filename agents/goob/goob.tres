@@ -1,4 +1,4 @@
-[gd_resource type="BehaviorTree" load_steps=14 format=3 uid="uid://c67jiwk4spbn6"]
+[gd_resource type="BehaviorTree" load_steps=15 format=3 uid="uid://c67jiwk4spbn6"]
 
 [ext_resource type="Script" path="res://ai/tasks/get_first_in_group.gd" id="1_761jd"]
 
@@ -21,6 +21,11 @@ node = SubResource("BBNode_08vrb")
 method = &"get_current"
 result_var = &"health"
 
+[sub_resource type="BBVariant" id="BBVariant_cwdjl"]
+resource_name = "$target"
+value_source = 1
+variable = &"target"
+
 [sub_resource type="BBNode" id="BBNode_eo3f1"]
 resource_name = "."
 saved_value = NodePath(".")
@@ -28,6 +33,7 @@ saved_value = NodePath(".")
 [sub_resource type="BTCallMethod" id="BTCallMethod_x7e8w"]
 node = SubResource("BBNode_eo3f1")
 method = &"fire_waves"
+args = Array[BBVariant]([SubResource("BBVariant_cwdjl")])
 
 [sub_resource type="BTSequence" id="BTSequence_dstwm"]
 children = [SubResource("BTCallMethod_x7e8w")]

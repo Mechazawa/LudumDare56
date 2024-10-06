@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://n2a8hh1clj27"]
+[gd_scene load_steps=9 format=3 uid="uid://n2a8hh1clj27"]
 
 [ext_resource type="PackedScene" uid="uid://b5vgmyclbwdx2" path="res://scripts/window_reference.tscn" id="1_euhgr"]
 [ext_resource type="Script" path="res://scenes/levels/1/level.gd" id="1_f100b"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://61y8ylbbieqc" path="res://agents/player/player.tscn" id="3_bun8k"]
 [ext_resource type="PackedScene" uid="uid://cdem2eb4ljqgl" path="res://agents/goob/goob.tscn" id="4_7ae6r"]
 [ext_resource type="Texture2D" uid="uid://delgrq1ol4xbg" path="res://assets/background.png" id="4_ktoim"]
+[ext_resource type="PackedScene" uid="uid://djk1y81lii0kr" path="res://agents/level_border/level_border.tscn" id="7_likjv"]
+[ext_resource type="Script" path="res://scripts/health.gd" id="8_gys7b"]
 
 [node name="Level" type="Node"]
 script = ExtResource("1_f100b")
@@ -31,7 +33,12 @@ metadata/_edit_lock_ = true
 [node name="Node" type="Node" parent="."]
 
 [node name="Heart" parent="Node" instance=ExtResource("2_6hi4y")]
-position = Vector2(401, 95)
+position = Vector2(364, 117)
 
 [node name="Goob" parent="Node" instance=ExtResource("4_7ae6r")]
-position = Vector2(401, 95)
+position = Vector2(364, 117)
+
+[node name="LevelBorder" parent="." instance=ExtResource("7_likjv")]
+
+[node name="PatientHealth" type="Node" parent="." groups=["patient_health"]]
+script = ExtResource("8_gys7b")

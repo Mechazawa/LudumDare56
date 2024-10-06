@@ -28,7 +28,7 @@ func _physics_process(delta):
 func on_body_entered(body: Node2D) -> void:
 	if not body.is_in_group("player"):
 		return
-	body.find_child("Health").call_deferred("take_damage", damage)
+	body.find_child("Health").call_deferred("take_damage", body, damage)
 	body.call_deferred("update_rotational_velocity", randf_range(rotational_force_min, rotational_force_max) * [-1, 1].pick_random())
 	body.call_deferred("update_linear_velocity", (body.position - self.position).normalized() * 60)
 	active_wave.visible = false
