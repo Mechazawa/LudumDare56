@@ -25,9 +25,9 @@ centered = false
 
 [node name="PatientName" type="Label" parent="."]
 offset_left = 27.0
-offset_top = 38.0
+offset_top = 39.0
 offset_right = 66.0
-offset_bottom = 46.0
+offset_bottom = 47.0
 theme_override_colors/font_color = Color(0.233925, 0.233925, 0.233925, 1)
 theme_override_constants/line_spacing = 4
 theme_override_fonts/font = ExtResource("4_p04ee")
@@ -190,4 +190,5 @@ wait_time = 5.0
 one_shot = true
 autostart = true
 
+[connection signal="property_list_changed" from="." to="." method="_ready"]
 [connection signal="timeout" from="ContinueHintTimer" to="." method="_on_continue_hint_timer_timeout"]

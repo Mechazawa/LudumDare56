@@ -1,0 +1,50 @@
+[gd_resource type="BehaviorTree" load_steps=14 format=3 uid="uid://c67jiwk4spbn6"]
+
+[ext_resource type="Script" path="res://ai/tasks/get_first_in_group.gd" id="1_761jd"]
+
+[sub_resource type="BlackboardPlan" id="BlackboardPlan_mrlsr"]
+
+[sub_resource type="BTAction" id="BTAction_eco3o"]
+script = ExtResource("1_761jd")
+group = &"player"
+output_var = &"target"
+
+[sub_resource type="BTRunLimit" id="BTRunLimit_i4e1r"]
+children = [SubResource("BTAction_eco3o")]
+
+[sub_resource type="BBNode" id="BBNode_08vrb"]
+resource_name = "Health"
+saved_value = NodePath("Health")
+
+[sub_resource type="BTCallMethod" id="BTCallMethod_r0r0p"]
+node = SubResource("BBNode_08vrb")
+method = &"get_current"
+result_var = &"health"
+
+[sub_resource type="BBNode" id="BBNode_eo3f1"]
+resource_name = "."
+saved_value = NodePath(".")
+
+[sub_resource type="BTCallMethod" id="BTCallMethod_x7e8w"]
+node = SubResource("BBNode_eo3f1")
+method = &"fire_waves"
+
+[sub_resource type="BTSequence" id="BTSequence_dstwm"]
+children = [SubResource("BTCallMethod_x7e8w")]
+
+[sub_resource type="BTCooldown" id="BTCooldown_n32na"]
+children = [SubResource("BTSequence_dstwm")]
+duration = 4.0
+
+[sub_resource type="BTSelector" id="BTSelector_uo3bw"]
+children = [SubResource("BTCooldown_n32na")]
+
+[sub_resource type="BTSequence" id="BTSequence_ua1gy"]
+children = [SubResource("BTCallMethod_r0r0p"), SubResource("BTSelector_uo3bw")]
+
+[sub_resource type="BTSelector" id="BTSelector_nqnf8"]
+children = [SubResource("BTRunLimit_i4e1r"), SubResource("BTSequence_ua1gy")]
+
+[resource]
+blackboard_plan = SubResource("BlackboardPlan_mrlsr")
+root_task = SubResource("BTSelector_nqnf8")

@@ -47,3 +47,4 @@ polygon = PackedVector2Array(22, 126, 45, 107, 70, 43, 70, 19, 65, 8, 66, -5, 86
 script = ExtResource("4_885f8")
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="property_list_changed" from="CollisionPolygon2D" to="." method="_on_collision_polygon_2d_property_list_changed"]

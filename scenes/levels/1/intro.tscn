@@ -1,18 +1,43 @@
-[gd_scene load_steps=5 format=3 uid="uid://cwr11cjj6iydx"]
+[gd_scene load_steps=9 format=3 uid="uid://cwr11cjj6iydx"]
 
 [ext_resource type="Script" path="res://scenes/levels/1/intro.gd" id="1_h5xce"]
 [ext_resource type="PackedScene" uid="uid://djnq5qqrro3pi" path="res://scenes/clipboard.tscn" id="2_4ygtc"]
 [ext_resource type="PackedScene" uid="uid://b5vgmyclbwdx2" path="res://scripts/window_reference.tscn" id="2_m0xb1"]
 [ext_resource type="Texture2D" uid="uid://d3kd861f0h0x7" path="res://assets/intro-background.png" id="2_vbo8g"]
+[ext_resource type="Texture2D" uid="uid://c28fwld3ktxfu" path="res://assets/intro-background-steam-1.png" id="3_io0kh"]
+[ext_resource type="Texture2D" uid="uid://dtrf8ruvv4k5i" path="res://assets/intro-background-steam-2.png" id="4_vu6r7"]
+[ext_resource type="Texture2D" uid="uid://b10knaybutguv" path="res://assets/clipboard-portrait-3.png" id="7_lul6p"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_teah4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_io0kh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_vu6r7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
 
 [node name="Intro" type="Node"]
 script = ExtResource("1_h5xce")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 modulate = Color(0.427493, 0.427493, 0.427493, 0.737255)
-offset_right = 200.0
+offset_left = -1.0
+offset_right = 199.0
 offset_bottom = 200.0
+scale = Vector2(2.2, 2.2)
 texture = ExtResource("2_vbo8g")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="TextureRect"]
+position = Vector2(0, -0.5)
+sprite_frames = SubResource("SpriteFrames_teah4")
+frame_progress = 0.462417
+centered = false
 
 [node name="WindowReference" parent="." instance=ExtResource("2_m0xb1")]
 metadata/_edit_lock_ = true
@@ -20,6 +45,9 @@ metadata/_edit_lock_ = true
 [node name="Clipboard" parent="." instance=ExtResource("2_4ygtc")]
 position = Vector2(134, 50)
 scale = Vector2(2, 2)
-dossier_text = Array[String]([])
+photo = ExtResource("7_lul6p")
+patient_name = "Jurgen Jurson"
+dossier_text = "fubar hello world!
+certified fluffy goat"
 
 [connection signal="player_ready" from="Clipboard" to="." method="_on_clipboard_player_ready"]

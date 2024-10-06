@@ -1,6 +1,7 @@
 ## Based on health script from LimboAI by Serhii Snitsaruk
 ## https://github.com/limbonaut/limboai/blob/master/demo/demo/agents/scripts/health.gd
 
+@tool
 class_name Health
 extends Node
 

@@ -2,7 +2,7 @@ extends Node2D
 
 @export var photo: Texture2D
 @export var patient_name: String
-@export_multiline var dossier_text: Array[String]
+@export_multiline var dossier_text: String
 
 signal player_ready
 
@@ -11,11 +11,19 @@ func _ready() -> void:
 	$Photo.texture = photo
 	$Barcode.text = str(photo.resource_path.hash())
 	$PatientName.text = patient_name
-	for i in len(dossier_text):
+	
+	var lines = dossier_text.split("\n")
+	for i in $DossierText.get_child_count():
 		var child = $DossierText.get_child(i)
-		if child == null: break
-		child.text = dossier_text[i]
-		child.scale = self.scale
+		
+		if i < len(lines):
+			child.text = lines[i]
+			child.scale = self.scale
+			child.position *= self.scale
+			child.position += self.position
+			child.visible = true
+		else:
+			child.visible = false
 	
 	init_greeble($Stains.get_children().pick_random())
 	init_greeble($Tape.get_children().pick_random())

@@ -23,3 +23,6 @@ func _on_health_damaged(amount: float) -> void:
 
 func collide() -> void:
 	health.take_damage(collide_damage)
+
+func _on_collision_polygon_2d_property_list_changed() -> void:
+	_ready()

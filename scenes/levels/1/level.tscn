@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://scenes/levels/1/level.gd" id="1_f100b"]
 [ext_resource type="PackedScene" uid="uid://624k2gso6a2c" path="res://agents/heart/heart.tscn" id="2_6hi4y"]
 [ext_resource type="PackedScene" uid="uid://61y8ylbbieqc" path="res://agents/player/player.tscn" id="3_bun8k"]
-[ext_resource type="PackedScene" uid="uid://cdem2eb4ljqgl" path="res://agents/heart/goob.tscn" id="4_7ae6r"]
+[ext_resource type="PackedScene" uid="uid://cdem2eb4ljqgl" path="res://agents/goob/goob.tscn" id="4_7ae6r"]
 [ext_resource type="Texture2D" uid="uid://delgrq1ol4xbg" path="res://assets/background.png" id="4_ktoim"]
 
 [node name="Level" type="Node"]
