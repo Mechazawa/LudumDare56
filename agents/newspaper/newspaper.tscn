@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=3 uid="uid://ccx2fsneqld7h"]
+
+[ext_resource type="Texture2D" uid="uid://24r0rrawtagk" path="res://assets/intro-comic/newspaper-big.png" id="1_ksi3b"]
+[ext_resource type="Script" path="res://agents/newspaper/newspaper.gd" id="1_wqdnt"]
+[ext_resource type="FontFile" uid="uid://ddagshn84eue3" path="res://fonts/Minecraft.ttf" id="2_8v8sl"]
+
+[node name="Newspaper" type="Node2D"]
+script = ExtResource("1_wqdnt")
+title = "Lorum ipsum dolor"
+article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo "
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_ksi3b")
+
+[node name="Title" type="Label" parent="."]
+offset_left = -37.0
+offset_top = -46.0
+offset_right = 150.0
+offset_bottom = -23.0
+theme_override_colors/font_color = Color(0.294118, 0.294118, 0.294118, 0.878431)
+theme_override_constants/line_spacing = 0
+theme_override_fonts/font = ExtResource("2_8v8sl")
+theme_override_font_sizes/font_size = 16
+text = "Lorum ipsum dolor"
+vertical_alignment = 2
+autowrap_mode = 2
+
+[node name="Article" type="Label" parent="."]
+offset_left = -126.0
+offset_top = -4.0
+offset_right = 151.0
+offset_bottom = 75.0
+theme_override_colors/font_color = Color(0.294118, 0.294118, 0.294118, 0.878431)
+theme_override_constants/line_spacing = 4
+theme_override_fonts/font = ExtResource("2_8v8sl")
+theme_override_font_sizes/font_size = 12
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo "
+autowrap_mode = 2
