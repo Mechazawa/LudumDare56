@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dxc7n2vhevfyn"]
+[gd_scene load_steps=12 format=3 uid="uid://dxc7n2vhevfyn"]
 
 [ext_resource type="Script" path="res://scenes/levels/2/level.gd" id="1_o4ktt"]
 [ext_resource type="Texture2D" uid="uid://delgrq1ol4xbg" path="res://assets/background.png" id="2_qoid0"]
@@ -8,7 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://djk1y81lii0kr" path="res://agents/level_border/level_border.tscn" id="7_5ta0u"]
 [ext_resource type="Script" path="res://scripts/health.gd" id="8_wtjn8"]
 [ext_resource type="Texture2D" uid="uid://ceul6i2ukwj47" path="res://assets/gravestone.png" id="9_eukoa"]
+[ext_resource type="PackedScene" uid="uid://b5s6tagol8wcj" path="res://agents/rope/rope.tscn" id="10_6l0hr"]
 [ext_resource type="PackedScene" uid="uid://bdm1aa8smx8d" path="res://agents/healthbar/healthbar.tscn" id="10_8xe3k"]
+[ext_resource type="Texture2D" uid="uid://co6xjfds4c7md" path="res://assets/cable/cable-blue-middle.png" id="11_addri"]
 
 [node name="Level2" type="Node"]
 script = ExtResource("1_o4ktt")
@@ -55,6 +57,13 @@ position = Vector2(304, 2)
 
 [node name="HealthbarPlayer" parent="." instance=ExtResource("10_8xe3k")]
 position = Vector2(36, 3)
+
+[node name="Rope" parent="." node_paths=PackedStringArray("anchor") instance=ExtResource("10_6l0hr")]
+position = Vector2(169, 34)
+rotation = 3.1233
+size = 11
+segment_middle = ExtResource("11_addri")
+anchor = NodePath("../Node/Heart")
 
 [connection signal="death" from="Player" to="." method="_on_player_death"]
 [connection signal="death" from="PatientHealth" to="." method="_on_patient_death"]
