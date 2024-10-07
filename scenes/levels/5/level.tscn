@@ -1,0 +1,94 @@
+[gd_scene load_steps=21 format=3 uid="uid://d2h6dbmsvm0c"]
+
+[ext_resource type="Script" path="res://scenes/levels/5/level.gd" id="1_c80ax"]
+[ext_resource type="Texture2D" uid="uid://delgrq1ol4xbg" path="res://assets/background.png" id="2_lrxrc"]
+[ext_resource type="PackedScene" uid="uid://61y8ylbbieqc" path="res://agents/player/player.tscn" id="3_0axuo"]
+[ext_resource type="PackedScene" uid="uid://ccad6vg5nvgnd" path="res://agents/player/tools/lasergun/lasergun.tscn" id="4_oxxi8"]
+[ext_resource type="PackedScene" uid="uid://b5vgmyclbwdx2" path="res://scripts/window_reference.tscn" id="5_nkb4t"]
+[ext_resource type="PackedScene" uid="uid://624k2gso6a2c" path="res://agents/heart/heart.tscn" id="6_hfsa4"]
+[ext_resource type="PackedScene" uid="uid://cdem2eb4ljqgl" path="res://agents/goob/goob.tscn" id="7_8b8y4"]
+[ext_resource type="BehaviorTree" uid="uid://bkfrapkorc4fq" path="res://scenes/levels/5/goob.tres" id="8_8tc2j"]
+[ext_resource type="PackedScene" uid="uid://djk1y81lii0kr" path="res://agents/level_border/level_border.tscn" id="9_egtab"]
+[ext_resource type="Script" path="res://scripts/health.gd" id="10_4n4yp"]
+[ext_resource type="Texture2D" uid="uid://ceul6i2ukwj47" path="res://assets/gravestone.png" id="11_sayyd"]
+[ext_resource type="PackedScene" uid="uid://bdm1aa8smx8d" path="res://agents/healthbar/healthbar.tscn" id="12_vxbbu"]
+[ext_resource type="Texture2D" uid="uid://bwwy5e651n0ao" path="res://assets/healthbar-patient-empty.png" id="13_kubj2"]
+[ext_resource type="Texture2D" uid="uid://b15cna2xw7egp" path="res://assets/healthbar-patient-full.png" id="14_n020w"]
+[ext_resource type="Texture2D" uid="uid://bfme05xkojs7s" path="res://assets/healthbar-enemy-empty.png" id="15_gouaj"]
+[ext_resource type="Texture2D" uid="uid://bigx17t4fvgwx" path="res://assets/healthbar-enemy-full.png" id="16_gcm0l"]
+[ext_resource type="Texture2D" uid="uid://d3adqfsupjwfi" path="res://assets/healthbar-capsule-empty.png" id="17_7pacc"]
+[ext_resource type="Texture2D" uid="uid://dwejtqoulkuou" path="res://assets/healthbar-capsule-full.png" id="18_oot2h"]
+[ext_resource type="PackedScene" uid="uid://0vc2jgwui72r" path="res://scenes/menus/pause.tscn" id="19_wmgtl"]
+[ext_resource type="AudioStream" uid="uid://nn4ix7ei4i57" path="res://sound/game-loop.wav" id="20_fbmss"]
+
+[node name="Level" type="Node"]
+script = ExtResource("1_c80ax")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(0.427493, 0.427493, 0.427493, 0.737255)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(4, 4)
+texture = ExtResource("2_lrxrc")
+stretch_mode = 1
+
+[node name="Player" parent="." instance=ExtResource("3_0axuo")]
+position = Vector2(96, 89)
+rotation = -5.02492
+ship_tool = ExtResource("4_oxxi8")
+
+[node name="WindowReference" parent="." instance=ExtResource("5_nkb4t")]
+metadata/_edit_lock_ = true
+
+[node name="Node" type="Node" parent="."]
+
+[node name="Heart" parent="Node" instance=ExtResource("6_hfsa4")]
+position = Vector2(364, 117)
+has_pacemaker = false
+
+[node name="Goob" parent="Node" instance=ExtResource("7_8b8y4")]
+position = Vector2(364, 117)
+behavior = ExtResource("8_8tc2j")
+
+[node name="LevelBorder" parent="." instance=ExtResource("9_egtab")]
+
+[node name="PatientHealth" type="Node" parent="." groups=["patient_health"]]
+script = ExtResource("10_4n4yp")
+max_health = 30.0
+
+[node name="Gravestone" type="Node2D" parent="."]
+visible = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Gravestone"]
+position = Vector2(216, 160)
+scale = Vector2(2, 2)
+texture = ExtResource("11_sayyd")
+
+[node name="HealthbarPatient" parent="." instance=ExtResource("12_vxbbu")]
+position = Vector2(318, 4)
+bar_empty = ExtResource("13_kubj2")
+bar_full = ExtResource("14_n020w")
+
+[node name="HealthbarGoob" parent="." instance=ExtResource("12_vxbbu")]
+position = Vector2(167, 4)
+bar_empty = ExtResource("15_gouaj")
+bar_full = ExtResource("16_gcm0l")
+
+[node name="HealthbarPlayer" parent="." instance=ExtResource("12_vxbbu")]
+position = Vector2(36, 2)
+bar_empty = ExtResource("17_7pacc")
+bar_full = ExtResource("18_oot2h")
+
+[node name="Pause" parent="." instance=ExtResource("19_wmgtl")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("20_fbmss")
+volume_db = -5.0
+autoplay = true
+
+[connection signal="death" from="Player" to="." method="_on_player_death"]
+[connection signal="death" from="Node/Goob" to="." method="_on_goob_death"]
+[connection signal="death" from="PatientHealth" to="." method="_on_patient_death"]

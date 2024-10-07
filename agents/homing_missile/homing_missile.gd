@@ -4,7 +4,6 @@ class_name HomingMissile extends Area2D
 @export var speed = 30.0
 @export var damage = 3.0
 @export var texture: Texture2D = preload("res://assets/attack-homing-1.png")
-@export var sound: AudioStream = preload("res://sound/capsule-explosion.wav")
 @export var target: Node2D = null
 
 var texture_explosion_1 = preload("res://assets/capsule-explosion-1.png")
@@ -13,10 +12,16 @@ var texture_explosion_2 = preload("res://assets/capsule-explosion-2.png")
 var acceleration = Vector2.ZERO
 var velocity = Vector2.ZERO
 
+var explode_sound = preload("res://sound/capsule-explosion.wav")
+var spawn_sounds = [
+	preload("res://sound/homing-missle-fire-01.wav"),
+	preload("res://sound/homing-missle-fire-02.wav"),
+	preload("res://sound/homing-missle-fire-03.wav"),
+]
+
 func _ready() -> void:
-	$SpawnSound.stream = sound
+	$SpawnSound.stream = spawn_sounds.pick_random()
 	$SpawnSound.play()
-	$SpawnSound.finished.connect(func(): $SpawnSound.queue_free())
 	$Sprite2D.texture = texture
 	var collision_radius = min(texture.get_height(), texture.get_width()) / 2.0
 	($CollisionShape2D.shape as CircleShape2D).radius = collision_radius
@@ -49,10 +54,14 @@ func _on_timeout() -> void:
 func explode() -> void:
 	set_physics_process(false)
 	# had time pressure, bad code
+	$SpawnSound.stream = explode_sound
+	$SpawnSound.play()
 	$Sprite2D.texture = texture_explosion_1
 	await get_tree().create_timer(0.1).timeout	
 	$Sprite2D.texture = texture_explosion_2
 	await get_tree().create_timer(0.2).timeout	
+	$Sprite2D.visible = false
+	await $SpawnSound.finished
 	queue_free()
 	
 func bullet_hit() -> void:

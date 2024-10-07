@@ -34,8 +34,6 @@ func _ready() -> void:
 		move_child(ship_tool_instance, 0)
 		
 func _physics_process(delta: float) -> void:
-	if not health.is_alive():
-		return
 	linear_acceleration = Vector2.ZERO
 	rotational_acceleration = 0
 	handle_movement_input()
@@ -109,6 +107,7 @@ func _on_health_damaged(target: Node, amount: float) -> void:
 	$Sprite2D/DamageIndicator.flash()
 
 func _on_health_death() -> void:
+	set_physics_process(false)
 	self.velocity = Vector2.ZERO
 	$Sprite2D.visible = false
 	$Thruster.visible = false

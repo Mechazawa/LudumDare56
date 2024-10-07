@@ -33,7 +33,7 @@ resource_name = "AnimationPlayer"
 saved_value = NodePath("AnimationPlayer")
 
 [sub_resource type="BTPlayAnimation" id="BTPlayAnimation_eupfe"]
-await_completion = 1.0
+await_completion = 2.0
 animation_player = SubResource("BBNode_k6xeq")
 animation_name = &"goob/sleep"
 
@@ -73,7 +73,7 @@ animation_name = &"goob/attack_wave"
 
 [sub_resource type="BTCooldown" id="BTCooldown_n32na"]
 children = [SubResource("BTPlayAnimation_wj56r")]
-duration = 4.0
+duration = 5.0
 
 [sub_resource type="BTSelector" id="BTSelector_uo3bw"]
 children = [SubResource("BTCooldown_n32na")]

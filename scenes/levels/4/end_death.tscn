@@ -1,0 +1,53 @@
+[gd_scene load_steps=9 format=3 uid="uid://cbq76muynpg37"]
+
+[ext_resource type="Script" path="res://scenes/levels/4/intro.gd" id="1_iy3l5"]
+[ext_resource type="Texture2D" uid="uid://d3kd861f0h0x7" path="res://assets/intro-background.png" id="2_ykx2p"]
+[ext_resource type="Texture2D" uid="uid://c28fwld3ktxfu" path="res://assets/intro-background-steam-1.png" id="3_aqsb1"]
+[ext_resource type="Texture2D" uid="uid://dtrf8ruvv4k5i" path="res://assets/intro-background-steam-2.png" id="4_al42d"]
+[ext_resource type="PackedScene" uid="uid://b5vgmyclbwdx2" path="res://scripts/window_reference.tscn" id="5_ypwvx"]
+[ext_resource type="PackedScene" uid="uid://djnq5qqrro3pi" path="res://scenes/clipboard.tscn" id="6_8sfp3"]
+[ext_resource type="Texture2D" uid="uid://b10knaybutguv" path="res://assets/clipboard-portrait-3.png" id="7_brgfn"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_teah4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_aqsb1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_al42d")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="EndDeath" type="Node"]
+script = ExtResource("1_iy3l5")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(0.427493, 0.427493, 0.427493, 0.737255)
+offset_right = 200.0
+offset_bottom = 200.0
+scale = Vector2(2.2, 2.2)
+texture = ExtResource("2_ykx2p")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="TextureRect"]
+sprite_frames = SubResource("SpriteFrames_teah4")
+autoplay = "default"
+frame_progress = 0.462417
+centered = false
+
+[node name="WindowReference" parent="." instance=ExtResource("5_ypwvx")]
+metadata/_edit_lock_ = true
+
+[node name="Clipboard" parent="." instance=ExtResource("6_8sfp3")]
+position = Vector2(134, 50)
+scale = Vector2(2, 2)
+photo = ExtResource("7_brgfn")
+patient_name = "Jurgen"
+dossier_text = "Got sneezed on by Jurgen. Felt gross but soon felt real sick. Will need heart surgery as well but seems to be in worse shape.
+Has the virus become stronger?!"
+stamp = 1
+
+[connection signal="player_ready" from="Clipboard" to="." method="_on_clipboard_player_ready"]

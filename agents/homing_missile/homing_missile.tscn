@@ -7,9 +7,8 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_p4hym"]
 radius = 2.0
 
-[node name="HomingMissile" type="Area2D"]
+[node name="HomingMissile" type="Area2D" groups=["missile"]]
 script = ExtResource("1_uk7yn")
-sound = ExtResource("3_6qs3x")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = 1.5708
@@ -24,7 +23,7 @@ one_shot = true
 
 [node name="SpawnSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_6qs3x")
-volume_db = -3.519
+volume_db = -8.0
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

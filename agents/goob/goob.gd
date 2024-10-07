@@ -16,13 +16,14 @@ var target: Node2D = null
 func _ready() -> void:
 	health.damaged.connect(_on_health_damaged)
 	health.death.connect(_on_health_death)
+	$BTPlayer.behavior_tree = behavior
 	#$GoobSprite.play(&"default")
 
 func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("action_debug"):
+	if Input.is_action_just_pressed("action_debug") and OS.is_debug_build():
 		print_debug("fire!")
 		target = get_tree().get_first_node_in_group(&"player")
-		fire_homing_small()
+		fire_bullet_large()
 
 func fire_wave(size: int, angle_deg_offset: float = 0.0) -> void:
 	if target == null:
@@ -33,12 +34,25 @@ func fire_wave(size: int, angle_deg_offset: float = 0.0) -> void:
 	wave.rotation = (target.global_position - $MouthMarker.global_position).angle() + deg_to_rad(angle_deg_offset)
 	add_child(wave)
 	
-func fire_bullet(size: int, angle_deg_offset: float = 0.0) -> void:
+func fire_bullet_small(angle_deg_offset: float = 0.0) -> void:
 	if target == null:
 		return
 	var bullet = bullet_scene.instantiate()
-	bullet.wave_size = size
 	bullet.position = $MouthMarker.position + Vector2(-5, -5)
+	bullet.texture = load("res://assets/attack-basic-1.png")
+	bullet.damage = 1
+	bullet.speed = 40
+	bullet.rotation = (target.global_position - $MouthMarker.global_position).angle() + deg_to_rad(angle_deg_offset)
+	add_child(bullet)
+	
+func fire_bullet_large(angle_deg_offset: float = 0.0) -> void:
+	if target == null:
+		return
+	var bullet = bullet_scene.instantiate() as Bullet
+	bullet.position = $MouthMarker.position + Vector2(-5, -5)
+	bullet.damage = 2
+	bullet.speed = 30
+	bullet.texture = load("res://assets/attack-basic-2.png")
 	bullet.rotation = (target.global_position - $MouthMarker.global_position).angle() + deg_to_rad(angle_deg_offset)
 	add_child(bullet)
 	

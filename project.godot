@@ -40,6 +40,7 @@ enabled=PackedStringArray("res://addons/anima/plugin.cfg", "res://addons/scene_m
 
 player=""
 patient_health=""
+missile=""
 
 [input]
 

@@ -6,6 +6,7 @@ class_name Bullet extends Area2D
 @export var sound: AudioStream = preload("res://sound/laser.wav")
 
 func _ready() -> void:
+	$Sprite2D.texture = texture
 	$SpawnSound.stream = sound
 	$SpawnSound.play()
 	$SpawnSound.finished.connect(func(): $SpawnSound.queue_free())
@@ -14,7 +15,7 @@ func _physics_process(delta):
 	position += transform.x * speed * delta 
 
 func _on_body_entered(body: Node2D) -> void:
-	if body ==  owner:
+	if body == get_parent():
 		return
 	var health = body.find_child("Health");
 	if health == null:

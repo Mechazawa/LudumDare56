@@ -1,4 +1,4 @@
-[gd_resource type="BehaviorTree" load_steps=21 format=3 uid="uid://cba236eflbibp"]
+[gd_resource type="BehaviorTree" load_steps=26 format=3 uid="uid://cba236eflbibp"]
 
 [ext_resource type="Script" path="res://ai/tasks/get_first_in_group.gd" id="1_m0ypy"]
 
@@ -33,7 +33,7 @@ resource_name = "AnimationPlayer"
 saved_value = NodePath("AnimationPlayer")
 
 [sub_resource type="BTPlayAnimation" id="BTPlayAnimation_eupfe"]
-await_completion = 1.0
+await_completion = 2.0
 animation_player = SubResource("BBNode_k6xeq")
 animation_name = &"goob/sleep"
 
@@ -71,15 +71,32 @@ await_completion = 10.0
 animation_player = SubResource("BBNode_or0im")
 animation_name = &"goob/attack_wave"
 
-[sub_resource type="BTCooldown" id="BTCooldown_n32na"]
-children = [SubResource("BTPlayAnimation_wj56r")]
-duration = 5.0
+[sub_resource type="BTWait" id="BTWait_lg3st"]
+duration = 4.0
 
-[sub_resource type="BTSelector" id="BTSelector_uo3bw"]
-children = [SubResource("BTCooldown_n32na")]
+[sub_resource type="BTSequence" id="BTSequence_1k4bt"]
+children = [SubResource("BTPlayAnimation_wj56r"), SubResource("BTWait_lg3st")]
+
+[sub_resource type="BBNode" id="BBNode_40efh"]
+resource_name = "AnimationPlayer"
+saved_value = NodePath("AnimationPlayer")
+
+[sub_resource type="BTPlayAnimation" id="BTPlayAnimation_dc6yu"]
+await_completion = 10.0
+animation_player = SubResource("BBNode_40efh")
+animation_name = &"goob/attack_wave_split"
+
+[sub_resource type="BTWait" id="BTWait_gk28x"]
+duration = 6.0
+
+[sub_resource type="BTSequence" id="BTSequence_5iw25"]
+children = [SubResource("BTPlayAnimation_dc6yu"), SubResource("BTWait_gk28x")]
+
+[sub_resource type="BTRandomSelector" id="BTRandomSelector_myn84"]
+children = [SubResource("BTSequence_1k4bt"), SubResource("BTSequence_5iw25")]
 
 [sub_resource type="BTSequence" id="BTSequence_ua1gy"]
-children = [SubResource("BTPlayAnimation_e0mdy"), SubResource("BTAction_eco3o"), SubResource("BTSetAgentProperty_xfxl0"), SubResource("BTSelector_uo3bw")]
+children = [SubResource("BTPlayAnimation_e0mdy"), SubResource("BTAction_eco3o"), SubResource("BTSetAgentProperty_xfxl0"), SubResource("BTRandomSelector_myn84")]
 
 [sub_resource type="BTSelector" id="BTSelector_nqnf8"]
 children = [SubResource("BTSequence_mxug8"), SubResource("BTSequence_ua1gy")]
