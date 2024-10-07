@@ -7,7 +7,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_p4hym"]
 radius = 2.0
 
-[node name="HomingMissile" type="Area2D"]
+[node name="HomingMissile" type="Area2D" groups=["missile"]]
 script = ExtResource("1_uk7yn")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

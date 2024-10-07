@@ -16,6 +16,7 @@ var target: Node2D = null
 func _ready() -> void:
 	health.damaged.connect(_on_health_damaged)
 	health.death.connect(_on_health_death)
+	$BTPlayer.behavior_tree = behavior
 	#$GoobSprite.play(&"default")
 
 func _process(delta: float) -> void:

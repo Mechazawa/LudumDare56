@@ -46,12 +46,8 @@ position = Vector2(134, 50)
 scale = Vector2(2, 2)
 photo = ExtResource("7_6ih03")
 patient_name = "Jurgen"
-dossier_text = "The patient has been
-pronounced dead. His 
-family was told he died
-due to an unrelated 
-skydiving accident to 
-avoid a lawsuit."
+dossier_text = "Got sneezed on by Jurgen. Felt gross but soon felt real sick. Will need heart surgery as well but seems to be in worse shape.
+Has the virus become stronger?!"
 stamp = 1
 
 [connection signal="player_ready" from="Clipboard" to="." method="_on_clipboard_player_ready"]
