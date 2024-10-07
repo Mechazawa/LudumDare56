@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dihnn13mi8n3x"]
+[gd_scene load_steps=10 format=3 uid="uid://dihnn13mi8n3x"]
 
 [ext_resource type="Script" path="res://scenes/levels/0/newspapers.gd" id="1_kj2dp"]
 [ext_resource type="PackedScene" uid="uid://pe6b1bc5rxkj" path="res://scenes/levels/ending/thanks_for_playing.tscn" id="2_i7jgm"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://c28fwld3ktxfu" path="res://assets/intro-background-steam-1.png" id="5_lrhip"]
 [ext_resource type="Texture2D" uid="uid://dtrf8ruvv4k5i" path="res://assets/intro-background-steam-2.png" id="6_5bquk"]
 [ext_resource type="PackedScene" uid="uid://ccx2fsneqld7h" path="res://agents/newspaper/newspaper.tscn" id="7_uxbh1"]
+[ext_resource type="AudioStream" uid="uid://banew6sqfiweq" path="res://sound/waiting.wav" id="8_lbesp"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_wy852"]
 animations = [{
@@ -47,6 +48,7 @@ position = Vector2(216, 173)
 [node name="NewsPapers" type="Node2D" parent="."]
 
 [node name="Newspaper1" parent="NewsPapers" instance=ExtResource("7_uxbh1")]
+visible = false
 position = Vector2(215, 172)
 rotation = 0.0655591
 scale = Vector2(0.7, 0.7)
@@ -54,6 +56,7 @@ title = "Goob Vaccine Found"
 article = "Yesterday, Dr Doofenshmirtz published a paper detailing a novel cure for goat flu. According to him, all you need is a fresh orange and some baking powder. This method has shown a 100% success rate in curing the disease."
 
 [node name="Newspaper2" parent="NewsPapers" instance=ExtResource("7_uxbh1")]
+visible = false
 position = Vector2(215, 172)
 rotation = 0.0655591
 scale = Vector2(0.7, 0.7)
@@ -61,6 +64,7 @@ title = "MicroMedic Under Investigation"
 article = "MicroMedic has been accused by the European Union of deliberately spreading goat flu and withholding information about deaths due to botched surgeries. MicroMedic declined to comment on the aligations."
 
 [node name="Newspaper3" parent="NewsPapers" instance=ExtResource("7_uxbh1")]
+visible = false
 position = Vector2(215, 172)
 rotation = 0.0655591
 scale = Vector2(0.7, 0.7)
@@ -68,8 +72,14 @@ title = "MicroMedic Bankrupt"
 article = "MicroMedic, known for its innovative surgery robot, has filed for bankruptcy. Their CEO commented \"it is what it is\" on Y (formally known as Bleatr) and hasn't been seen since."
 
 [node name="Newspaper4" parent="NewsPapers" instance=ExtResource("7_uxbh1")]
+visible = false
 position = Vector2(215, 172)
 rotation = 0.0655591
 scale = Vector2(0.7, 0.7)
 title = "MicroMedic CEO Found Dead on Beach"
 article = "This morning MicroMedic's CEO was found washed up on the shores of Nuenen. Cops suspect foul play was involved but have closed the case due to lack of resources. Their chief commented \"We got better things to do ya know?\""
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_lbesp")
+volume_db = -5.0
+autoplay = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dqegmrm3aji23"]
+[gd_scene load_steps=10 format=3 uid="uid://dqegmrm3aji23"]
 
 [ext_resource type="Script" path="res://scenes/levels/0/newspapers.gd" id="1_xjddr"]
 [ext_resource type="PackedScene" uid="uid://cwr11cjj6iydx" path="res://scenes/levels/1/intro.tscn" id="2_hl4ym"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://c28fwld3ktxfu" path="res://assets/intro-background-steam-1.png" id="4_d0e6r"]
 [ext_resource type="Texture2D" uid="uid://dtrf8ruvv4k5i" path="res://assets/intro-background-steam-2.png" id="5_mt4kg"]
 [ext_resource type="PackedScene" uid="uid://ccx2fsneqld7h" path="res://agents/newspaper/newspaper.tscn" id="6_moa6u"]
+[ext_resource type="AudioStream" uid="uid://banew6sqfiweq" path="res://sound/waiting.wav" id="8_2tc2d"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_wy852"]
 animations = [{
@@ -83,3 +84,8 @@ position = Vector2(212, 176)
 scale = Vector2(0.7, 0.7)
 title = "Dr Nefario found dead"
 article = "Dr Nefario, a renowned paediatric heart surgeon, was found dead after falling from the roof of St Nicks Hospital. The hospital director says no foul play is suspected, but notes that access to the roof shouldn't normally be possible."
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_2tc2d")
+volume_db = -5.0
+autoplay = true
