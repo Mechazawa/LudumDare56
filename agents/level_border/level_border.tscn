@@ -24,6 +24,10 @@ grow_vertical = 2
 [node name="WindowReference" parent="." instance=ExtResource("1_axax1")]
 layout_mode = 0
 anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
 
 [node name="BorderFlesh" type="StaticBody2D" parent="."]
 script = ExtResource("3_xxm11")

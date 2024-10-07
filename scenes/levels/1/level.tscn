@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://n2a8hh1clj27"]
+[gd_scene load_steps=13 format=3 uid="uid://n2a8hh1clj27"]
 
 [ext_resource type="PackedScene" uid="uid://b5vgmyclbwdx2" path="res://scripts/window_reference.tscn" id="1_euhgr"]
 [ext_resource type="Script" path="res://scenes/levels/1/level.gd" id="1_f100b"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://scripts/health.gd" id="8_gys7b"]
 [ext_resource type="Texture2D" uid="uid://ceul6i2ukwj47" path="res://assets/gravestone.png" id="9_3k8vi"]
 [ext_resource type="PackedScene" uid="uid://bdm1aa8smx8d" path="res://agents/healthbar/healthbar.tscn" id="10_2oh84"]
+[ext_resource type="PackedScene" uid="uid://0vc2jgwui72r" path="res://scenes/menus/pause.tscn" id="12_cupa8"]
 
 [node name="Level" type="Node"]
 script = ExtResource("1_f100b")
@@ -65,6 +66,8 @@ position = Vector2(161, 3)
 
 [node name="HealthbarPlayer" parent="." instance=ExtResource("10_2oh84")]
 position = Vector2(36, 3)
+
+[node name="Pause" parent="." instance=ExtResource("12_cupa8")]
 
 [connection signal="death" from="Player" to="." method="_on_player_death"]
 [connection signal="death" from="Node/Goob" to="." method="_on_goob_death"]

@@ -1,0 +1,71 @@
+[gd_scene load_steps=8 format=3 uid="uid://0vc2jgwui72r"]
+
+[ext_resource type="Script" path="res://scenes/menus/pause.gd" id="1_2kht1"]
+[ext_resource type="PackedScene" uid="uid://b5vgmyclbwdx2" path="res://scripts/window_reference.tscn" id="2_28xuu"]
+[ext_resource type="Texture2D" uid="uid://2uj4t36a0sgo" path="res://assets/screen-pause.png" id="3_f4qfh"]
+[ext_resource type="FontFile" uid="uid://ddagshn84eue3" path="res://fonts/Minecraft.ttf" id="4_gxple"]
+[ext_resource type="Texture2D" uid="uid://w1t8e5evl5fq" path="res://assets/border-screen.png" id="5_yhnj6"]
+[ext_resource type="FontFile" uid="uid://djfhomlt4jy4d" path="res://fonts/8-bit Arcade Out.ttf" id="6_al47v"]
+[ext_resource type="FontFile" uid="uid://b65w6ptv6rfrw" path="res://fonts/8-bit Arcade In.ttf" id="7_awf7l"]
+
+[node name="Pause" type="Node"]
+process_mode = 3
+script = ExtResource("1_2kht1")
+
+[node name="WindowReference" parent="." instance=ExtResource("2_28xuu")]
+
+[node name="Container" type="Node2D" parent="."]
+visible = false
+
+[node name="Background" type="Sprite2D" parent="Container"]
+modulate = Color(1, 1, 1, 0.729412)
+texture = ExtResource("3_f4qfh")
+centered = false
+
+[node name="ContinueButton" type="Button" parent="Container"]
+offset_left = 228.0
+offset_top = 222.0
+offset_right = 318.0
+offset_bottom = 252.0
+theme_override_constants/h_separation = 25
+theme_override_fonts/font = ExtResource("4_gxple")
+theme_override_font_sizes/font_size = 16
+text = "Continue"
+
+[node name="RetryButton" type="Button" parent="Container"]
+offset_left = 116.0
+offset_top = 222.0
+offset_right = 206.0
+offset_bottom = 253.0
+theme_override_constants/h_separation = 25
+theme_override_fonts/font = ExtResource("4_gxple")
+theme_override_font_sizes/font_size = 16
+text = "Retry"
+
+[node name="BorderScreen" type="Sprite2D" parent="Container"]
+texture = ExtResource("5_yhnj6")
+centered = false
+
+[node name="TitleText" type="Node2D" parent="Container"]
+position = Vector2(120, 90)
+
+[node name="TitleOut" type="Label" parent="Container/TitleText"]
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_colors/font_color = Color(0.633778, 0.75387, 0.997184, 0.827451)
+theme_override_fonts/font = ExtResource("6_al47v")
+theme_override_font_sizes/font_size = 64
+text = "Paused"
+metadata/_edit_lock_ = true
+
+[node name="TitleIn" type="Label" parent="Container/TitleText"]
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("7_awf7l")
+theme_override_font_sizes/font_size = 64
+text = "Paused"
+metadata/_edit_lock_ = true
+
+[connection signal="pressed" from="Container/ContinueButton" to="." method="_on_continue_button_pressed"]
+[connection signal="pressed" from="Container/RetryButton" to="." method="_on_retry_button_pressed"]

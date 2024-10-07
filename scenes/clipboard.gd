@@ -17,12 +17,12 @@ func _ready() -> void:
 	
 	match stamp:
 		Stamp.NONE:
-			$ContinueHint.text = "Press attack to begin"
+			$ContinueHint.text = "Press action to begin"
 		Stamp.DEAD:
-			$ContinueHint.text = "Press attack to retry"
+			$ContinueHint.text = "Press action to retry"
 			$StampDead.visible = true
 		Stamp.SAVED:
-			$ContinueHint.text = "Press attack to continue"
+			$ContinueHint.text = "Press action to continue"
 			$StampSaved.visible = true
 	
 	var lines = dossier_text.split("\n")
