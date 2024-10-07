@@ -1,6 +1,6 @@
 [gd_resource type="BehaviorTree" load_steps=21 format=3 uid="uid://c67jiwk4spbn6"]
 
-[ext_resource type="Script" path="res://ai/tasks/get_first_in_group.gd" id="1_761jd"]
+[ext_resource type="Script" path="res://ai/tasks/get_first_in_group.gd" id="1_ucd78"]
 
 [sub_resource type="BlackboardPlan" id="BlackboardPlan_mrlsr"]
 var/awake/name = &"awake"
@@ -13,12 +13,12 @@ var/target/type = 24
 var/target/hint = 0
 var/target/hint_string = "Attack target"
 
-[sub_resource type="BBNode" id="BBNode_5smc3"]
+[sub_resource type="BBNode" id="BBNode_3xcsp"]
 resource_name = "."
 saved_value = NodePath(".")
 
 [sub_resource type="BTCallMethod" id="BTCallMethod_d7f6c"]
-node = SubResource("BBNode_5smc3")
+node = SubResource("BBNode_3xcsp")
 method = &"is_awake"
 result_var = &"awake"
 
@@ -49,7 +49,7 @@ animation_player = SubResource("BBNode_oepyh")
 animation_name = &"goob/RESET"
 
 [sub_resource type="BTAction" id="BTAction_eco3o"]
-script = ExtResource("1_761jd")
+script = ExtResource("1_ucd78")
 group = &"player"
 output_var = &"target"
 

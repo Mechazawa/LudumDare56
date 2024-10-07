@@ -2,9 +2,13 @@ extends Area2D
 
 @export var speed = 75
 @export var damage = 2
+@export var texture: Texture2D = preload("res://assets/capsule-lasergun-laser.png")
+@export var sound: AudioStream = preload("res://sound/laser.wav")
 
 func _ready() -> void:
+	$SpawnSound.stream = sound
 	$SpawnSound.play()
+	$SpawnSound.finished.connect(func(): $SpawnSound.queue_free())
 
 func _physics_process(delta):
 	position += transform.x * speed * delta 

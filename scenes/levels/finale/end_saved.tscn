@@ -1,12 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://cie62e6jtq75a"]
+[gd_scene load_steps=9 format=3 uid="uid://bnevedlouke83"]
 
-[ext_resource type="Script" path="res://scenes/levels/2/end_saved.gd" id="1_12v55"]
+[ext_resource type="Script" path="res://scenes/levels/finale/end_saved.gd" id="1_12v55"]
 [ext_resource type="Texture2D" uid="uid://d3kd861f0h0x7" path="res://assets/intro-background.png" id="2_8x1g4"]
 [ext_resource type="Texture2D" uid="uid://c28fwld3ktxfu" path="res://assets/intro-background-steam-1.png" id="3_3iywi"]
 [ext_resource type="Texture2D" uid="uid://dtrf8ruvv4k5i" path="res://assets/intro-background-steam-2.png" id="4_jxpi5"]
 [ext_resource type="PackedScene" uid="uid://b5vgmyclbwdx2" path="res://scripts/window_reference.tscn" id="5_er3fj"]
 [ext_resource type="PackedScene" uid="uid://djnq5qqrro3pi" path="res://scenes/clipboard.tscn" id="6_wngio"]
-[ext_resource type="Texture2D" uid="uid://b10knaybutguv" path="res://assets/clipboard-portrait-3.png" id="7_6hefl"]
+[ext_resource type="Texture2D" uid="uid://drga5gp4spi3" path="res://assets/clipboard-portrait-11.png" id="7_0vjnv"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_teah4"]
 animations = [{
@@ -44,13 +44,15 @@ metadata/_edit_lock_ = true
 [node name="Clipboard" parent="." instance=ExtResource("6_wngio")]
 position = Vector2(134, 50)
 scale = Vector2(2, 2)
-photo = ExtResource("7_6hefl")
-patient_name = "Jurgen"
-dossier_text = "Although the patient 
-has recovered he's 
-unable to pay the bill. 
-We've taken his child as 
-payment instead."
+photo = ExtResource("7_0vjnv")
+patient_name = "Brian"
+dossier_text = "Main goal of preventing 
+harm to our staff and 
+facilities has been 
+accomplished. Patient 
+somehow survived the 
+operation, so that's a 
+plus."
 stamp = 2
 
 [connection signal="player_ready" from="Clipboard" to="." method="_on_clipboard_player_ready"]

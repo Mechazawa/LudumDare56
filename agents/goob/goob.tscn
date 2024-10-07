@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://ch5konsgo838k" path="res://scripts/damage_indicator.tscn" id="4_xgecd"]
 [ext_resource type="Script" path="res://scripts/health.gd" id="5_14xvk"]
 [ext_resource type="Texture2D" uid="uid://c00bcmhjur63u" path="res://assets/heart-goob-blink-2.png" id="6_5j2qs"]
-[ext_resource type="BehaviorTree" uid="uid://c67jiwk4spbn6" path="res://agents/goob/goob.tres" id="11_q8vs6"]
+[ext_resource type="BehaviorTree" uid="uid://c67jiwk4spbn6" path="res://scenes/levels/1/goob.tres" id="11_q8vs6"]
 [ext_resource type="AudioStream" uid="uid://b66ql7w0uf28b" path="res://sound/goob-death.wav" id="12_7f31x"]
 [ext_resource type="Texture2D" uid="uid://d3gex3xairtwi" path="res://assets/heart-goob-snooze.png" id="13_snk42"]
 [ext_resource type="Texture2D" uid="uid://bbbbgkwmjlyc2" path="res://assets/heart-goob-scraps-big.png" id="14_epx2s"]
@@ -203,6 +203,7 @@ autoplay = "goob/RESET"
 position = Vector2(-101, 50)
 emitting = false
 amount = 5
+lifetime = 0.01
 texture = ExtResource("13_snk42")
 direction = Vector2(0, -1)
 gravity = Vector2(0, 0)

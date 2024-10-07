@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://564k8bicceq3" path="res://assets/capsule-lasergun.png" id="1_414ev"]
 [ext_resource type="Script" path="res://agents/player/tools/lasergun/lasergun.gd" id="2_mogsp"]
-[ext_resource type="PackedScene" uid="uid://dum1k7fyt5sw8" path="res://agents/player/tools/lasergun/bullet.tscn" id="3_hsbc3"]
+[ext_resource type="PackedScene" uid="uid://dum1k7fyt5sw8" path="res://agents/bullet/bullet.tscn" id="3_hsbc3"]
 
 [node name="Lasergun" type="Sprite2D"]
 texture = ExtResource("1_414ev")

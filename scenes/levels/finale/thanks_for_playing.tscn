@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dithet75p7rtt"]
+
+[ext_resource type="PackedScene" uid="uid://b5vgmyclbwdx2" path="res://scripts/window_reference.tscn" id="1_6c66u"]
+
+[node name="ThanksForPlaying" type="Node"]
+
+[node name="WindowReference" parent="." instance=ExtResource("1_6c66u")]

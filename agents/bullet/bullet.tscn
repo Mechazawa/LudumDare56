@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dum1k7fyt5sw8"]
 
 [ext_resource type="Texture2D" uid="uid://c2puhaxilt4ud" path="res://assets/capsule-lasergun-laser.png" id="1_n040w"]
-[ext_resource type="Script" path="res://agents/player/tools/lasergun/bullet.gd" id="1_rikvn"]
+[ext_resource type="Script" path="res://agents/bullet/bullet.gd" id="1_rikvn"]
 [ext_resource type="AudioStream" uid="uid://d4et0wxjqxqmf" path="res://sound/laser.wav" id="3_eqawg"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_p4hym"]

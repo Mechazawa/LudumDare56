@@ -1,39 +1,27 @@
-[gd_scene load_steps=33 format=3 uid="uid://dxc7n2vhevfyn"]
+[gd_scene load_steps=21 format=3 uid="uid://b0moimlokcbdu"]
 
 [ext_resource type="Script" path="res://scenes/levels/2/level.gd" id="1_o4ktt"]
 [ext_resource type="Texture2D" uid="uid://delgrq1ol4xbg" path="res://assets/background.png" id="2_qoid0"]
 [ext_resource type="PackedScene" uid="uid://61y8ylbbieqc" path="res://agents/player/player.tscn" id="3_0mlqw"]
 [ext_resource type="PackedScene" uid="uid://b5vgmyclbwdx2" path="res://scripts/window_reference.tscn" id="4_061wx"]
+[ext_resource type="PackedScene" uid="uid://ccad6vg5nvgnd" path="res://agents/player/tools/lasergun/lasergun.tscn" id="4_w1axn"]
 [ext_resource type="PackedScene" uid="uid://624k2gso6a2c" path="res://agents/heart/heart.tscn" id="5_4cy4t"]
 [ext_resource type="PackedScene" uid="uid://djk1y81lii0kr" path="res://agents/level_border/level_border.tscn" id="7_5ta0u"]
+[ext_resource type="PackedScene" uid="uid://cdem2eb4ljqgl" path="res://agents/goob/goob.tscn" id="7_hyyjo"]
+[ext_resource type="BehaviorTree" uid="uid://cba236eflbibp" path="res://scenes/levels/2/goob.tres" id="8_8htoy"]
 [ext_resource type="Script" path="res://scripts/health.gd" id="8_wtjn8"]
 [ext_resource type="Texture2D" uid="uid://ceul6i2ukwj47" path="res://assets/gravestone.png" id="9_eukoa"]
-[ext_resource type="Texture2D" uid="uid://blp3lk5a1rwfc" path="res://assets/cable/cable-green-begin.png" id="9_p5mom"]
-[ext_resource type="PackedScene" uid="uid://b5s6tagol8wcj" path="res://agents/rope/rope.tscn" id="10_6l0hr"]
 [ext_resource type="PackedScene" uid="uid://bdm1aa8smx8d" path="res://agents/healthbar/healthbar.tscn" id="10_8xe3k"]
-[ext_resource type="Texture2D" uid="uid://b3il384c4k8ip" path="res://assets/cable/cable-green-middle.png" id="10_btg1b"]
-[ext_resource type="Texture2D" uid="uid://csqe6fyxahoyp" path="res://assets/cable/cable-orange-begin.png" id="11_011px"]
-[ext_resource type="Texture2D" uid="uid://c0h1mb13t4thp" path="res://assets/cable/cable-green-end.png" id="11_pcdrp"]
-[ext_resource type="Texture2D" uid="uid://bufw5hk6kx0rb" path="res://assets/cable/cable-orange-middle.png" id="12_krqkk"]
-[ext_resource type="Texture2D" uid="uid://cec30th0jpxnt" path="res://assets/cable/cable-blue-begin.png" id="12_wy1o0"]
-[ext_resource type="Texture2D" uid="uid://c1eav5dkvsnbp" path="res://assets/cable/cable-orange-end.png" id="13_0ae4j"]
-[ext_resource type="Texture2D" uid="uid://co6xjfds4c7md" path="res://assets/cable/cable-blue-middle.png" id="13_0l5yg"]
-[ext_resource type="Texture2D" uid="uid://rwhmj4lmonnm" path="res://assets/cable/cable-blue-end.png" id="14_x3xww"]
-[ext_resource type="Texture2D" uid="uid://1qgoohlepbv4" path="res://assets/cable/cable-red-begin.png" id="15_rsovs"]
-[ext_resource type="Texture2D" uid="uid://xjxm025q6e2x" path="res://assets/cable/cable-red-middle.png" id="16_a7wy0"]
-[ext_resource type="Texture2D" uid="uid://0xp10lp8y7tp" path="res://assets/cable/cable-red-end.png" id="17_1vwb7"]
-[ext_resource type="Texture2D" uid="uid://bwhjb6llgyvn8" path="res://assets/cable/cable-yellow-begin.png" id="18_dfnvj"]
-[ext_resource type="Texture2D" uid="uid://di5ov3hdva8qs" path="res://assets/cable/cable-yellow-middle.png" id="19_ii0cx"]
-[ext_resource type="Texture2D" uid="uid://dyup8iyrj42ac" path="res://assets/cable/cable-yellow-end.png" id="20_o13xa"]
+[ext_resource type="Texture2D" uid="uid://bfme05xkojs7s" path="res://assets/healthbar-enemy-empty.png" id="14_coaw6"]
+[ext_resource type="Texture2D" uid="uid://bigx17t4fvgwx" path="res://assets/healthbar-enemy-full.png" id="15_flnkx"]
 [ext_resource type="PackedScene" uid="uid://0vc2jgwui72r" path="res://scenes/menus/pause.tscn" id="26_6jmhc"]
 [ext_resource type="Texture2D" uid="uid://bwwy5e651n0ao" path="res://assets/healthbar-patient-empty.png" id="26_f0jdh"]
 [ext_resource type="Texture2D" uid="uid://b15cna2xw7egp" path="res://assets/healthbar-patient-full.png" id="27_srg5l"]
 [ext_resource type="Texture2D" uid="uid://d3adqfsupjwfi" path="res://assets/healthbar-capsule-empty.png" id="28_hd187"]
 [ext_resource type="Texture2D" uid="uid://dwejtqoulkuou" path="res://assets/healthbar-capsule-full.png" id="29_1phmu"]
 [ext_resource type="AudioStream" uid="uid://nn4ix7ei4i57" path="res://sound/game-loop.wav" id="31_g34w7"]
-[ext_resource type="FontFile" uid="uid://rr1fsswt35q8" path="res://fonts/G7_Segment7_S5.ttf" id="32_5wo37"]
 
-[node name="Level2" type="Node"]
+[node name="Level" type="Node"]
 script = ExtResource("1_o4ktt")
 
 [node name="TextureRect" type="TextureRect" parent="."]
@@ -47,77 +35,23 @@ scale = Vector2(4, 4)
 texture = ExtResource("2_qoid0")
 stretch_mode = 1
 
+[node name="Player" parent="." instance=ExtResource("3_0mlqw")]
+position = Vector2(96, 89)
+rotation = -5.02492
+ship_tool = ExtResource("4_w1axn")
+
 [node name="WindowReference" parent="." instance=ExtResource("4_061wx")]
 metadata/_edit_lock_ = true
 
-[node name="Patient" type="Node2D" parent="."]
-position = Vector2(74, 144)
-rotation = -0.109195
+[node name="Node" type="Node" parent="."]
 
-[node name="Heart" parent="Patient" instance=ExtResource("5_4cy4t")]
-position = Vector2(162.848, -26.4104)
-rotation = 0.109195
+[node name="Heart" parent="Node" instance=ExtResource("5_4cy4t")]
+position = Vector2(364, 117)
+has_pacemaker = false
 
-[node name="RopePurple" parent="Patient" node_paths=PackedStringArray("anchor") instance=ExtResource("10_6l0hr")]
-position = Vector2(182.374, -2.64098)
-rotation = -3.05069
-size = 13
-anchor = NodePath("../Heart")
-collision = true
-
-[node name="RopeOrange" parent="Patient" node_paths=PackedStringArray("anchor") instance=ExtResource("10_6l0hr")]
-position = Vector2(121.86, -1.22729)
-rotation = 0.471668
-size = 11
-segment_start = ExtResource("11_011px")
-segment_middle = ExtResource("12_krqkk")
-segment_end = ExtResource("13_0ae4j")
-anchor = NodePath("../Heart")
-collision = true
-
-[node name="RopeGreen" parent="Patient" node_paths=PackedStringArray("anchor") instance=ExtResource("10_6l0hr")]
-position = Vector2(181.5, 6.5)
-rotation = 2.74441
-size = 11
-segment_start = ExtResource("9_p5mom")
-segment_middle = ExtResource("10_btg1b")
-segment_end = ExtResource("11_pcdrp")
-anchor = NodePath("../Heart")
-collision = true
-
-[node name="RopeBlue" parent="Patient" node_paths=PackedStringArray("anchor") instance=ExtResource("10_6l0hr")]
-position = Vector2(119.952, 16.1685)
-rotation = 2.74441
-size = 11
-segment_start = ExtResource("12_wy1o0")
-segment_middle = ExtResource("13_0l5yg")
-segment_end = ExtResource("14_x3xww")
-anchor = NodePath("../Heart")
-collision = true
-
-[node name="RopeRed" parent="Patient" node_paths=PackedStringArray("anchor") instance=ExtResource("10_6l0hr")]
-position = Vector2(179.486, 23.7012)
-rotation = 2.74441
-size = 11
-segment_start = ExtResource("15_rsovs")
-segment_middle = ExtResource("16_a7wy0")
-segment_end = ExtResource("17_1vwb7")
-anchor = NodePath("../Heart")
-collision = true
-
-[node name="RopeYellow" parent="Patient" node_paths=PackedStringArray("anchor") instance=ExtResource("10_6l0hr")]
-position = Vector2(177.415, 42.5881)
-rotation = 2.74441
-size = 11
-segment_start = ExtResource("18_dfnvj")
-segment_middle = ExtResource("19_ii0cx")
-segment_end = ExtResource("20_o13xa")
-anchor = NodePath("../Heart")
-collision = true
-
-[node name="Player" parent="." instance=ExtResource("3_0mlqw")]
-position = Vector2(74, 144)
-rotation = -0.109195
+[node name="Goob" parent="Node" instance=ExtResource("7_hyyjo")]
+position = Vector2(364, 117)
+behavior = ExtResource("8_8htoy")
 
 [node name="LevelBorder" parent="." instance=ExtResource("7_5ta0u")]
 
@@ -134,12 +68,17 @@ scale = Vector2(2, 2)
 texture = ExtResource("9_eukoa")
 
 [node name="HealthbarPatient" parent="." instance=ExtResource("10_8xe3k")]
-position = Vector2(304, 5)
+position = Vector2(318, 4)
 bar_empty = ExtResource("26_f0jdh")
 bar_full = ExtResource("27_srg5l")
 
+[node name="HealthbarGoob" parent="." instance=ExtResource("10_8xe3k")]
+position = Vector2(167, 4)
+bar_empty = ExtResource("14_coaw6")
+bar_full = ExtResource("15_flnkx")
+
 [node name="HealthbarPlayer" parent="." instance=ExtResource("10_8xe3k")]
-position = Vector2(36, 3)
+position = Vector2(36, 2)
 bar_empty = ExtResource("28_hd187")
 bar_full = ExtResource("29_1phmu")
 
@@ -150,53 +89,6 @@ stream = ExtResource("31_g34w7")
 volume_db = -5.0
 autoplay = true
 
-[node name="BombTimer" type="Timer" parent="."]
-wait_time = 300.0
-one_shot = true
-autostart = true
-
-[node name="BombTimerText" type="Node2D" parent="."]
-
-[node name="Minute1" type="Label" parent="BombTimerText"]
-offset_left = 212.0
-offset_top = 98.5
-offset_right = 252.0
-offset_bottom = 121.5
-theme_override_colors/font_color = Color(0.625575, 7.46027e-07, 1.44392e-07, 1)
-theme_override_fonts/font = ExtResource("32_5wo37")
-theme_override_font_sizes/font_size = 8
-text = "0"
-
-[node name="Minute2" type="Label" parent="BombTimerText"]
-offset_left = 218.0
-offset_top = 98.5
-offset_right = 258.0
-offset_bottom = 121.5
-theme_override_colors/font_color = Color(0.625575, 7.46027e-07, 1.44392e-07, 1)
-theme_override_fonts/font = ExtResource("32_5wo37")
-theme_override_font_sizes/font_size = 8
-text = "0"
-
-[node name="Second1" type="Label" parent="BombTimerText"]
-offset_left = 226.0
-offset_top = 98.5
-offset_right = 266.0
-offset_bottom = 121.5
-theme_override_colors/font_color = Color(0.625575, 7.46027e-07, 1.44392e-07, 1)
-theme_override_fonts/font = ExtResource("32_5wo37")
-theme_override_font_sizes/font_size = 8
-text = "0"
-
-[node name="Second2" type="Label" parent="BombTimerText"]
-offset_left = 232.0
-offset_top = 98.5
-offset_right = 272.0
-offset_bottom = 121.5
-theme_override_colors/font_color = Color(0.625575, 7.46027e-07, 1.44392e-07, 1)
-theme_override_fonts/font = ExtResource("32_5wo37")
-theme_override_font_sizes/font_size = 8
-text = "0"
-
 [connection signal="death" from="Player" to="." method="_on_player_death"]
+[connection signal="death" from="Node/Goob" to="." method="_on_goob_death"]
 [connection signal="death" from="PatientHealth" to="." method="_on_patient_death"]
-[connection signal="timeout" from="BombTimer" to="." method="_on_bomb_timer_timeout"]
