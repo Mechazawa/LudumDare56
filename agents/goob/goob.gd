@@ -19,7 +19,7 @@ func _ready() -> void:
 	#$GoobSprite.play(&"default")
 
 func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("action_debug"):
+	if Input.is_action_just_pressed("action_debug") and OS.is_debug_build():
 		print_debug("fire!")
 		target = get_tree().get_first_node_in_group(&"player")
 		fire_homing_small()
