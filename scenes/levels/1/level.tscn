@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://n2a8hh1clj27"]
+[gd_scene load_steps=20 format=3 uid="uid://n2a8hh1clj27"]
 
 [ext_resource type="PackedScene" uid="uid://b5vgmyclbwdx2" path="res://scripts/window_reference.tscn" id="1_euhgr"]
 [ext_resource type="Script" path="res://scenes/levels/1/level.gd" id="1_f100b"]
@@ -18,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://bigx17t4fvgwx" path="res://assets/healthbar-enemy-full.png" id="15_dtno4"]
 [ext_resource type="Texture2D" uid="uid://d3adqfsupjwfi" path="res://assets/healthbar-capsule-empty.png" id="16_ji05p"]
 [ext_resource type="Texture2D" uid="uid://dwejtqoulkuou" path="res://assets/healthbar-capsule-full.png" id="17_c6q5a"]
+[ext_resource type="AudioStream" uid="uid://nn4ix7ei4i57" path="res://sound/game-loop.wav" id="19_5bbfa"]
 
 [node name="Level" type="Node"]
 script = ExtResource("1_f100b")
@@ -80,6 +81,11 @@ bar_empty = ExtResource("16_ji05p")
 bar_full = ExtResource("17_c6q5a")
 
 [node name="Pause" parent="." instance=ExtResource("12_cupa8")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("19_5bbfa")
+volume_db = -5.0
+autoplay = true
 
 [connection signal="death" from="Player" to="." method="_on_player_death"]
 [connection signal="death" from="Node/Goob" to="." method="_on_goob_death"]

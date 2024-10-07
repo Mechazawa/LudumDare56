@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://djnq5qqrro3pi"]
+[gd_scene load_steps=14 format=3 uid="uid://djnq5qqrro3pi"]
 
 [ext_resource type="Script" path="res://scenes/clipboard.gd" id="1_71mmr"]
 [ext_resource type="Texture2D" uid="uid://bscy07xr10oim" path="res://assets/clipboard.png" id="1_ue1aa"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://bwlvwv0vgb6l7" path="res://assets/clipboard-tape-2.png" id="8_ngqh7"]
 [ext_resource type="Texture2D" uid="uid://cs1ds3y6exn3m" path="res://assets/clipboard-died.png" id="11_gej7x"]
 [ext_resource type="Texture2D" uid="uid://71njoeyuyn7r" path="res://assets/clipboard-saved.png" id="12_y5nbd"]
+[ext_resource type="AudioStream" uid="uid://banew6sqfiweq" path="res://sound/waiting.wav" id="13_rt3y1"]
 
 [node name="Clipboard" type="Node2D"]
 script = ExtResource("1_71mmr")
@@ -205,6 +206,11 @@ visible = false
 modulate = Color(1, 1, 1, 0.784314)
 texture = ExtResource("12_y5nbd")
 centered = false
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_rt3y1")
+volume_db = -5.0
+autoplay = true
 
 [connection signal="property_list_changed" from="." to="." method="_ready"]
 [connection signal="timeout" from="ContinueHintTimer" to="." method="_on_continue_hint_timer_timeout"]

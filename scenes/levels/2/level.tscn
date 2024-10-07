@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://dxc7n2vhevfyn"]
+[gd_scene load_steps=32 format=3 uid="uid://dxc7n2vhevfyn"]
 
 [ext_resource type="Script" path="res://scenes/levels/2/level.gd" id="1_o4ktt"]
 [ext_resource type="Texture2D" uid="uid://delgrq1ol4xbg" path="res://assets/background.png" id="2_qoid0"]
@@ -30,6 +30,7 @@
 [ext_resource type="Texture2D" uid="uid://b15cna2xw7egp" path="res://assets/healthbar-patient-full.png" id="27_srg5l"]
 [ext_resource type="Texture2D" uid="uid://d3adqfsupjwfi" path="res://assets/healthbar-capsule-empty.png" id="28_hd187"]
 [ext_resource type="Texture2D" uid="uid://dwejtqoulkuou" path="res://assets/healthbar-capsule-full.png" id="29_1phmu"]
+[ext_resource type="AudioStream" uid="uid://nn4ix7ei4i57" path="res://sound/game-loop.wav" id="31_g34w7"]
 
 [node name="Level2" type="Node"]
 script = ExtResource("1_o4ktt")
@@ -142,6 +143,11 @@ bar_empty = ExtResource("28_hd187")
 bar_full = ExtResource("29_1phmu")
 
 [node name="Pause" parent="." instance=ExtResource("26_6jmhc")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("31_g34w7")
+volume_db = -5.0
+autoplay = true
 
 [connection signal="death" from="Player" to="." method="_on_player_death"]
 [connection signal="death" from="PatientHealth" to="." method="_on_patient_death"]
