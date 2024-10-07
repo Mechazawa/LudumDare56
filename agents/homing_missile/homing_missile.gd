@@ -7,6 +7,9 @@ class_name HomingMissile extends Area2D
 @export var sound: AudioStream = preload("res://sound/capsule-explosion.wav")
 @export var target: Node2D = null
 
+var texture_explosion_1 = preload("res://assets/capsule-explosion-1.png")
+var texture_explosion_2 = preload("res://assets/capsule-explosion-2.png")
+
 var acceleration = Vector2.ZERO
 var velocity = Vector2.ZERO
 
@@ -44,7 +47,12 @@ func _on_timeout() -> void:
 	explode()
 	
 func explode() -> void:
-	#todo explode in place
+	set_physics_process(false)
+	# had time pressure, bad code
+	$Sprite2D.texture = texture_explosion_1
+	await get_tree().create_timer(0.1).timeout	
+	$Sprite2D.texture = texture_explosion_2
+	await get_tree().create_timer(0.2).timeout	
 	queue_free()
 	
 func bullet_hit() -> void:
