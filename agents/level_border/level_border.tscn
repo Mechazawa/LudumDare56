@@ -40,7 +40,7 @@ centered = false
 [node name="DamageIndicator" parent="BorderFlesh/BorderFlesh" instance=ExtResource("4_5xva4")]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BorderFlesh"]
-polygon = PackedVector2Array(24, 24, 24, 309, 409, 309, 410, 24, 24, 24, 11, 10, 422, 10, 422, 316, 11, 317, 11, 10)
+polygon = PackedVector2Array(25, 34, 24, 309, 409, 309, 410, 34, 25, 34, 11, 10, 422, 10, 422, 316, 11, 317, 11, 10)
 
 [node name="RandomEffect" parent="BorderFlesh" instance=ExtResource("6_0d7u4")]
 

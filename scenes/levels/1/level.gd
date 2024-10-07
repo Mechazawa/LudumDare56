@@ -1,5 +1,9 @@
 extends Node
 
+func _ready():
+	$Player.velocity = Vector2(20.0, 40.0)
+	$Player.rotational_velocity = -2.0
+
 func _on_player_death() -> void:
 	await get_tree().create_timer(3.0).timeout	
 	SceneManager.change_scene("res://scenes/levels/1/end_death.tscn")
