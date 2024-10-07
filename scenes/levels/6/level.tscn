@@ -52,6 +52,7 @@ has_pacemaker = false
 [node name="Goob" parent="Node" instance=ExtResource("7_c34nj")]
 position = Vector2(364, 117)
 behavior = ExtResource("8_xe5ju")
+max_health = 100
 
 [node name="LevelBorder" parent="." instance=ExtResource("9_43vp0")]
 

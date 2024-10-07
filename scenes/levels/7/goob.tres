@@ -1,4 +1,4 @@
-[gd_resource type="BehaviorTree" load_steps=47 format=3 uid="uid://jnw6y4bla2cp"]
+[gd_resource type="BehaviorTree" load_steps=49 format=3 uid="uid://jnw6y4bla2cp"]
 
 [ext_resource type="Script" path="res://ai/tasks/get_first_in_group.gd" id="1_cqkab"]
 [ext_resource type="Script" path="res://ai/tasks/count_nodes_in_group.gd" id="2_stnxw"]
@@ -68,6 +68,15 @@ variable = &"target"
 property = &"target"
 value = SubResource("BBVariant_1a35y")
 
+[sub_resource type="BBNode" id="BBNode_bhtuu"]
+resource_name = "AnimationPlayer"
+saved_value = NodePath("AnimationPlayer")
+
+[sub_resource type="BTPlayAnimation" id="BTPlayAnimation_n160a"]
+await_completion = 10.0
+animation_player = SubResource("BBNode_bhtuu")
+animation_name = &"goob/attack_wave"
+
 [sub_resource type="BBNode" id="BBNode_or0im"]
 resource_name = "AnimationPlayer"
 saved_value = NodePath("AnimationPlayer")
@@ -81,7 +90,7 @@ animation_name = &"goob/attack_wave"
 duration = 2.0
 
 [sub_resource type="BTSequence" id="BTSequence_1k4bt"]
-children = [SubResource("BTPlayAnimation_wj56r"), SubResource("BTWait_t0jqi")]
+children = [SubResource("BTPlayAnimation_n160a"), SubResource("BTPlayAnimation_wj56r"), SubResource("BTWait_t0jqi")]
 metadata/_weight_ = 1.72035
 
 [sub_resource type="BBNode" id="BBNode_40efh"]
@@ -105,12 +114,13 @@ group = &"missile"
 output_var = &"missile_count"
 
 [sub_resource type="BBVariant" id="BBVariant_3to01"]
-resource_name = "0"
-saved_value = 0
+resource_name = "4"
+saved_value = 4
 type = 2
 
 [sub_resource type="BTCheckVar" id="BTCheckVar_nrlq7"]
 variable = &"missile_count"
+check_type = 2
 value = SubResource("BBVariant_3to01")
 
 [sub_resource type="BBNode" id="BBNode_l4l7l"]
@@ -153,12 +163,13 @@ group = &"missile"
 output_var = &"missile_count"
 
 [sub_resource type="BBVariant" id="BBVariant_rucjv"]
-resource_name = "0"
-saved_value = 0
+resource_name = "4"
+saved_value = 4
 type = 2
 
 [sub_resource type="BTCheckVar" id="BTCheckVar_s1unp"]
 variable = &"missile_count"
+check_type = 4
 value = SubResource("BBVariant_rucjv")
 
 [sub_resource type="BBNode" id="BBNode_d60om"]

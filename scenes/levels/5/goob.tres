@@ -1,4 +1,4 @@
-[gd_resource type="BehaviorTree" load_steps=34 format=3 uid="uid://bkfrapkorc4fq"]
+[gd_resource type="BehaviorTree" load_steps=36 format=3 uid="uid://bkfrapkorc4fq"]
 
 [ext_resource type="Script" path="res://ai/tasks/get_first_in_group.gd" id="1_tbtef"]
 [ext_resource type="Script" path="res://ai/tasks/count_nodes_in_group.gd" id="2_yxt5l"]
@@ -106,12 +106,13 @@ group = &"missile"
 output_var = &"missile_count"
 
 [sub_resource type="BBVariant" id="BBVariant_u3g58"]
-resource_name = "0"
-saved_value = 0
+resource_name = "2"
+saved_value = 2
 type = 2
 
 [sub_resource type="BTCheckVar" id="BTCheckVar_1ancd"]
 variable = &"missile_count"
+check_type = 2
 value = SubResource("BBVariant_u3g58")
 
 [sub_resource type="BBNode" id="BBNode_8q01e"]
@@ -123,11 +124,20 @@ await_completion = 6.0
 animation_player = SubResource("BBNode_8q01e")
 animation_name = &"goob/attack_homing_large"
 
+[sub_resource type="BBNode" id="BBNode_5ckw2"]
+resource_name = "AnimationPlayer"
+saved_value = NodePath("AnimationPlayer")
+
+[sub_resource type="BTPlayAnimation" id="BTPlayAnimation_8chx0"]
+await_completion = 6.0
+animation_player = SubResource("BBNode_5ckw2")
+animation_name = &"goob/attack_homing_large"
+
 [sub_resource type="BTWait" id="BTWait_2ragk"]
 duration = 4.0
 
 [sub_resource type="BTSequence" id="BTSequence_5gqmv"]
-children = [SubResource("BTAction_kfwr1"), SubResource("BTCheckVar_1ancd"), SubResource("BTPlayAnimation_i104q"), SubResource("BTWait_2ragk")]
+children = [SubResource("BTAction_kfwr1"), SubResource("BTCheckVar_1ancd"), SubResource("BTPlayAnimation_i104q"), SubResource("BTPlayAnimation_8chx0"), SubResource("BTWait_2ragk")]
 metadata/_weight_ = 3.09316
 
 [sub_resource type="BTProbabilitySelector" id="BTProbabilitySelector_kh5hv"]

@@ -4,6 +4,7 @@ signal death
 
 @onready var health: Health = $Health
 @export var behavior: BehaviorTree = preload("res://scenes/levels/1/goob.tres")
+@export var max_health: int = 50
 
 var bullet_scene = preload("res://agents/bullet/bullet.tscn")
 var wave_scene = preload("res://agents/gravity_wave/gravity_wave.tscn")
@@ -14,6 +15,7 @@ var target: Node2D = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	health.max_health = max_health
 	health.damaged.connect(_on_health_damaged)
 	health.death.connect(_on_health_death)
 	$BTPlayer.behavior_tree = behavior
@@ -23,7 +25,9 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("action_debug") and OS.is_debug_build():
 		print_debug("fire!")
 		target = get_tree().get_first_node_in_group(&"player")
-		fire_bullet_large()
+		fire_homing_large()
+	if health.get_percentage() < 1.0:
+		$SnoozeParticles.emitting = false
 
 func fire_wave(size: int, angle_deg_offset: float = 0.0) -> void:
 	if target == null or not health.is_alive():
@@ -60,23 +64,36 @@ func fire_homing_small(angle_deg_offset: float = 0.0) -> void:
 	if target == null or not health.is_alive():
 		return
 	var homing = homing_missile_scene.instantiate() as HomingMissile
-	homing.position = $MouthMarker.position + Vector2(-5, -5)
+	var spawn_pos = _get_homing_spawn() 
+	homing.position = spawn_pos.position
 	homing.target = target
 	homing.texture = load("res://assets/attack-homing-2.png")
 	homing.damage = 2
-	homing.rotation = (target.global_position - $MouthMarker.global_position).angle() + deg_to_rad(angle_deg_offset)
+	homing.rotation = (target.global_position - spawn_pos.global_position).angle() + deg_to_rad(angle_deg_offset)
 	add_child(homing)
 	
 func fire_homing_large(angle_deg_offset: float = 0.0) -> void:
 	if target == null or not health.is_alive():
 		return
 	var homing = homing_missile_scene.instantiate()
-	homing.position = $MouthMarker.position + Vector2(-5, -5)
+	var spawn_pos = _get_homing_spawn() 
+	homing.position = spawn_pos.position
 	homing.target = target
 	homing.texture = load("res://assets/attack-homing-1.png")
 	homing.damage = 3
-	homing.rotation = (target.global_position - $MouthMarker.global_position).angle() + deg_to_rad(angle_deg_offset)
+	homing.rotation = (target.global_position - spawn_pos.global_position).angle() + deg_to_rad(angle_deg_offset)
 	add_child(homing)
+
+func _get_homing_spawn() -> Marker2D:
+	return [
+		$HomingSpawn1,
+		$HomingSpawn2,
+		$HomingSpawn3,
+		$HomingSpawn4,
+		$HomingSpawn5,
+		$HomingSpawn6,
+		$HomingSpawn7,
+	].pick_random()
 
 func _on_health_death() -> void:
 	#hackyhack
