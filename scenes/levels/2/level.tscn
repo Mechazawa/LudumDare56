@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://dxc7n2vhevfyn"]
+[gd_scene load_steps=33 format=3 uid="uid://dxc7n2vhevfyn"]
 
 [ext_resource type="Script" path="res://scenes/levels/2/level.gd" id="1_o4ktt"]
 [ext_resource type="Texture2D" uid="uid://delgrq1ol4xbg" path="res://assets/background.png" id="2_qoid0"]
@@ -31,6 +31,7 @@
 [ext_resource type="Texture2D" uid="uid://d3adqfsupjwfi" path="res://assets/healthbar-capsule-empty.png" id="28_hd187"]
 [ext_resource type="Texture2D" uid="uid://dwejtqoulkuou" path="res://assets/healthbar-capsule-full.png" id="29_1phmu"]
 [ext_resource type="AudioStream" uid="uid://nn4ix7ei4i57" path="res://sound/game-loop.wav" id="31_g34w7"]
+[ext_resource type="FontFile" uid="uid://rr1fsswt35q8" path="res://fonts/G7_Segment7_S5.ttf" id="32_5wo37"]
 
 [node name="Level2" type="Node"]
 script = ExtResource("1_o4ktt")
@@ -149,5 +150,53 @@ stream = ExtResource("31_g34w7")
 volume_db = -5.0
 autoplay = true
 
+[node name="BombTimer" type="Timer" parent="."]
+wait_time = 300.0
+one_shot = true
+autostart = true
+
+[node name="BombTimerText" type="Node2D" parent="."]
+
+[node name="Minute1" type="Label" parent="BombTimerText"]
+offset_left = 212.0
+offset_top = 98.5
+offset_right = 252.0
+offset_bottom = 121.5
+theme_override_colors/font_color = Color(0.625575, 7.46027e-07, 1.44392e-07, 1)
+theme_override_fonts/font = ExtResource("32_5wo37")
+theme_override_font_sizes/font_size = 8
+text = "0"
+
+[node name="Minute2" type="Label" parent="BombTimerText"]
+offset_left = 218.0
+offset_top = 98.5
+offset_right = 258.0
+offset_bottom = 121.5
+theme_override_colors/font_color = Color(0.625575, 7.46027e-07, 1.44392e-07, 1)
+theme_override_fonts/font = ExtResource("32_5wo37")
+theme_override_font_sizes/font_size = 8
+text = "0"
+
+[node name="Second1" type="Label" parent="BombTimerText"]
+offset_left = 226.0
+offset_top = 98.5
+offset_right = 266.0
+offset_bottom = 121.5
+theme_override_colors/font_color = Color(0.625575, 7.46027e-07, 1.44392e-07, 1)
+theme_override_fonts/font = ExtResource("32_5wo37")
+theme_override_font_sizes/font_size = 8
+text = "0"
+
+[node name="Second2" type="Label" parent="BombTimerText"]
+offset_left = 232.0
+offset_top = 98.5
+offset_right = 272.0
+offset_bottom = 121.5
+theme_override_colors/font_color = Color(0.625575, 7.46027e-07, 1.44392e-07, 1)
+theme_override_fonts/font = ExtResource("32_5wo37")
+theme_override_font_sizes/font_size = 8
+text = "0"
+
 [connection signal="death" from="Player" to="." method="_on_player_death"]
 [connection signal="death" from="PatientHealth" to="." method="_on_patient_death"]
+[connection signal="timeout" from="BombTimer" to="." method="_on_bomb_timer_timeout"]

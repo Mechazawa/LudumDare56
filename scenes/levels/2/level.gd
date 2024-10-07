@@ -25,8 +25,18 @@ func _on_goob_death() -> void:
 func _process(delta: float) -> void:
 	$HealthbarPatient.set_percentage(_safe_get_health_percentage($PatientHealth))
 	$HealthbarPlayer.set_percentage(_safe_get_health_percentage($Player/Health))
-	
+	_update_timer_text($BombTimer.time_left)
+
+func _update_timer_text(seconds: int) -> void:
+	$BombTimerText/Second2.text = str(seconds % 10)
+	$BombTimerText/Second1.text = str((seconds % 60) / 10)
+	$BombTimerText/Minute2.text = str((seconds / 60) % 10)
+	$BombTimerText/Minute1.text = str((seconds / 60) / 10)
+
 func _safe_get_health_percentage(node: Node) -> float:
 	if node == null:
 		return 0.0
 	return node.get_percentage()
+
+func _on_bomb_timer_timeout() -> void:
+	pass # Replace with function body.
