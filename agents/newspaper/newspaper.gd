@@ -6,7 +6,7 @@ class_name NewsPaper extends Node2D
 	set(value): 
 		_title = value
 		_propegate_exports()
-@export var article: String:
+@export_multiline var article: String:
 	get(): return _article
 	set(value): 
 		_article = value

@@ -181,12 +181,13 @@ offset_left = 3.0
 offset_top = 94.0
 offset_right = 66.0
 offset_bottom = 101.0
-theme_override_colors/font_color = Color(0.233925, 0.233925, 0.233925, 1)
+theme_override_colors/font_color = Color(0.118581, 0.118581, 0.118581, 1)
 theme_override_colors/font_outline_color = Color(0.82606, 0.82606, 0.82606, 0.709804)
 theme_override_constants/line_spacing = 4
 theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("4_p04ee")
 theme_override_font_sizes/font_size = 6
+text = "Press action to start"
 
 [node name="ContinueHintTimer" type="Timer" parent="."]
 wait_time = 5.0
