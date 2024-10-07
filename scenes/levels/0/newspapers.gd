@@ -6,13 +6,7 @@ var transitioning: int = 0
 @export var next_scene: PackedScene
 @export var rotation_count: int = 2
 @export var rotation_variation: float = 20
-@onready var newspapers: Array[Node2D] = [
-	$Newspaper1,
-	$Newspaper2,
-	$Newspaper3,
-	$Newspaper4,
-	$Newspaper5,
-]
+@onready var newspapers: Array[Node] = $NewsPapers.get_children()
 
 func _ready() -> void:
 	await _show_newspaper(newspapers[newspaper_index])
@@ -36,6 +30,8 @@ func _change_newspaper(dir: int) -> void:
 	_show_newspaper(newspapers[newspaper_index])
 
 func _hide_newspaper(newspaper: Node2D) -> void:
+	if newspaper is not Node2D:
+		return
 	transitioning += 1
 	await Anima.Node(newspaper).anima_animation_frames({
 		"from": {
@@ -50,7 +46,9 @@ func _hide_newspaper(newspaper: Node2D) -> void:
 	}, 1.0).play().animation_completed
 	transitioning -= 1
 
-func _show_newspaper(newspaper: Node2D) -> void:
+func _show_newspaper(newspaper: Node) -> void:
+	if newspaper is not Node2D:
+		return
 	newspaper.visible = true
 	transitioning += 1
 	await Anima.Node(newspaper).anima_animation_frames({
@@ -67,4 +65,5 @@ func _show_newspaper(newspaper: Node2D) -> void:
 	transitioning -= 1
 	
 func _load_next_scene() -> void:
+	_hide_newspaper(newspapers[newspaper_index])
 	SceneManager.change_scene(next_scene.resource_path)

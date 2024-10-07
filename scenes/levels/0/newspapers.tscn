@@ -41,7 +41,12 @@ sprite_frames = SubResource("SpriteFrames_wy852")
 autoplay = "default"
 centered = false
 
-[node name="Newspaper1" parent="." instance=ExtResource("6_moa6u")]
+[node name="NewspaperMarker" type="Marker2D" parent="."]
+position = Vector2(216, 173)
+
+[node name="NewsPapers" type="Node2D" parent="."]
+
+[node name="Newspaper1" parent="NewsPapers" instance=ExtResource("6_moa6u")]
 visible = false
 position = Vector2(215, 172)
 rotation = 0.0655591
@@ -49,7 +54,7 @@ scale = Vector2(0.7, 0.7)
 title = "Tiny surgeons in a pill"
 article = "Groundbreaking scientist invents a brand new shrinking machine. The machine can shrink a full team of surgeons to a tiny, pill-sized capsule ready to operate from inside your body. "
 
-[node name="Newspaper2" parent="." instance=ExtResource("6_moa6u")]
+[node name="Newspaper2" parent="NewsPapers" instance=ExtResource("6_moa6u")]
 visible = false
 position = Vector2(220, 174)
 rotation = -0.0422936
@@ -57,14 +62,14 @@ scale = Vector2(0.7, 0.7)
 title = "Cost-Cutting Brilliance"
 article = "MicroMedic operates from inside the body using a budget-friendly control system: a keyboard with just [color=black]arrow keys or AWSD and a space bar[/color]. This minimalist approach saved millions in production costs and training time."
 
-[node name="Newspaper3" parent="." instance=ExtResource("6_moa6u")]
+[node name="Newspaper3" parent="NewsPapers" instance=ExtResource("6_moa6u")]
 visible = false
 position = Vector2(205, 192)
 scale = Vector2(0.7, 0.7)
 title = "MicroMedic under fire"
 article = "Critics ask if it's really nessicary that the surgeons are shrunk and put in the capsule. Dr Nefario asks \"Why not just use remote controlls to steer the vessel? This is just overly complex and dangerous.\". MicroMedic inc. declined to comment"
 
-[node name="Newspaper4" parent="." instance=ExtResource("6_moa6u")]
+[node name="Newspaper4" parent="NewsPapers" instance=ExtResource("6_moa6u")]
 visible = false
 position = Vector2(210, 183)
 rotation = -0.0674517
@@ -72,12 +77,9 @@ scale = Vector2(0.7, 0.7)
 title = "MicroMedic denies deaths"
 article = "MicroMedic Inc denies claims that patients have died from botched surgeries. Their CEO stated \"We have never had a failed surgery, all of our patients have been successfully cured of the ailment they came in with\". "
 
-[node name="Newspaper5" parent="." instance=ExtResource("6_moa6u")]
+[node name="Newspaper5" parent="NewsPapers" instance=ExtResource("6_moa6u")]
 visible = false
 position = Vector2(212, 176)
 scale = Vector2(0.7, 0.7)
 title = "Dr Nefario found dead"
 article = "Dr Nefario, a renowned paediatric heart surgeon, was found dead after falling from the roof of St Nicks Hospital. The hospital director says no foul play is suspected, but notes that access to the roof shouldn't normally be possible."
-
-[node name="NewspaperMarker" type="Marker2D" parent="."]
-position = Vector2(216, 173)
