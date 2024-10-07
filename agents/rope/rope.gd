@@ -1,5 +1,5 @@
 @tool
-extends Node2D
+class_name Rope extends Node2D
 
 @export_range(2, 100) var size: int:
 	set(value):

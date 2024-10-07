@@ -1,5 +1,5 @@
 @tool
-class_name RopeSegment extends Node2D
+class_name RopeSegment extends RigidBody2D
 
 @export var collision: bool:
 	get(): return _collision

@@ -44,7 +44,7 @@ has_pacemaker = true
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_hnpbb")
 sprite_frames = SubResource("SpriteFrames_1e1pt")
-frame_progress = 0.871795
+frame_progress = 0.99125
 
 [node name="DamageIndicator" parent="AnimatedSprite2D" instance=ExtResource("5_hotuu")]
 

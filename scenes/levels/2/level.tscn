@@ -31,21 +31,22 @@ stretch_mode = 1
 [node name="WindowReference" parent="." instance=ExtResource("4_061wx")]
 metadata/_edit_lock_ = true
 
-[node name="Node2D" type="Node2D" parent="."]
+[node name="Patient" type="Node2D" parent="."]
 position = Vector2(74, 144)
 rotation = -0.109195
 
-[node name="Heart" parent="Node2D" instance=ExtResource("5_4cy4t")]
+[node name="Heart" parent="Patient" instance=ExtResource("5_4cy4t")]
 position = Vector2(162.848, -26.4104)
 rotation = 0.109195
 
-[node name="RopePurple" parent="Node2D" node_paths=PackedStringArray("anchor") instance=ExtResource("10_6l0hr")]
+[node name="RopePurple" parent="Patient" node_paths=PackedStringArray("anchor") instance=ExtResource("10_6l0hr")]
 position = Vector2(182.374, -2.64098)
 rotation = -3.05069
 size = 11
 anchor = NodePath("../Heart")
+collision = true
 
-[node name="RopeOrange" parent="Node2D" node_paths=PackedStringArray("anchor") instance=ExtResource("10_6l0hr")]
+[node name="RopeOrange" parent="Patient" node_paths=PackedStringArray("anchor") instance=ExtResource("10_6l0hr")]
 position = Vector2(121.86, -1.22729)
 rotation = 0.471668
 size = 11
@@ -53,10 +54,12 @@ segment_start = ExtResource("11_011px")
 segment_middle = ExtResource("12_krqkk")
 segment_end = ExtResource("13_0ae4j")
 anchor = NodePath("../Heart")
+collision = true
 
 [node name="Player" parent="." instance=ExtResource("3_0mlqw")]
 position = Vector2(74, 144)
 rotation = -0.109195
+ship_tool = null
 
 [node name="LevelBorder" parent="." instance=ExtResource("7_5ta0u")]
 

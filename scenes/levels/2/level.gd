@@ -1,5 +1,12 @@
 extends Node
 
+func _ready() -> void:
+	pass
+	#for child in $Patient.get_children():
+		#if child is Rope:
+			#var segment: RigidBody2D = child.get_children()[child.get_child_count() - 1]
+			#segment.apply_central_force(Vector2(randf() * 200.0 - 100.0, randf() * 200.0 - 100.0)) 
+
 func _on_player_death() -> void:
 	await get_tree().create_timer(3.0).timeout	
 	SceneManager.change_scene("res://scenes/levels/2/end_death.tscn")
