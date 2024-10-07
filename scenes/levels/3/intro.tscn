@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dtrf8ruvv4k5i" path="res://assets/intro-background-steam-2.png" id="4_7v2bk"]
 [ext_resource type="PackedScene" uid="uid://b5vgmyclbwdx2" path="res://scripts/window_reference.tscn" id="5_fcruv"]
 [ext_resource type="PackedScene" uid="uid://djnq5qqrro3pi" path="res://scenes/clipboard.tscn" id="6_vvvdr"]
-[ext_resource type="Texture2D" uid="uid://b10knaybutguv" path="res://assets/clipboard-portrait-3.png" id="7_4snsc"]
+[ext_resource type="Texture2D" uid="uid://btb2ymktpngmi" path="res://assets/clipboard-portrait-9.png" id="7_5o6rk"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_teah4"]
 animations = [{
@@ -44,13 +44,14 @@ metadata/_edit_lock_ = true
 [node name="Clipboard" parent="." instance=ExtResource("6_vvvdr")]
 position = Vector2(134, 50)
 scale = Vector2(2, 2)
-photo = ExtResource("7_4snsc")
-patient_name = "Jurgen"
-dossier_text = "Tried to pet a goat and 
-got goat flu. Needs
-heart surgery to fix it.
-
-Remember: avoid the 
-goat flu sneeze!"
+photo = ExtResource("7_5o6rk")
+patient_name = "Jasper"
+dossier_text = "Fell on concrete and 
+somehow got the goat 
+flu. Heart surgery is 
+required. His overall 
+health seems to be 
+weaker, Making the goat 
+virus even stronger."
 
 [connection signal="player_ready" from="Clipboard" to="." method="_on_clipboard_player_ready"]

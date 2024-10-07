@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dtrf8ruvv4k5i" path="res://assets/intro-background-steam-2.png" id="4_al42d"]
 [ext_resource type="PackedScene" uid="uid://b5vgmyclbwdx2" path="res://scripts/window_reference.tscn" id="5_ypwvx"]
 [ext_resource type="PackedScene" uid="uid://djnq5qqrro3pi" path="res://scenes/clipboard.tscn" id="6_8sfp3"]
-[ext_resource type="Texture2D" uid="uid://b10knaybutguv" path="res://assets/clipboard-portrait-3.png" id="7_brgfn"]
+[ext_resource type="Texture2D" uid="uid://2341q8d3m5fa" path="res://assets/clipboard-portrait-10.png" id="7_1np8t"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_teah4"]
 animations = [{
@@ -44,10 +44,15 @@ metadata/_edit_lock_ = true
 [node name="Clipboard" parent="." instance=ExtResource("6_8sfp3")]
 position = Vector2(134, 50)
 scale = Vector2(2, 2)
-photo = ExtResource("7_brgfn")
-patient_name = "Jurgen"
-dossier_text = "Got sneezed on by Jurgen. Felt gross but soon felt real sick. Will need heart surgery as well but seems to be in worse shape.
-Has the virus become stronger?!"
+photo = ExtResource("7_1np8t")
+patient_name = "Max"
+dossier_text = "The patient didn't make 
+a recovery, and lost all 
+pulse... That was for 
+sure due to his 
+experiments, right?! 
+His family is told that his 
+friend Grum took him,"
 stamp = 1
 
 [connection signal="player_ready" from="Clipboard" to="." method="_on_clipboard_player_ready"]

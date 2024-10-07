@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dtrf8ruvv4k5i" path="res://assets/intro-background-steam-2.png" id="4_gd6ul"]
 [ext_resource type="PackedScene" uid="uid://b5vgmyclbwdx2" path="res://scripts/window_reference.tscn" id="5_b7ja8"]
 [ext_resource type="PackedScene" uid="uid://djnq5qqrro3pi" path="res://scenes/clipboard.tscn" id="6_g0uve"]
-[ext_resource type="Texture2D" uid="uid://b10knaybutguv" path="res://assets/clipboard-portrait-3.png" id="7_xnfs5"]
+[ext_resource type="Texture2D" uid="uid://c3d0mutmtrqpb" path="res://assets/clipboard-portrait-15.png" id="7_ao4ur"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_teah4"]
 animations = [{
@@ -44,10 +44,15 @@ metadata/_edit_lock_ = true
 [node name="Clipboard" parent="." instance=ExtResource("6_g0uve")]
 position = Vector2(134, 50)
 scale = Vector2(2, 2)
-photo = ExtResource("7_xnfs5")
-patient_name = "Jurgen"
-dossier_text = "Got sneezed on by Jurgen. Felt gross but soon felt real sick. Will need heart surgery as well but seems to be in worse shape.
-Has the virus become stronger?!"
+photo = ExtResource("7_ao4ur")
+patient_name = "Sam"
+dossier_text = "Patient did not make it. 
+The zoo will need 
+replacement, but one 
+\"Mr Finnigan\"  seems to 
+step up. The family is 
+told that Sam went for 
+a walk. "
 stamp = 1
 
 [connection signal="player_ready" from="Clipboard" to="." method="_on_clipboard_player_ready"]

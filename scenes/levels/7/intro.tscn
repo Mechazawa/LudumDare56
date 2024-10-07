@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dtrf8ruvv4k5i" path="res://assets/intro-background-steam-2.png" id="4_m1hv7"]
 [ext_resource type="PackedScene" uid="uid://b5vgmyclbwdx2" path="res://scripts/window_reference.tscn" id="5_4tiku"]
 [ext_resource type="PackedScene" uid="uid://djnq5qqrro3pi" path="res://scenes/clipboard.tscn" id="6_mtvno"]
-[ext_resource type="Texture2D" uid="uid://b10knaybutguv" path="res://assets/clipboard-portrait-3.png" id="7_r545q"]
+[ext_resource type="Texture2D" uid="uid://c3d0mutmtrqpb" path="res://assets/clipboard-portrait-15.png" id="7_nohp3"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_teah4"]
 animations = [{
@@ -44,13 +44,14 @@ metadata/_edit_lock_ = true
 [node name="Clipboard" parent="." instance=ExtResource("6_mtvno")]
 position = Vector2(134, 50)
 scale = Vector2(2, 2)
-photo = ExtResource("7_r545q")
-patient_name = "Jurgen"
-dossier_text = "Tried to pet a goat and 
-got goat flu. Needs
-heart surgery to fix it.
-
-Remember: avoid the 
-goat flu sneeze!"
+photo = ExtResource("7_nohp3")
+patient_name = "Sam"
+dossier_text = "He thought Goob looked 
+way too cute and needed 
+an enclosure in his new 
+up and coming zoo. 
+Obviously resulting in 
+him being here in need 
+of a heart operation."
 
 [connection signal="player_ready" from="Clipboard" to="." method="_on_clipboard_player_ready"]

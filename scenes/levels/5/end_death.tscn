@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dtrf8ruvv4k5i" path="res://assets/intro-background-steam-2.png" id="4_ui8vo"]
 [ext_resource type="PackedScene" uid="uid://b5vgmyclbwdx2" path="res://scripts/window_reference.tscn" id="5_e2t1e"]
 [ext_resource type="PackedScene" uid="uid://djnq5qqrro3pi" path="res://scenes/clipboard.tscn" id="6_4qhnj"]
-[ext_resource type="Texture2D" uid="uid://b10knaybutguv" path="res://assets/clipboard-portrait-3.png" id="7_jkb63"]
+[ext_resource type="Texture2D" uid="uid://bvnrroickkwl0" path="res://assets/clipboard-portrait-13.png" id="7_smrqs"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_teah4"]
 animations = [{
@@ -44,10 +44,15 @@ metadata/_edit_lock_ = true
 [node name="Clipboard" parent="." instance=ExtResource("6_4qhnj")]
 position = Vector2(134, 50)
 scale = Vector2(2, 2)
-photo = ExtResource("7_jkb63")
-patient_name = "Jurgen"
-dossier_text = "Got sneezed on by Jurgen. Felt gross but soon felt real sick. Will need heart surgery as well but seems to be in worse shape.
-Has the virus become stronger?!"
+photo = ExtResource("7_smrqs")
+patient_name = "Isaac"
+dossier_text = "The patient has not 
+survived the operation. 
+He kept talking about 
+some kind of dwarven 
+keep so his family is told 
+that he has left them to 
+live out his fantasies."
 stamp = 1
 
 [connection signal="player_ready" from="Clipboard" to="." method="_on_clipboard_player_ready"]

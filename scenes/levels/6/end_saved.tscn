@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dtrf8ruvv4k5i" path="res://assets/intro-background-steam-2.png" id="4_11xxb"]
 [ext_resource type="PackedScene" uid="uid://b5vgmyclbwdx2" path="res://scripts/window_reference.tscn" id="5_5xgd6"]
 [ext_resource type="PackedScene" uid="uid://djnq5qqrro3pi" path="res://scenes/clipboard.tscn" id="6_txv4l"]
-[ext_resource type="Texture2D" uid="uid://b10knaybutguv" path="res://assets/clipboard-portrait-3.png" id="7_5ujq7"]
+[ext_resource type="Texture2D" uid="uid://bxqtipwnxdsjq" path="res://assets/clipboard-portrait-14.png" id="7_lakg5"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_teah4"]
 animations = [{
@@ -44,13 +44,14 @@ metadata/_edit_lock_ = true
 [node name="Clipboard" parent="." instance=ExtResource("6_txv4l")]
 position = Vector2(134, 50)
 scale = Vector2(2, 2)
-photo = ExtResource("7_5ujq7")
-patient_name = "Jurgen"
-dossier_text = "Although the patient 
-has recovered he's 
-unable to pay the bill. 
-We've taken his child as 
-payment instead."
+photo = ExtResource("7_lakg5")
+patient_name = "Spencer"
+dossier_text = "He lives to record an 
+other day! Records are
+not kept so we have no 
+idea if it will stay a two 
+man show or become 
+an one man show... "
 stamp = 2
 
 [connection signal="player_ready" from="Clipboard" to="." method="_on_clipboard_player_ready"]
