@@ -111,7 +111,6 @@ collision = true
 [node name="Player" parent="." instance=ExtResource("3_0mlqw")]
 position = Vector2(74, 144)
 rotation = -0.109195
-ship_tool = null
 
 [node name="LevelBorder" parent="." instance=ExtResource("7_5ta0u")]
 

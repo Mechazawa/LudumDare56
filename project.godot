@@ -81,6 +81,7 @@ action_debug={
 [layer_names]
 
 2d_physics/layer_2="rope"
+2d_physics/layer_5="grabbable"
 
 [rendering]
 

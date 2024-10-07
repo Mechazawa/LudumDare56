@@ -31,6 +31,7 @@ func _ready() -> void:
 	if ship_tool != null:
 		ship_tool_instance = ship_tool.instantiate()
 		add_child(ship_tool_instance)
+		move_child(ship_tool_instance, 0)
 		
 func _physics_process(delta: float) -> void:
 	if not health.is_alive():

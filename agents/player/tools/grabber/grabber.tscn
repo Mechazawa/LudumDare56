@@ -1,0 +1,50 @@
+[gd_scene load_steps=7 format=3 uid="uid://dsqv3sqsqcwq2"]
+
+[ext_resource type="Texture2D" uid="uid://cqxog1ik10nf2" path="res://assets/capsule-grabber-1.png" id="1_aywg7"]
+[ext_resource type="Texture2D" uid="uid://b1iop7k5me0di" path="res://assets/capsule-grabber-2.png" id="2_3a3n6"]
+[ext_resource type="Texture2D" uid="uid://41rcaiatr467" path="res://assets/capsule-grabber-3.png" id="3_e268e"]
+[ext_resource type="Script" path="res://agents/player/tools/grabber/grabber.gd" id="4_ehbsp"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_85wf4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_aywg7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_3a3n6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_e268e")
+}],
+"loop": false,
+"name": &"grab",
+"speed": 12.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_68pwp"]
+radius = 4.0
+height = 10.0
+
+[node name="Grabber" type="AnimatedSprite2D"]
+position = Vector2(25, 0)
+sprite_frames = SubResource("SpriteFrames_85wf4")
+animation = &"grab"
+frame = 2
+frame_progress = 1.0
+script = ExtResource("4_ehbsp")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="."]
+position = Vector2(6, 0)
+node_a = NodePath("../StaticBody2D")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(4, 0)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_68pwp")
