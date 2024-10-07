@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://db766usra66y3"]
+
+[ext_resource type="Script" path="res://agents/homing_missile/homing_missile.gd" id="1_uk7yn"]
+[ext_resource type="AudioStream" uid="uid://d4et0wxjqxqmf" path="res://sound/laser.wav" id="3_6qs3x"]
+[ext_resource type="Texture2D" uid="uid://csjqjugmcgujy" path="res://assets/attack-homing-1.png" id="3_g16nw"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_p4hym"]
+radius = 2.0
+
+[node name="HomingMissile" type="Area2D"]
+script = ExtResource("1_uk7yn")
+sound = ExtResource("3_6qs3x")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 1.5708
+texture = ExtResource("3_g16nw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_p4hym")
+
+[node name="Timeout" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
+[node name="SpawnSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_6qs3x")
+volume_db = -3.519
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timeout" to="." method="_on_timeout"]

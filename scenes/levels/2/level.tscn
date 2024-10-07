@@ -21,7 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://dwejtqoulkuou" path="res://assets/healthbar-capsule-full.png" id="29_1phmu"]
 [ext_resource type="AudioStream" uid="uid://nn4ix7ei4i57" path="res://sound/game-loop.wav" id="31_g34w7"]
 
-[node name="Level" type="Node"]
+[node name="Level2" type="Node"]
 script = ExtResource("1_o4ktt")
 
 [node name="TextureRect" type="TextureRect" parent="."]
