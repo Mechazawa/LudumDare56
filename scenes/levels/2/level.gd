@@ -1,11 +1,11 @@
 extends Node
 
 func _ready() -> void:
-	pass
-	#for child in $Patient.get_children():
-		#if child is Rope:
-			#var segment: RigidBody2D = child.get_children()[child.get_child_count() - 1]
-			#segment.apply_central_force(Vector2(randf() * 200.0 - 100.0, randf() * 200.0 - 100.0)) 
+	for child in $Patient.get_children():
+		if child is Rope:
+			var dir = Vector2(randf() * 200.0 - 100.0, randf() * 200.0 - 100.0)
+			var segment: RopeSegment = child.get_children().pick_random()
+			segment.apply_central_impulse(dir)
 
 func _on_player_death() -> void:
 	await get_tree().create_timer(3.0).timeout	

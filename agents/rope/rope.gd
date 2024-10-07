@@ -59,7 +59,7 @@ func _append_segment(texture: Texture2D, parent: Node2D = null) -> Node2D:
 	new_segment.texture = texture
 	if parent != null:
 		new_segment.anchor = parent.get_path()
-	new_segment.collision = collision
+	#new_segment.collision = collision
 	if parent is RopeSegment:
 		new_segment.position.x = parent.position.x
 		new_segment.position.x += parent.texture.get_width()
