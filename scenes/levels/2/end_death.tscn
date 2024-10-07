@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dtrf8ruvv4k5i" path="res://assets/intro-background-steam-2.png" id="4_7cosv"]
 [ext_resource type="PackedScene" uid="uid://b5vgmyclbwdx2" path="res://scripts/window_reference.tscn" id="5_6nikk"]
 [ext_resource type="PackedScene" uid="uid://djnq5qqrro3pi" path="res://scenes/clipboard.tscn" id="6_iukot"]
-[ext_resource type="Texture2D" uid="uid://b10knaybutguv" path="res://assets/clipboard-portrait-3.png" id="7_6ih03"]
+[ext_resource type="Texture2D" uid="uid://2rpf3emlmrwn" path="res://assets/clipboard-portrait-7.png" id="7_kgnv2"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_teah4"]
 animations = [{
@@ -44,14 +44,14 @@ metadata/_edit_lock_ = true
 [node name="Clipboard" parent="." instance=ExtResource("6_iukot")]
 position = Vector2(134, 50)
 scale = Vector2(2, 2)
-photo = ExtResource("7_6ih03")
-patient_name = "Jurgen"
-dossier_text = "The patient has been
-pronounced dead. His 
-family was told he died
-due to an unrelated 
-skydiving accident to 
-avoid a lawsuit."
+photo = ExtResource("7_kgnv2")
+patient_name = "genevieve"
+dossier_text = "The patient did not 
+make it. We told her 
+family that her dog bit 
+and killed her. The dog 
+has been euthanized 
+as a result."
 stamp = 1
 
 [connection signal="player_ready" from="Clipboard" to="." method="_on_clipboard_player_ready"]
