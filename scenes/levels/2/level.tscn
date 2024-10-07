@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dxc7n2vhevfyn"]
+[gd_scene load_steps=14 format=3 uid="uid://dxc7n2vhevfyn"]
 
 [ext_resource type="Script" path="res://scenes/levels/2/level.gd" id="1_o4ktt"]
 [ext_resource type="Texture2D" uid="uid://delgrq1ol4xbg" path="res://assets/background.png" id="2_qoid0"]
@@ -10,7 +10,9 @@
 [ext_resource type="Texture2D" uid="uid://ceul6i2ukwj47" path="res://assets/gravestone.png" id="9_eukoa"]
 [ext_resource type="PackedScene" uid="uid://b5s6tagol8wcj" path="res://agents/rope/rope.tscn" id="10_6l0hr"]
 [ext_resource type="PackedScene" uid="uid://bdm1aa8smx8d" path="res://agents/healthbar/healthbar.tscn" id="10_8xe3k"]
-[ext_resource type="Texture2D" uid="uid://co6xjfds4c7md" path="res://assets/cable/cable-blue-middle.png" id="11_addri"]
+[ext_resource type="Texture2D" uid="uid://csqe6fyxahoyp" path="res://assets/cable/cable-orange-begin.png" id="11_011px"]
+[ext_resource type="Texture2D" uid="uid://bufw5hk6kx0rb" path="res://assets/cable/cable-orange-middle.png" id="12_krqkk"]
+[ext_resource type="Texture2D" uid="uid://c1eav5dkvsnbp" path="res://assets/cable/cable-orange-end.png" id="13_0ae4j"]
 
 [node name="Level2" type="Node"]
 script = ExtResource("1_o4ktt")
@@ -26,17 +28,35 @@ scale = Vector2(4, 4)
 texture = ExtResource("2_qoid0")
 stretch_mode = 1
 
-[node name="Player" parent="." instance=ExtResource("3_0mlqw")]
-position = Vector2(74, 144)
-rotation = -6.39238
-
 [node name="WindowReference" parent="." instance=ExtResource("4_061wx")]
 metadata/_edit_lock_ = true
 
-[node name="Node" type="Node" parent="."]
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(74, 144)
+rotation = -0.109195
 
-[node name="Heart" parent="Node" instance=ExtResource("5_4cy4t")]
-position = Vector2(233, 100)
+[node name="Heart" parent="Node2D" instance=ExtResource("5_4cy4t")]
+position = Vector2(162.848, -26.4104)
+rotation = 0.109195
+
+[node name="RopePurple" parent="Node2D" node_paths=PackedStringArray("anchor") instance=ExtResource("10_6l0hr")]
+position = Vector2(182.374, -2.64098)
+rotation = -3.05069
+size = 11
+anchor = NodePath("../Heart")
+
+[node name="RopeOrange" parent="Node2D" node_paths=PackedStringArray("anchor") instance=ExtResource("10_6l0hr")]
+position = Vector2(121.86, -1.22729)
+rotation = 0.471668
+size = 11
+segment_start = ExtResource("11_011px")
+segment_middle = ExtResource("12_krqkk")
+segment_end = ExtResource("13_0ae4j")
+anchor = NodePath("../Heart")
+
+[node name="Player" parent="." instance=ExtResource("3_0mlqw")]
+position = Vector2(74, 144)
+rotation = -0.109195
 
 [node name="LevelBorder" parent="." instance=ExtResource("7_5ta0u")]
 
@@ -57,13 +77,6 @@ position = Vector2(304, 2)
 
 [node name="HealthbarPlayer" parent="." instance=ExtResource("10_8xe3k")]
 position = Vector2(36, 3)
-
-[node name="Rope" parent="." node_paths=PackedStringArray("anchor") instance=ExtResource("10_6l0hr")]
-position = Vector2(169, 34)
-rotation = 3.1233
-size = 11
-segment_middle = ExtResource("11_addri")
-anchor = NodePath("../Node/Heart")
 
 [connection signal="death" from="Player" to="." method="_on_player_death"]
 [connection signal="death" from="PatientHealth" to="." method="_on_patient_death"]

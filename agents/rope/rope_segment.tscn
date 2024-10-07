@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://bra174sxfj5uj"]
+[gd_scene load_steps=3 format=3 uid="uid://bra174sxfj5uj"]
 
 [ext_resource type="Script" path="res://agents/rope/rope_segment.gd" id="1_2l7lf"]
-[ext_resource type="Texture2D" uid="uid://dypb2t0sej7xv" path="res://assets/cable/cable-purple-middle.png" id="2_w2edp"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hclkp"]
 radius = 3.5
@@ -11,17 +10,17 @@ height = 15.0
 collision_layer = 2
 gravity_scale = 0.0
 script = ExtResource("1_2l7lf")
-collision = null
-anchor = null
 
 [node name="PinJoint2D" type="PinJoint2D" parent="."]
+visible = false
 node_b = NodePath("..")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(4, 0)
-texture = ExtResource("2_w2edp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(4, 0)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_hclkp")
+disabled = true

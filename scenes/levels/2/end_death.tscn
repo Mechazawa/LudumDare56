@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://bainbtxxc1ykw"]
 
-[ext_resource type="Script" path="res://scenes/levels/1/intro.gd" id="1_dq4j2"]
+[ext_resource type="Script" path="res://scenes/levels/2/intro.gd" id="1_a7gwn"]
 [ext_resource type="Texture2D" uid="uid://d3kd861f0h0x7" path="res://assets/intro-background.png" id="2_dv10d"]
 [ext_resource type="Texture2D" uid="uid://c28fwld3ktxfu" path="res://assets/intro-background-steam-1.png" id="3_e0ku1"]
 [ext_resource type="Texture2D" uid="uid://dtrf8ruvv4k5i" path="res://assets/intro-background-steam-2.png" id="4_7cosv"]
@@ -23,7 +23,7 @@ animations = [{
 }]
 
 [node name="EndDeath" type="Node"]
-script = ExtResource("1_dq4j2")
+script = ExtResource("1_a7gwn")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 modulate = Color(0.427493, 0.427493, 0.427493, 0.737255)
