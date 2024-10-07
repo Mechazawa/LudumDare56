@@ -16,6 +16,7 @@ var target: Node2D = null
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	health.max_health = max_health
+	health._current = max_health
 	health.damaged.connect(_on_health_damaged)
 	health.death.connect(_on_health_death)
 	$BTPlayer.behavior_tree = behavior
@@ -45,7 +46,7 @@ func fire_bullet_small(angle_deg_offset: float = 0.0) -> void:
 	bullet.position = $MouthMarker.position + Vector2(-5, -5)
 	bullet.texture = load("res://assets/attack-basic-1.png")
 	bullet.damage = 1
-	bullet.speed = 40
+	bullet.speed = 50
 	bullet.rotation = (target.global_position - $MouthMarker.global_position).angle() + deg_to_rad(angle_deg_offset)
 	add_child(bullet)
 	
@@ -55,7 +56,7 @@ func fire_bullet_large(angle_deg_offset: float = 0.0) -> void:
 	var bullet = bullet_scene.instantiate() as Bullet
 	bullet.position = $MouthMarker.position + Vector2(-5, -5)
 	bullet.damage = 2
-	bullet.speed = 30
+	bullet.speed = 40
 	bullet.texture = load("res://assets/attack-basic-2.png")
 	bullet.rotation = (target.global_position - $MouthMarker.global_position).angle() + deg_to_rad(angle_deg_offset)
 	add_child(bullet)
