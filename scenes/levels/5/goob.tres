@@ -1,4 +1,4 @@
-[gd_resource type="BehaviorTree" load_steps=30 format=3 uid="uid://bkfrapkorc4fq"]
+[gd_resource type="BehaviorTree" load_steps=34 format=3 uid="uid://bkfrapkorc4fq"]
 
 [ext_resource type="Script" path="res://ai/tasks/get_first_in_group.gd" id="1_tbtef"]
 [ext_resource type="Script" path="res://ai/tasks/count_nodes_in_group.gd" id="2_yxt5l"]
@@ -78,25 +78,11 @@ animation_player = SubResource("BBNode_or0im")
 animation_name = &"goob/attack_wave"
 
 [sub_resource type="BTWait" id="BTWait_t0jqi"]
-duration = 4.0
+duration = 2.0
 
 [sub_resource type="BTSequence" id="BTSequence_1k4bt"]
 children = [SubResource("BTPlayAnimation_wj56r"), SubResource("BTWait_t0jqi")]
-metadata/_weight_ = 1.72035
-
-[sub_resource type="BTAction" id="BTAction_r8ie7"]
-script = ExtResource("2_yxt5l")
-group = &"missile"
-output_var = &"missile_count"
-
-[sub_resource type="BBVariant" id="BBVariant_rucjv"]
-resource_name = "0"
-saved_value = 0
-type = 2
-
-[sub_resource type="BTCheckVar" id="BTCheckVar_s1unp"]
-variable = &"missile_count"
-value = SubResource("BBVariant_rucjv")
+metadata/_weight_ = 1.90776
 
 [sub_resource type="BBNode" id="BBNode_d60om"]
 resource_name = "AnimationPlayer"
@@ -111,11 +97,41 @@ animation_name = &"goob/attack_wave_split"
 duration = 4.0
 
 [sub_resource type="BTSequence" id="BTSequence_iw5hi"]
-children = [SubResource("BTAction_r8ie7"), SubResource("BTCheckVar_s1unp"), SubResource("BTPlayAnimation_xo2ra"), SubResource("BTWait_i67nh")]
-metadata/_weight_ = 2.61193
+children = [SubResource("BTPlayAnimation_xo2ra"), SubResource("BTWait_i67nh")]
+metadata/_weight_ = 0.939121
+
+[sub_resource type="BTAction" id="BTAction_kfwr1"]
+script = ExtResource("2_yxt5l")
+group = &"missile"
+output_var = &"missile_count"
+
+[sub_resource type="BBVariant" id="BBVariant_u3g58"]
+resource_name = "0"
+saved_value = 0
+type = 2
+
+[sub_resource type="BTCheckVar" id="BTCheckVar_1ancd"]
+variable = &"missile_count"
+value = SubResource("BBVariant_u3g58")
+
+[sub_resource type="BBNode" id="BBNode_8q01e"]
+resource_name = "AnimationPlayer"
+saved_value = NodePath("AnimationPlayer")
+
+[sub_resource type="BTPlayAnimation" id="BTPlayAnimation_i104q"]
+await_completion = 6.0
+animation_player = SubResource("BBNode_8q01e")
+animation_name = &"goob/attack_homing_large"
+
+[sub_resource type="BTWait" id="BTWait_2ragk"]
+duration = 4.0
+
+[sub_resource type="BTSequence" id="BTSequence_5gqmv"]
+children = [SubResource("BTAction_kfwr1"), SubResource("BTCheckVar_1ancd"), SubResource("BTPlayAnimation_i104q"), SubResource("BTWait_2ragk")]
+metadata/_weight_ = 3.09316
 
 [sub_resource type="BTProbabilitySelector" id="BTProbabilitySelector_kh5hv"]
-children = [SubResource("BTSequence_1k4bt"), SubResource("BTSequence_iw5hi")]
+children = [SubResource("BTSequence_1k4bt"), SubResource("BTSequence_iw5hi"), SubResource("BTSequence_5gqmv")]
 
 [sub_resource type="BTSequence" id="BTSequence_ua1gy"]
 children = [SubResource("BTPlayAnimation_e0mdy"), SubResource("BTAction_eco3o"), SubResource("BTSetAgentProperty_xfxl0"), SubResource("BTProbabilitySelector_kh5hv")]

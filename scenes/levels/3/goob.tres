@@ -77,7 +77,7 @@ animation_player = SubResource("BBNode_or0im")
 animation_name = &"goob/attack_wave"
 
 [sub_resource type="BTWait" id="BTWait_t0jqi"]
-duration = 2.5
+duration = 2.0
 
 [sub_resource type="BTSequence" id="BTSequence_1k4bt"]
 children = [SubResource("BTPlayAnimation_wj56r"), SubResource("BTWait_t0jqi")]
@@ -93,7 +93,7 @@ animation_player = SubResource("BBNode_40efh")
 animation_name = &"goob/attack_wave_split"
 
 [sub_resource type="BTWait" id="BTWait_3652p"]
-duration = 5.0
+duration = 4.0
 
 [sub_resource type="BTSequence" id="BTSequence_5iw25"]
 children = [SubResource("BTPlayAnimation_dc6yu"), SubResource("BTWait_3652p")]
