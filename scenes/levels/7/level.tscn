@@ -57,7 +57,6 @@ behavior = ExtResource("8_62wsm")
 
 [node name="PatientHealth" type="Node" parent="." groups=["patient_health"]]
 script = ExtResource("10_j1j0w")
-max_health = 30.0
 
 [node name="Gravestone" type="Node2D" parent="."]
 visible = false

@@ -11,6 +11,7 @@ var texture_explosion_2 = preload("res://assets/capsule-explosion-2.png")
 
 var acceleration = Vector2.ZERO
 var velocity = Vector2.ZERO
+var dead = false
 
 var explode_sound = preload("res://sound/capsule-explosion.wav")
 var spawn_sounds = [
@@ -39,7 +40,7 @@ func _process(delta: float) -> void:
 		explode()
 
 func _on_body_entered(body: Node2D) -> void:
-	if body is Goob:
+	if body is Goob or dead:
 		return
 	
 	var health = body.find_child("Health");
@@ -52,8 +53,13 @@ func _on_timeout() -> void:
 	explode()
 	
 func explode() -> void:
-	set_physics_process(false)
 	# had time pressure, bad code
+	if dead:
+		return
+	dead = true
+	set_physics_process(false)
+	self.collision_layer = 0
+	self.collision_layer = 0
 	$SpawnSound.stream = explode_sound
 	$SpawnSound.play()
 	$Sprite2D.texture = texture_explosion_1
@@ -75,6 +81,8 @@ func seek() -> Vector2:
 	return steer
 
 func _on_area_entered(area: Area2D) -> void:
+	if dead:
+		return
 	if area is Bullet:
 		area.queue_free()
 		explode()

@@ -62,41 +62,43 @@ variable = &"target"
 property = &"target"
 value = SubResource("BBVariant_1a35y")
 
-[sub_resource type="BBNode" id="BBNode_or0im"]
+[sub_resource type="BBNode" id="BBNode_iwsua"]
 resource_name = "AnimationPlayer"
 saved_value = NodePath("AnimationPlayer")
 
-[sub_resource type="BTPlayAnimation" id="BTPlayAnimation_wj56r"]
+[sub_resource type="BTPlayAnimation" id="BTPlayAnimation_i6l0c"]
 await_completion = 10.0
-animation_player = SubResource("BBNode_or0im")
+animation_player = SubResource("BBNode_iwsua")
 animation_name = &"goob/attack_wave"
 
-[sub_resource type="BTWait" id="BTWait_lg3st"]
-duration = 4.0
+[sub_resource type="BTWait" id="BTWait_6646v"]
+duration = 3.0
 
-[sub_resource type="BTSequence" id="BTSequence_1k4bt"]
-children = [SubResource("BTPlayAnimation_wj56r"), SubResource("BTWait_lg3st")]
+[sub_resource type="BTSequence" id="BTSequence_dx8by"]
+children = [SubResource("BTPlayAnimation_i6l0c"), SubResource("BTWait_6646v")]
+metadata/_weight_ = 1.72035
 
-[sub_resource type="BBNode" id="BBNode_40efh"]
+[sub_resource type="BBNode" id="BBNode_5hc6v"]
 resource_name = "AnimationPlayer"
 saved_value = NodePath("AnimationPlayer")
 
-[sub_resource type="BTPlayAnimation" id="BTPlayAnimation_dc6yu"]
+[sub_resource type="BTPlayAnimation" id="BTPlayAnimation_p1lxm"]
 await_completion = 10.0
-animation_player = SubResource("BBNode_40efh")
+animation_player = SubResource("BBNode_5hc6v")
 animation_name = &"goob/attack_wave_split"
 
-[sub_resource type="BTWait" id="BTWait_gk28x"]
-duration = 6.0
+[sub_resource type="BTWait" id="BTWait_duptf"]
+duration = 7.0
 
-[sub_resource type="BTSequence" id="BTSequence_5iw25"]
-children = [SubResource("BTPlayAnimation_dc6yu"), SubResource("BTWait_gk28x")]
+[sub_resource type="BTSequence" id="BTSequence_ol5ky"]
+children = [SubResource("BTPlayAnimation_p1lxm"), SubResource("BTWait_duptf")]
+metadata/_weight_ = 1.77274
 
-[sub_resource type="BTRandomSelector" id="BTRandomSelector_myn84"]
-children = [SubResource("BTSequence_1k4bt"), SubResource("BTSequence_5iw25")]
+[sub_resource type="BTProbabilitySelector" id="BTProbabilitySelector_rlodr"]
+children = [SubResource("BTSequence_dx8by"), SubResource("BTSequence_ol5ky")]
 
 [sub_resource type="BTSequence" id="BTSequence_ua1gy"]
-children = [SubResource("BTPlayAnimation_e0mdy"), SubResource("BTAction_eco3o"), SubResource("BTSetAgentProperty_xfxl0"), SubResource("BTRandomSelector_myn84")]
+children = [SubResource("BTPlayAnimation_e0mdy"), SubResource("BTAction_eco3o"), SubResource("BTSetAgentProperty_xfxl0"), SubResource("BTProbabilitySelector_rlodr")]
 
 [sub_resource type="BTSelector" id="BTSelector_nqnf8"]
 children = [SubResource("BTSequence_mxug8"), SubResource("BTSequence_ua1gy")]
