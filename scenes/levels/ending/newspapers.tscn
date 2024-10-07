@@ -1,0 +1,75 @@
+[gd_scene load_steps=9 format=3 uid="uid://dihnn13mi8n3x"]
+
+[ext_resource type="Script" path="res://scenes/levels/0/newspapers.gd" id="1_kj2dp"]
+[ext_resource type="PackedScene" uid="uid://pe6b1bc5rxkj" path="res://scenes/levels/ending/thanks_for_playing.tscn" id="2_i7jgm"]
+[ext_resource type="PackedScene" uid="uid://b5vgmyclbwdx2" path="res://scripts/window_reference.tscn" id="3_wyw5b"]
+[ext_resource type="Texture2D" uid="uid://d3kd861f0h0x7" path="res://assets/intro-background.png" id="4_oi7uh"]
+[ext_resource type="Texture2D" uid="uid://c28fwld3ktxfu" path="res://assets/intro-background-steam-1.png" id="5_lrhip"]
+[ext_resource type="Texture2D" uid="uid://dtrf8ruvv4k5i" path="res://assets/intro-background-steam-2.png" id="6_5bquk"]
+[ext_resource type="PackedScene" uid="uid://ccx2fsneqld7h" path="res://agents/newspaper/newspaper.tscn" id="7_uxbh1"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wy852"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_lrhip")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_5bquk")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Newspapers" type="Node"]
+script = ExtResource("1_kj2dp")
+next_scene = ExtResource("2_i7jgm")
+
+[node name="WindowReference" parent="." instance=ExtResource("3_wyw5b")]
+metadata/_edit_lock_ = true
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(0.427493, 0.427493, 0.427493, 0.737255)
+offset_right = 200.0
+offset_bottom = 200.0
+scale = Vector2(2.2, 2.2)
+texture = ExtResource("4_oi7uh")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="TextureRect"]
+sprite_frames = SubResource("SpriteFrames_wy852")
+autoplay = "default"
+centered = false
+
+[node name="NewspaperMarker" type="Marker2D" parent="."]
+position = Vector2(216, 173)
+
+[node name="NewsPapers" type="Node2D" parent="."]
+
+[node name="Newspaper1" parent="NewsPapers" instance=ExtResource("7_uxbh1")]
+position = Vector2(215, 172)
+rotation = 0.0655591
+scale = Vector2(0.7, 0.7)
+title = "Goob Vaccine Found"
+article = "Yesterday, Dr Doofenshmirtz published a paper detailing a novel cure for goat flu. According to him, all you need is a fresh orange and some baking powder. This method has shown a 100% success rate in curing the disease."
+
+[node name="Newspaper2" parent="NewsPapers" instance=ExtResource("7_uxbh1")]
+position = Vector2(215, 172)
+rotation = 0.0655591
+scale = Vector2(0.7, 0.7)
+title = "MicroMedic Under Investigation"
+article = "MicroMedic has been accused by the European Union of deliberately spreading goat flu and withholding information about deaths due to botched surgeries. MicroMedic declined to comment on the aligations."
+
+[node name="Newspaper3" parent="NewsPapers" instance=ExtResource("7_uxbh1")]
+position = Vector2(215, 172)
+rotation = 0.0655591
+scale = Vector2(0.7, 0.7)
+title = "MicroMedic Bankrupt"
+article = "MicroMedic, known for its innovative surgery robot, has filed for bankruptcy. Their CEO commented \"it is what it is\" on Y (formally known as Bleatr) and hasn't been seen since."
+
+[node name="Newspaper4" parent="NewsPapers" instance=ExtResource("7_uxbh1")]
+position = Vector2(215, 172)
+rotation = 0.0655591
+scale = Vector2(0.7, 0.7)
+title = "MicroMedic CEO Found Dead on Beach"
+article = "This morning MicroMedic's CEO was found washed up on the shores of Nuenen. Cops suspect foul play was involved but have closed the case due to lack of resources. Their chief commented \"We got better things to do ya know?\""

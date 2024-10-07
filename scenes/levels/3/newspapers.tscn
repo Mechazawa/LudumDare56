@@ -1,0 +1,54 @@
+[gd_scene load_steps=9 format=3 uid="uid://nydxfmhu7p2g"]
+
+[ext_resource type="Script" path="res://scenes/levels/0/newspapers.gd" id="1_p1a4i"]
+[ext_resource type="PackedScene" uid="uid://co5h2nrydcprq" path="res://scenes/levels/4/intro.tscn" id="2_jkysi"]
+[ext_resource type="PackedScene" uid="uid://b5vgmyclbwdx2" path="res://scripts/window_reference.tscn" id="3_h5dc7"]
+[ext_resource type="Texture2D" uid="uid://d3kd861f0h0x7" path="res://assets/intro-background.png" id="4_guggu"]
+[ext_resource type="Texture2D" uid="uid://c28fwld3ktxfu" path="res://assets/intro-background-steam-1.png" id="5_m1dvd"]
+[ext_resource type="Texture2D" uid="uid://dtrf8ruvv4k5i" path="res://assets/intro-background-steam-2.png" id="6_kjmgy"]
+[ext_resource type="PackedScene" uid="uid://ccx2fsneqld7h" path="res://agents/newspaper/newspaper.tscn" id="7_43tt7"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wy852"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_m1dvd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_kjmgy")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Newspapers" type="Node"]
+script = ExtResource("1_p1a4i")
+next_scene = ExtResource("2_jkysi")
+
+[node name="WindowReference" parent="." instance=ExtResource("3_h5dc7")]
+metadata/_edit_lock_ = true
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(0.427493, 0.427493, 0.427493, 0.737255)
+offset_right = 200.0
+offset_bottom = 200.0
+scale = Vector2(2.2, 2.2)
+texture = ExtResource("4_guggu")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="TextureRect"]
+sprite_frames = SubResource("SpriteFrames_wy852")
+autoplay = "default"
+centered = false
+
+[node name="NewspaperMarker" type="Marker2D" parent="."]
+position = Vector2(216, 173)
+
+[node name="NewsPapers" type="Node2D" parent="."]
+
+[node name="Newspaper1" parent="NewsPapers" instance=ExtResource("7_43tt7")]
+position = Vector2(215, 172)
+rotation = 0.0655591
+scale = Vector2(0.7, 0.7)
+title = "Virus rumors spark panic"
+article = "Rumors are spreading of a new virus spreading across country. Some call it the goat flu while others are calling it \"Goob\". Goob seems to take residence on the heart of the patient. Resulting in a sky rocketing amount of heart surgeries."

@@ -26,7 +26,7 @@ func _process(delta: float) -> void:
 		fire_bullet_large()
 
 func fire_wave(size: int, angle_deg_offset: float = 0.0) -> void:
-	if target == null:
+	if target == null or not health.is_alive():
 		return
 	var wave = wave_scene.instantiate()
 	wave.wave_size = size
@@ -35,7 +35,7 @@ func fire_wave(size: int, angle_deg_offset: float = 0.0) -> void:
 	add_child(wave)
 	
 func fire_bullet_small(angle_deg_offset: float = 0.0) -> void:
-	if target == null:
+	if target == null or not health.is_alive():
 		return
 	var bullet = bullet_scene.instantiate()
 	bullet.position = $MouthMarker.position + Vector2(-5, -5)
@@ -46,7 +46,7 @@ func fire_bullet_small(angle_deg_offset: float = 0.0) -> void:
 	add_child(bullet)
 	
 func fire_bullet_large(angle_deg_offset: float = 0.0) -> void:
-	if target == null:
+	if target == null or not health.is_alive():
 		return
 	var bullet = bullet_scene.instantiate() as Bullet
 	bullet.position = $MouthMarker.position + Vector2(-5, -5)
@@ -57,7 +57,7 @@ func fire_bullet_large(angle_deg_offset: float = 0.0) -> void:
 	add_child(bullet)
 	
 func fire_homing_small(angle_deg_offset: float = 0.0) -> void:
-	if target == null:
+	if target == null or not health.is_alive():
 		return
 	var homing = homing_missile_scene.instantiate() as HomingMissile
 	homing.position = $MouthMarker.position + Vector2(-5, -5)
@@ -68,7 +68,7 @@ func fire_homing_small(angle_deg_offset: float = 0.0) -> void:
 	add_child(homing)
 	
 func fire_homing_large(angle_deg_offset: float = 0.0) -> void:
-	if target == null:
+	if target == null or not health.is_alive():
 		return
 	var homing = homing_missile_scene.instantiate()
 	homing.position = $MouthMarker.position + Vector2(-5, -5)
@@ -84,6 +84,7 @@ func _on_health_death() -> void:
 		if node is BTPlayer:
 			node.active = false
 	
+	$SnoozeParticles.queue_free()
 	$DeathSound.play()
 	$GibParticlesSmall.emitting = true
 	$GibParticlesBig.emitting = true
@@ -97,6 +98,7 @@ func _on_health_damaged(target: Node, amount: float) -> void:
 	if target.is_ancestor_of(self) or target == self:
 		$GoobSprite/DamageIndicator.hit()
 		$HurtSound.play()
+		$SnoozeParticles.emitting = false
 
 func is_awake() -> bool:
 	return health.max_health > health.get_current()

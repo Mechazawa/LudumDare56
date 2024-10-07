@@ -8,6 +8,7 @@ func _ready():
 	$Player.rotational_velocity = -2.0
 	print_debug(_get_base_path())
 	print_debug(_get_base_path() + "/asd")
+	$PatientHealth._current = 15.0
 
 func _on_player_death() -> void:
 	await get_tree().create_timer(3.0).timeout	

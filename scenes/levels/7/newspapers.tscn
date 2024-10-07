@@ -1,0 +1,54 @@
+[gd_scene load_steps=9 format=3 uid="uid://b8uelfw0trfta"]
+
+[ext_resource type="Script" path="res://scenes/levels/0/newspapers.gd" id="1_vwnof"]
+[ext_resource type="PackedScene" uid="uid://dihnn13mi8n3x" path="res://scenes/levels/ending/newspapers.tscn" id="2_weny7"]
+[ext_resource type="PackedScene" uid="uid://b5vgmyclbwdx2" path="res://scripts/window_reference.tscn" id="3_rq6i3"]
+[ext_resource type="Texture2D" uid="uid://d3kd861f0h0x7" path="res://assets/intro-background.png" id="4_e5ec6"]
+[ext_resource type="Texture2D" uid="uid://c28fwld3ktxfu" path="res://assets/intro-background-steam-1.png" id="5_4csjk"]
+[ext_resource type="Texture2D" uid="uid://dtrf8ruvv4k5i" path="res://assets/intro-background-steam-2.png" id="6_yvkd1"]
+[ext_resource type="PackedScene" uid="uid://ccx2fsneqld7h" path="res://agents/newspaper/newspaper.tscn" id="7_y061v"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wy852"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_4csjk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_yvkd1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Newspapers" type="Node"]
+script = ExtResource("1_vwnof")
+next_scene = ExtResource("2_weny7")
+
+[node name="WindowReference" parent="." instance=ExtResource("3_rq6i3")]
+metadata/_edit_lock_ = true
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(0.427493, 0.427493, 0.427493, 0.737255)
+offset_right = 200.0
+offset_bottom = 200.0
+scale = Vector2(2.2, 2.2)
+texture = ExtResource("4_e5ec6")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="TextureRect"]
+sprite_frames = SubResource("SpriteFrames_wy852")
+autoplay = "default"
+centered = false
+
+[node name="NewspaperMarker" type="Marker2D" parent="."]
+position = Vector2(216, 173)
+
+[node name="NewsPapers" type="Node2D" parent="."]
+
+[node name="Newspaper1" parent="NewsPapers" instance=ExtResource("7_y061v")]
+position = Vector2(215, 172)
+rotation = 0.0655591
+scale = Vector2(0.7, 0.7)
+title = "MicroMedic Stocks through the roof"
+article = "Since the recent outbreak of Goob, the goat flu, the stocks of MicroMedic Inc. are going through the roof. When asked if the company is related to recent outbreaks in the Netherlands the company declined to comment."

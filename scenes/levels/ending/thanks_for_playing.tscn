@@ -1,0 +1,52 @@
+[gd_scene load_steps=6 format=3 uid="uid://pe6b1bc5rxkj"]
+
+[ext_resource type="Script" path="res://scenes/levels/ending/thanks_for_playing.gd" id="1_iytfg"]
+[ext_resource type="PackedScene" uid="uid://b5vgmyclbwdx2" path="res://scripts/window_reference.tscn" id="2_mt5co"]
+[ext_resource type="FontFile" uid="uid://b65w6ptv6rfrw" path="res://fonts/8-bit Arcade In.ttf" id="3_b1vdn"]
+[ext_resource type="FontFile" uid="uid://djfhomlt4jy4d" path="res://fonts/8-bit Arcade Out.ttf" id="4_ilqkp"]
+[ext_resource type="FontFile" uid="uid://ddagshn84eue3" path="res://fonts/Minecraft.ttf" id="5_mw4yu"]
+
+[node name="ThanksForPlaying" type="Node"]
+script = ExtResource("1_iytfg")
+
+[node name="WindowReference" parent="." instance=ExtResource("2_mt5co")]
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(30, 17)
+
+[node name="ThanksIn" type="Label" parent="Node2D"]
+offset_right = 147.0
+offset_bottom = 23.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_b1vdn")
+theme_override_font_sizes/font_size = 42
+text = "Thanks for playing!"
+metadata/_edit_lock_ = true
+
+[node name="ThanksOut" type="Label" parent="Node2D"]
+offset_right = 147.0
+offset_bottom = 23.0
+theme_override_colors/font_color = Color(0.633757, 0.633757, 0.633757, 1)
+theme_override_fonts/font = ExtResource("4_ilqkp")
+theme_override_font_sizes/font_size = 42
+text = "Thanks for playing!"
+metadata/_edit_lock_ = true
+
+[node name="LinkButton" type="LinkButton" parent="."]
+offset_left = 153.0
+offset_top = 105.0
+offset_right = 266.0
+offset_bottom = 145.0
+text = "Rate Our Game"
+uri = "https://ldjam.com/events/ludum-dare/56/$396000/"
+
+[node name="BackToMenuButton" type="Button" parent="."]
+offset_left = 151.0
+offset_top = 235.0
+offset_right = 279.0
+offset_bottom = 267.0
+theme_override_fonts/font = ExtResource("5_mw4yu")
+theme_override_font_sizes/font_size = 24
+text = "Play again"
+
+[connection signal="pressed" from="BackToMenuButton" to="." method="_on_back_to_menu_button_pressed"]
