@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://buh1ecsshfg8d"]
+[gd_scene load_steps=24 format=3 uid="uid://buh1ecsshfg8d"]
 
 [ext_resource type="PackedScene" uid="uid://b5vgmyclbwdx2" path="res://scripts/window_reference.tscn" id="1_jpi7x"]
 [ext_resource type="Script" path="res://scenes/levels/0/cutscene.gd" id="1_r8s17"]
@@ -18,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://oi7ok2n4fan" path="res://assets/intro-comic/doc-workshop.png" id="11_21p5a"]
 [ext_resource type="Texture2D" uid="uid://cntcbag1kbeem" path="res://assets/intro-comic/border.png" id="12_lm2fu"]
 [ext_resource type="AudioStream" uid="uid://b8y4d0lusex38" path="res://sound/menu-loop-2.wav" id="18_lmaj8"]
+[ext_resource type="Texture2D" uid="uid://d0a1rftdystb5" path="res://assets/intro-comic/doc-workshop-capsule-small-glow.png" id="19_r4fyb"]
 
 [sub_resource type="Animation" id="Animation_yb2s6"]
 length = 0.001
@@ -189,6 +190,18 @@ tracks/13/keys = {
 "update": 0,
 "values": [Vector2(0, 0)]
 }
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("CapsuleGlow:visible")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_djiia"]
 resource_name = "cutscene"
@@ -200,7 +213,7 @@ tracks/0/path = NodePath("Idea:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.7, 3, 4.06667, 9.33333),
+"times": PackedFloat32Array(0, 1.7, 3, 4.06667, 7.8),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
 "values": [false, true, false, true, false]
@@ -284,7 +297,7 @@ tracks/7/path = NodePath("Doc:position")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(7.03333, 9.36667),
+"times": PackedFloat32Array(5.775, 8.10834),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(120, 50)]
@@ -296,7 +309,7 @@ tracks/8/path = NodePath("Office:scale")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
-"times": PackedFloat32Array(7.03333, 9.36667),
+"times": PackedFloat32Array(5.775, 8.10834),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(1, 1), Vector2(1.5, 1.5)]
@@ -308,7 +321,7 @@ tracks/9/path = NodePath("Office:offset")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
-"times": PackedFloat32Array(7.03333, 9.36667),
+"times": PackedFloat32Array(5.775, 8.10834),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(-72.167, -55)]
@@ -320,7 +333,7 @@ tracks/10/path = NodePath("Capsule:visible")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
-"times": PackedFloat32Array(0, 2.96667, 4.2, 6.9),
+"times": PackedFloat32Array(0, 2.96667, 4.2, 5.64167),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [false, true, false, true]
@@ -344,7 +357,7 @@ tracks/12/path = NodePath("Capsule:scale")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/keys = {
-"times": PackedFloat32Array(-0.0333333, 4.2, 4.23333, 9.3667),
+"times": PackedFloat32Array(-0.0333333, 4.2, 4.23333, 8.10837),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(1, 1), Vector2(1, 1), Vector2(0.667, 0.667), Vector2(1, 1)]
@@ -356,7 +369,7 @@ tracks/13/path = NodePath("Capsule:position")
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/keys = {
-"times": PackedFloat32Array(4.2, 6.93333, 9.36667),
+"times": PackedFloat32Array(4.2, 5.675, 8.10834),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(24.056, 18.333), Vector2(0, 0)]
@@ -368,7 +381,7 @@ tracks/14/path = NodePath("Idea:scale")
 tracks/14/interp = 1
 tracks/14/loop_wrap = true
 tracks/14/keys = {
-"times": PackedFloat32Array(7, 9.33333),
+"times": PackedFloat32Array(5.8, 9.33333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(1, 1), Vector2(1.5, 1.5)]
@@ -380,10 +393,22 @@ tracks/15/path = NodePath("Idea:position")
 tracks/15/interp = 1
 tracks/15/loop_wrap = true
 tracks/15/keys = {
-"times": PackedFloat32Array(7, 9.33333),
+"times": PackedFloat32Array(5.8, 9.33333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(-72.167, -55)]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("CapsuleGlow:visible")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0, 6.30833, 9.00833),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, false, true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_eb806"]
@@ -429,6 +454,8 @@ centered = false
 
 [node name="Idea" type="Sprite2D" parent="."]
 visible = false
+position = Vector2(-72.167, -55)
+scale = Vector2(1.5, 1.5)
 texture = ExtResource("8_awif0")
 centered = false
 
@@ -453,5 +480,9 @@ centered = false
 stream = ExtResource("18_lmaj8")
 volume_db = -12.0
 autoplay = true
+
+[node name="CapsuleGlow" type="Sprite2D" parent="."]
+position = Vector2(217, 167)
+texture = ExtResource("19_r4fyb")
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
