@@ -1,0 +1,56 @@
+[gd_scene load_steps=9 format=3 uid="uid://co5h2nrydcprq"]
+
+[ext_resource type="Script" path="res://scenes/levels/4/intro.gd" id="1_ox0g2"]
+[ext_resource type="Texture2D" uid="uid://d3kd861f0h0x7" path="res://assets/intro-background.png" id="2_kj38q"]
+[ext_resource type="Texture2D" uid="uid://c28fwld3ktxfu" path="res://assets/intro-background-steam-1.png" id="3_ussh4"]
+[ext_resource type="Texture2D" uid="uid://dtrf8ruvv4k5i" path="res://assets/intro-background-steam-2.png" id="4_npqbs"]
+[ext_resource type="PackedScene" uid="uid://b5vgmyclbwdx2" path="res://scripts/window_reference.tscn" id="5_kf7qs"]
+[ext_resource type="PackedScene" uid="uid://djnq5qqrro3pi" path="res://scenes/clipboard.tscn" id="6_1titk"]
+[ext_resource type="Texture2D" uid="uid://b10knaybutguv" path="res://assets/clipboard-portrait-3.png" id="7_tawgv"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_teah4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_ussh4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_npqbs")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Intro" type="Node"]
+script = ExtResource("1_ox0g2")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(0.427493, 0.427493, 0.427493, 0.737255)
+offset_right = 200.0
+offset_bottom = 200.0
+scale = Vector2(2.2, 2.2)
+texture = ExtResource("2_kj38q")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="TextureRect"]
+sprite_frames = SubResource("SpriteFrames_teah4")
+autoplay = "default"
+frame_progress = 0.462417
+centered = false
+
+[node name="WindowReference" parent="." instance=ExtResource("5_kf7qs")]
+metadata/_edit_lock_ = true
+
+[node name="Clipboard" parent="." instance=ExtResource("6_1titk")]
+position = Vector2(134, 50)
+scale = Vector2(2, 2)
+photo = ExtResource("7_tawgv")
+patient_name = "Jurgen"
+dossier_text = "Tried to pet a goat and 
+got goat flu. Needs
+heart surgery to fix it.
+
+Remember: avoid the 
+goat flu sneeze!"
+
+[connection signal="player_ready" from="Clipboard" to="." method="_on_clipboard_player_ready"]

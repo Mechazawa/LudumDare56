@@ -1,0 +1,56 @@
+[gd_scene load_steps=9 format=3 uid="uid://bdolch8flpylp"]
+
+[ext_resource type="Script" path="res://scenes/levels/6/end_saved.gd" id="1_fipwh"]
+[ext_resource type="Texture2D" uid="uid://d3kd861f0h0x7" path="res://assets/intro-background.png" id="2_bd0ia"]
+[ext_resource type="Texture2D" uid="uid://c28fwld3ktxfu" path="res://assets/intro-background-steam-1.png" id="3_7qawh"]
+[ext_resource type="Texture2D" uid="uid://dtrf8ruvv4k5i" path="res://assets/intro-background-steam-2.png" id="4_11xxb"]
+[ext_resource type="PackedScene" uid="uid://b5vgmyclbwdx2" path="res://scripts/window_reference.tscn" id="5_5xgd6"]
+[ext_resource type="PackedScene" uid="uid://djnq5qqrro3pi" path="res://scenes/clipboard.tscn" id="6_txv4l"]
+[ext_resource type="Texture2D" uid="uid://b10knaybutguv" path="res://assets/clipboard-portrait-3.png" id="7_5ujq7"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_teah4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_7qawh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_11xxb")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="EndSaved" type="Node"]
+script = ExtResource("1_fipwh")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(0.427493, 0.427493, 0.427493, 0.737255)
+offset_right = 200.0
+offset_bottom = 200.0
+scale = Vector2(2.2, 2.2)
+texture = ExtResource("2_bd0ia")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="TextureRect"]
+sprite_frames = SubResource("SpriteFrames_teah4")
+autoplay = "default"
+frame_progress = 0.462417
+centered = false
+
+[node name="WindowReference" parent="." instance=ExtResource("5_5xgd6")]
+metadata/_edit_lock_ = true
+
+[node name="Clipboard" parent="." instance=ExtResource("6_txv4l")]
+position = Vector2(134, 50)
+scale = Vector2(2, 2)
+photo = ExtResource("7_5ujq7")
+patient_name = "Jurgen"
+dossier_text = "Although the patient 
+has recovered he's 
+unable to pay the bill. 
+We've taken his child as 
+payment instead."
+stamp = 2
+
+[connection signal="player_ready" from="Clipboard" to="." method="_on_clipboard_player_ready"]
