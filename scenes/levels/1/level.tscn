@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://n2a8hh1clj27"]
+[gd_scene load_steps=12 format=3 uid="uid://n2a8hh1clj27"]
 
 [ext_resource type="PackedScene" uid="uid://b5vgmyclbwdx2" path="res://scripts/window_reference.tscn" id="1_euhgr"]
 [ext_resource type="Script" path="res://scenes/levels/1/level.gd" id="1_f100b"]
 [ext_resource type="PackedScene" uid="uid://624k2gso6a2c" path="res://agents/heart/heart.tscn" id="2_6hi4y"]
 [ext_resource type="PackedScene" uid="uid://61y8ylbbieqc" path="res://agents/player/player.tscn" id="3_bun8k"]
 [ext_resource type="PackedScene" uid="uid://cdem2eb4ljqgl" path="res://agents/goob/goob.tscn" id="4_7ae6r"]
+[ext_resource type="PackedScene" uid="uid://ccad6vg5nvgnd" path="res://agents/player/tools/lasergun/lasergun.tscn" id="4_65nyl"]
 [ext_resource type="Texture2D" uid="uid://delgrq1ol4xbg" path="res://assets/background.png" id="4_ktoim"]
 [ext_resource type="PackedScene" uid="uid://djk1y81lii0kr" path="res://agents/level_border/level_border.tscn" id="7_likjv"]
 [ext_resource type="Script" path="res://scripts/health.gd" id="8_gys7b"]
@@ -28,6 +29,7 @@ stretch_mode = 1
 [node name="Player" parent="." instance=ExtResource("3_bun8k")]
 position = Vector2(96, 89)
 rotation = -5.02492
+ship_tool = ExtResource("4_65nyl")
 
 [node name="WindowReference" parent="." instance=ExtResource("1_euhgr")]
 metadata/_edit_lock_ = true
